@@ -1,76 +1,300 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
- 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
- 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
- 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
- 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
- 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
- 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
- 
-    --radius: 0.5rem;
-  }
- 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
- 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
- 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
- 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
- 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
- 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
- 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
- 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
- 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
+/* Theming Begin */
+/* :root {
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
 }
- 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
+} */
+/* Theming End */
+
+/* Fonts */
+h2,
+button,
+.fonts-special,
+.subtitle,
+#footer li,
+.learn-more-link span {
+	font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-style: normal;
+}
+
+/* HTML Elements */
+body {
+	color: #000;
+	background: #fff;
+	display: flex;
+}
+
+nav {
+	background-color: transparent;
+	position: fixed;
+	top: 0;
+	z-index: 999;
+	transition-timing-function: ease-in;
+	transition: 0.3s;
+	top: -75px;
+}
+
+button {
+	font-style: normal;
+	letter-spacing: 1.5px;
+}
+
+h2 {
+	font-style: normal;
+	font-weight: 600;
+	letter-spacing: 0;
+	font-size: 2.5em;
+	color: #002b49;
+	line-height: 1.3;
+}
+
+/* IDs & Classes */
+.nav-show {
+	position: fixed;
+	top: 0px;
+}
+
+/* Tablet & Up */
+@media (min-width: 640px) {
+	body {
+		display: block;
+	}
+
+	/* Container & Page Fixes */
+
+	/* Container Fixes */
+	#footer,
+	.banner-home-contact,
+	.expertise-page,
+	.team-page,
+	.about-page,
+	.contact-page {
+		min-width: 100%;
+	}
+
+	/* Banner Fixes */
+	.banner-expertise,
+	.banner-team,
+	.banner-employers,
+	.banner-candidates,
+	.banner-about,
+	.banner-contact {
+		height: 450px;
+	}
+
+	.banner-employers-copy,
+	.banner-candidates-copy,
+	.banner-about-copy,
+	.banner-contact-copy {
+		color: #fff;
+		flex-direction: column;
+		position: relative;
+		padding-top: 10em;
+	}
+
+	/* Content Fixes */
+
+	.expertise,
+	.expertise-page,
+	.banner-home-contact,
+	.team-page {
+		padding-top: 5em;
+		padding-bottom: 5em;
+	}
+
+	/* Container & Page Fixes End */
+}
+
+/* Desktop & Up */
+@media (min-width: 900px) {
+	.banner-home-copy {
+		padding-left: 20em;
+	}
+}
+
+/* Tailwind Utilities */
+@layer utilities {
+	.py-4 {
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+	}
+
+	.px-30 {
+		padding-left: 10rem;
+		padding-right: 10rem;
+	}
+
+	.px-40 {
+		padding-left: 15rem;
+		padding-right: 15rem;
+	}
+
+	.px-50 {
+		padding-left: 20rem;
+		padding-right: 20rem;
+	}
+
+	.m-unset {
+		margin: unset;
+	}
+
+	.mx-unset {
+		margin-left: unset;
+		margin-right: unset;
+	}
+
+	.my-unset {
+		margin-top: unset;
+		margin-bottom: unset;
+	}
+
+	.mt-unset {
+		margin-top: unset;
+	}
+
+	.mb-unset {
+		margin-bottom: unset;
+	}
+
+	.ml-unset {
+		margin-left: unset;
+	}
+
+	.mr-unset {
+		margin-right: unset;
+	}
+
+	.p-unset {
+		padding: unset;
+	}
+
+	.px-unset {
+		padding-left: unset;
+		padding-right: unset;
+	}
+
+	.py-unset {
+		padding-top: unset;
+		padding-bottom: unset;
+	}
+
+	.pt-unset {
+		padding-top: unset;
+	}
+
+	.pb-unset {
+		padding-bottom: unset;
+	}
+
+	.pl-unset {
+		padding-left: unset;
+	}
+
+	.pr-unset {
+		padding-right: unset;
+	}
+
+	.nav-links {
+		justify-content: flex-end;
+		display: inline-flex;
+	}
+
+	.nav-link {
+		font-size: 17px;
+		font-weight: 700;
+		letter-spacing: 4.4px;
+		align-self: center;
+	}
+
+	.subtitle {
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		margin-bottom: 1.0625em;
+		text-transform: uppercase;
+		font-size: 16px;
+	}
+
+	.fonts-special {
+		font-weight: 600;
+		letter-spacing: 0.12em;
+	}
+
+	.custom-underline {
+		padding-bottom: 5px;
+		transition: border-width 0.2s ease-in;
+		border-bottom: 2px solid #e25b26;
+	}
+
+	.custom-hover {
+		padding-bottom: 5px;
+		transition: border-width 0.2s ease-in;
+		border-bottom: 2px solid #e25b26;
+	}
+
+	.centered-hr-primary {
+		height: 5px;
+		width: 40px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 1.5em;
+		background-color: #40609c;
+		border: none;
+	}
+
+	.centered-hr-primary-left {
+		height: 5px;
+		width: 40px;
+		margin-bottom: 1em;
+		background-color: #40609c;
+		border: none;
+	}
+
+	.centered-hr-secondary {
+		height: 5px;
+		width: 40px;
+		margin-bottom: 1.5em;
+		background-color: #e25b26;
+		border: none;
+	}
+
+	.centered-hr-secondary-left {
+		height: 5px;
+		width: 40px;
+		margin-bottom: 1em;
+		background-color: #e25b26;
+		border: none;
+	}
+
+	.social-media-link-outline {
+		border: 1px solid #9d9e9e;
+		border-radius: 50%;
+		padding: 0.5em;
+	}
+
+	.banner-home {
+		/* background-image: url("../public/banners/home-banner-overlay.webp"); */
+		background-size: cover;
+		height: 600px;
+		z-index: 1;
+	}
+
+	.banner-home-copy {
+		color: #fff;
+		top: 40%;
+		justify-content: center;
+		flex-direction: column;
+		position: relative;
+	}
 }
