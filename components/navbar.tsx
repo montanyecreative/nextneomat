@@ -3,40 +3,35 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const logo = "/logo.webp";
+const logo = "/logo.png";
 const open = "/hamburger-menu.svg";
 const close = "/cross-1.svg";
 
 export const navLinks = [
 	{
 		id: 1,
-		title: "About",
-		link: "about",
+		title: "Infrared Photography",
+		link: "infrared-photography",
 	},
 	{
 		id: 2,
-		title: "Expertise",
-		link: "expertise",
+		title: "Services",
+		link: "services",
 	},
 	{
 		id: 3,
-		title: "Employers",
-		link: "employers",
+		title: "Resume",
+		link: "resume",
 	},
 	{
 		id: 4,
-		title: "Candidates",
-		link: "candidates",
+		title: "Projects",
+		link: "projects",
 	},
 	{
 		id: 5,
-		title: "Team",
-		link: "team",
-	},
-	{
-		id: 6,
-		title: "Contact",
-		link: "contact",
+		title: "Guides",
+		link: "guides",
 	},
 ];
 
@@ -66,8 +61,9 @@ export default function Navbar() {
 			<div className="container mx-auto">
 				<div className="flex">
 					<div className="logo">
-						<Link href="/">
-							<Image src={logo} alt="logo" width="225" height="57" />
+						<Link href="/" className="flex">
+							<Image src={logo} alt="logo" width="40" height="25" />
+							<span className="text-white ml-2 text-[20px]">Montanye Creative</span>
 						</Link>
 					</div>
 
@@ -98,7 +94,7 @@ export default function Navbar() {
 						<div
 							className={`${
 								!toggle ? "hidden" : "flex"
-							} p-6 text-white bg-navNavy border border-navBorder absolute top-20 right-0 md:mx-4 md:my-2 min-w-[100%] sidebar`}
+							} p-6 text-white bg-black absolute top-20 right-0 md:mx-4 md:my-2 min-w-[100%] sidebar`}
 						>
 							<ul className="list-none flex justify-end items-start flex-1 flex-col">
 								{navLinks.map((nav, index) => (

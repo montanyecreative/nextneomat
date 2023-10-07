@@ -34,16 +34,21 @@ body {
 	color: #000;
 	background: #fff;
 	display: flex;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+		"Helvetica Neue", sans-serif !important;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 nav {
-	background-color: transparent;
+	background-color: #222;
 	position: fixed;
 	top: 0;
 	z-index: 999;
 	transition-timing-function: ease-in;
 	transition: 0.3s;
 	top: -75px;
+	height: 80px;
 }
 
 button {
@@ -76,7 +81,7 @@ h2 {
 
 	/* Container Fixes */
 	#footer,
-	.banner-home-contact,
+	.banner-promotion,
 	.expertise-page,
 	.team-page,
 	.about-page,
@@ -108,7 +113,7 @@ h2 {
 
 	.expertise,
 	.expertise-page,
-	.banner-home-contact,
+	.banner-promotion,
 	.team-page {
 		padding-top: 5em;
 		padding-bottom: 5em;
@@ -234,13 +239,13 @@ h2 {
 	.custom-underline {
 		padding-bottom: 5px;
 		transition: border-width 0.2s ease-in;
-		border-bottom: 2px solid #e25b26;
+		border-bottom: 2px solid #c6284a;
 	}
 
 	.custom-hover {
 		padding-bottom: 5px;
 		transition: border-width 0.2s ease-in;
-		border-bottom: 2px solid #e25b26;
+		border-bottom: 2px solid #c6284a;
 	}
 
 	.centered-hr-primary {
@@ -296,5 +301,13 @@ h2 {
 		justify-content: center;
 		flex-direction: column;
 		position: relative;
+	}
+
+	.banner-promotion {
+		background-image: url("../public/banners/promotion.png");
+		background-size: cover;
+		background-position: center;
+		height: 335px;
+		z-index: 1;
 	}
 }

@@ -2,6 +2,7 @@
 
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+import Promotion from "../components/promotion";
 // import Image from "next/image";
 // import Link from "next/link";
 
@@ -16,6 +17,7 @@ export default function Home() {
 				</div>
 			</div>
 			<div className="container sm:mx-auto md:mx-auto text-center expertise"></div>
+			<Promotion />
 			<Footer />
 		</main>
 	);
