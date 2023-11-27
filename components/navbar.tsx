@@ -15,23 +15,18 @@ export const navLinks = [
 	},
 	{
 		id: 2,
-		title: "Services",
-		link: "services",
+		title: "Photo/VHS Digitization",
+		link: "photo-vhs-digitization",
 	},
 	{
 		id: 3,
-		title: "Resume",
-		link: "resume",
+		title: "Website Development",
+		link: "website-development",
 	},
 	{
 		id: 4,
-		title: "Projects",
-		link: "projects",
-	},
-	{
-		id: 5,
-		title: "Guides",
-		link: "guides",
+		title: "Resume",
+		link: "resume",
 	},
 ];
 
@@ -41,20 +36,23 @@ export default function Navbar() {
 	const currentRoute = usePathname();
 
 	const [show, setShow] = useState(true);
-	const controlNavbar = () => {
-		if (window.scrollY < 50) {
-			setShow(true);
-		} else {
-			setShow(false);
-		}
-	};
 
-	useEffect(() => {
-		window.addEventListener("scroll", controlNavbar);
-		return () => {
-			window.removeEventListener("scroll", controlNavbar);
-		};
-	}, []);
+	// non sticky nav {
+	// const controlNavbar = () => {
+	// 	if (window.scrollY < 50) {
+	// 		setShow(true);
+	// 	} else {
+	// 		setShow(false);
+	// 	}
+	// };
+
+	// useEffect(() => {
+	// 	window.addEventListener("scroll", controlNavbar);
+	// 	return () => {
+	// 		window.removeEventListener("scroll", controlNavbar);
+	// 	};
+	// }, []);
+	// }
 
 	return (
 		<nav className={`w-full flex py-6 justify-between items-center navbar ${show && "nav-show"}`} id="navbar">

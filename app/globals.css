@@ -40,6 +40,10 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+main {
+	width: 100%;
+}
+
 nav {
 	background-color: #222;
 	position: fixed;
@@ -82,7 +86,7 @@ h2 {
 	/* Container Fixes */
 	#footer,
 	.banner-promotion,
-	.expertise-page,
+	.digitization-page,
 	.team-page,
 	.about-page,
 	.contact-page {
@@ -111,12 +115,12 @@ h2 {
 
 	/* Content Fixes */
 
-	.expertise,
-	.expertise-page,
+	.copy,
+	.digitization-page,
 	.banner-promotion,
 	.team-page {
 		padding-top: 5em;
-		padding-bottom: 5em;
+		padding-bottom: 4em;
 	}
 
 	/* Container & Page Fixes End */
@@ -124,9 +128,6 @@ h2 {
 
 /* Desktop & Up */
 @media (min-width: 900px) {
-	.banner-home-copy {
-		padding-left: 20em;
-	}
 }
 
 /* Tailwind Utilities */
@@ -211,6 +212,14 @@ h2 {
 		padding-right: unset;
 	}
 
+	.shadow-black {
+		box-shadow: rgb(29, 29, 29) -7px 7px 13px, rgb(39, 39, 39) 7px -7px 13px;
+	}
+
+	.opacity-filter {
+		background-color: black;
+	}
+
 	.nav-links {
 		justify-content: flex-end;
 		display: inline-flex;
@@ -289,8 +298,9 @@ h2 {
 	}
 
 	.banner-home {
-		/* background-image: url("../public/banners/home-banner-overlay.webp"); */
+		background-image: url("../public/banners/banner-home.jpg");
 		background-size: cover;
+		background-position: bottom;
 		height: 600px;
 		z-index: 1;
 	}
@@ -309,5 +319,20 @@ h2 {
 		background-position: center;
 		height: 335px;
 		z-index: 1;
+	}
+
+	.banner-salesforce {
+		background-image: url("../public/banners/trailhead.jpeg");
+		background-size: cover;
+		background-position: bottom;
+		height: 350px;
+	}
+
+	.comparison-slider {
+		height: 500px;
+	}
+
+	.card-content {
+		min-height: 200px;
 	}
 }
