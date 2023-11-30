@@ -49,12 +49,12 @@ export default function PhotoVHSDigitization() {
 					future.
 				</p>
 			</div>
-			<div className="mx-5 md:mx-20 my-10">
+			<div className="container sm:mx-auto md:mx-auto my-10">
 				<div className="cards grid grid-cols-1 md:grid-cols-4 text-center">
-					<Card className="mr-2 rounded">
+					<Card className="mr-2 rounded border-gray">
 						<CardHeader>
-							<CardTitle>Photo Digitization</CardTitle>
-							<CardDescription>Up to 200 Photos $175 (incl. USB)</CardDescription>
+							<CardTitle className="card-title">Photo Digitization</CardTitle>
+							<CardDescription className="card-price">Up to 200 Photos $175 (incl. USB)</CardDescription>
 						</CardHeader>
 						<CardContent className="card-content">
 							<ul>
@@ -74,10 +74,10 @@ export default function PhotoVHSDigitization() {
 							</svg>
 						</CardFooter>
 					</Card>
-					<Card className="mr-2 rounded">
+					<Card className="mr-2 rounded border-gray">
 						<CardHeader>
-							<CardTitle>Photo Polishing Silver</CardTitle>
-							<CardDescription>Up to 200 Photos $250 (incl. USB)</CardDescription>
+							<CardTitle className="card-title">Photo Polishing Silver</CardTitle>
+							<CardDescription className="card-price">Up to 200 Photos $250 (incl. USB)</CardDescription>
 						</CardHeader>
 						<CardContent className="card-content">
 							<ul>
@@ -113,10 +113,10 @@ export default function PhotoVHSDigitization() {
 							</svg>
 						</CardFooter>
 					</Card>
-					<Card className="mr-2 rounded">
+					<Card className="mr-2 rounded border-gray">
 						<CardHeader>
-							<CardTitle>Photo Polishing Gold</CardTitle>
-							<CardDescription>Up to 200 Photos $325 (incl. USB)</CardDescription>
+							<CardTitle className="card-title">Photo Polishing Gold</CardTitle>
+							<CardDescription className="card-price">Up to 200 Photos $325 (incl. USB)</CardDescription>
 						</CardHeader>
 						<CardContent className="card-content">
 							<ul>
@@ -158,10 +158,10 @@ export default function PhotoVHSDigitization() {
 							</svg>
 						</CardFooter>
 					</Card>
-					<Card className="rounded">
+					<Card className="rounded border-gray">
 						<CardHeader>
-							<CardTitle>Photo Polishing Platinum</CardTitle>
-							<CardDescription>Up to 50 Photos $375 (incl. USB)</CardDescription>
+							<CardTitle className="card-title">Photo Polishing Platinum</CardTitle>
+							<CardDescription className="card-price">Up to 50 Photos $375 (incl. USB)</CardDescription>
 						</CardHeader>
 						<CardContent className="card-content">
 							<ul>
@@ -214,12 +214,12 @@ export default function PhotoVHSDigitization() {
 					</Card>
 				</div>
 			</div>
-			<div className="mx-5 md:mx-20">
+			<div className="container sm:mx-auto md:mx-auto">
 				<div className="cards grid grid-cols-1 md:grid-cols-2 text-center">
-					<Card className="mr-2 rounded">
+					<Card className="mr-2 rounded border-gray">
 						<CardHeader>
-							<CardTitle>VHS Digitization</CardTitle>
-							<CardDescription>Price</CardDescription>
+							<CardTitle className="card-title">VHS Digitization</CardTitle>
+							<CardDescription className="card-price">Price</CardDescription>
 						</CardHeader>
 						<CardContent className="card-content">
 							<p className="my-1 mx-auto sm:mx-5 md:mx-unset">
@@ -237,10 +237,10 @@ export default function PhotoVHSDigitization() {
 							</svg>
 						</CardFooter>
 					</Card>
-					<Card className="rounded">
+					<Card className="rounded border-gray">
 						<CardHeader>
-							<CardTitle>VHS Polishing Platinum</CardTitle>
-							<CardDescription>Price</CardDescription>
+							<CardTitle className="card-title">VHS Polishing Platinum</CardTitle>
+							<CardDescription className="card-price">Price</CardDescription>
 						</CardHeader>
 						<CardContent className="card-content">
 							<p className="my-1 mx-auto sm:mx-5 md:mx-unset">

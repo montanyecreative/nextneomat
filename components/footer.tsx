@@ -55,15 +55,8 @@ export default function Footer() {
 				</Link>
 			</div>
 			<div className="contact-information grid md:flex items-center mx-auto mt-5 text-[12px]">
-				<span className="font-bold mx-1">CONTACT INFORMATION:</span> NAME / TITLE{" "}
-				{/* <span className="font-bold mx-1">Direct: </span>
-				<Link className="underline hover:text-red" href="tel:3141111111">
-					314.111.1111
-				</Link>
-				<span className="font-bold mx-1">M: </span>
-				<Link className="underline hover:text-red" href="tel:3141111111">
-					314.111.1111
-				</Link> */}
+				<span className="font-bold mx-1">CONTACT INFORMATION:</span>
+				<Link className="underline" href="mailto:montanyecreative@outlook.com">Montanye Creative</Link>
 			</div>
 			<div className="copy-right grid md:flex items-center mx-auto mt-2 text-[12px]">
 				Copyright © {currentYear} Montanye Creative |{" "}
