@@ -20,7 +20,7 @@ export default function IntroSection() {
 
     return (
         <div className="resume-intro" id="highlights">
-            <h1 className="text-[32px] font-bold mt-5">Resume</h1>
+            <h1 className="text-[32px] mt-5">Resume</h1>
             <p className="my-2 mx-auto sm:mx-5 md:mx-unset italic">
                 Currently only looking for small freelance projects
                 outside of 8am-6pm schedule.
@@ -43,7 +43,7 @@ export default function IntroSection() {
                 job done. Seeking new challenges and growth
                 opportunities within a growing organization.
             </p>
-            <Avatar className="avatar mx-auto">
+            <Avatar className="avatar avatar-shadow mx-auto">
                 <AvatarImage src={johnImage} />
                 <AvatarFallback>John Montanye</AvatarFallback>
             </Avatar>

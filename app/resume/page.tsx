@@ -6,8 +6,7 @@ import Promotion from "@/components/promotion";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import IntroSection from "./intro";
 import MatrixSection from "./matrix";
-
-// import Image from "next/image";
+import ExperienceSection from "./experience";
 
 export default function Resume() {
     return (
@@ -17,6 +16,7 @@ export default function Resume() {
                 <div className="container resume-page mx-auto text-center text-white">
                     <IntroSection />
                     <MatrixSection />
+                    <ExperienceSection />
                 </div>
                 <div className="container sm:mx-auto md:mx-auto py-10">
                     <div className="cards grid grid-cols-1 md:grid-cols-4 text-center">
