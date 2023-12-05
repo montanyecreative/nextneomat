@@ -24,7 +24,8 @@ export default function Home() {
 					<p className="mb-5">
 						This website was developed using NextJS, TypeScript, shadcn/ui, Tailwind CSS, and HTML5. The different looking style
 						is based off a design pattern I call neomat, which draws inspiration from concepts of Neumorphism. The design
-						emphasis was to create a "texturized" feel to the website. Check out the code for this website on Github below.
+						emphasis was to create a &quot;texturized&quot; feel to the website. Check out the code for this website on Github
+						below.
 					</p>
 					<Link
 						href="https://github.com/montanyecreative/nextneomat"

@@ -82,11 +82,13 @@ export default function Navbar() {
 						))}
 					</ul>
 					<div className="sm:hidden flex flex-1 justify-end items-center">
-						<img
+						<Image
 							src={toggle ? close : open}
 							alt="menu"
 							className="w-[28px] h-[28px] object-contain"
 							onClick={() => setToggle(!toggle)}
+							height={28}
+							width={28}
 						/>
 
 						<div
