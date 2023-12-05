@@ -19,17 +19,15 @@ export default function Footer() {
 				<Link href="/infrared-photography" className="mx-5 my-1 md:my-unset text-[13px] uppercase hover:text-red">
 					Infrared Photography
 				</Link>
-				<Link href="/services" className="mx-5 my-1 md:my-unset text-[13px] uppercase hover:text-red">
-					Services
+				<Link href="/photo-vhs-digitization" className="mx-5 my-1 md:my-unset text-[13px] uppercase hover:text-red">
+					Photo/VHS Digitization
+				</Link>
+
+				<Link href="/website-development" className="mx-5 my-1 md:my-unset text-[13px] uppercase hover:text-red">
+					Website Development
 				</Link>
 				<Link href="/resume" className="mx-5 my-1 md:my-unset text-[13px] uppercase hover:text-red">
 					Resume
-				</Link>
-				<Link href="/projects" className="mx-5 my-1 md:my-unset text-[13px] uppercase hover:text-red">
-					Projects
-				</Link>
-				<Link href="/guides" className="mx-5 my-1 md:my-unset text-[13px] uppercase hover:text-red">
-					Guides
 				</Link>
 			</div>
 			<div className="social-media-links flex items-center mx-auto my-5">
@@ -56,7 +54,9 @@ export default function Footer() {
 			</div>
 			<div className="contact-information grid md:flex items-center mx-auto mt-5 text-[12px]">
 				<span className="font-bold mx-1">CONTACT INFORMATION:</span>
-				<Link className="underline" href="mailto:montanyecreative@outlook.com">Montanye Creative</Link>
+				<Link className="underline" href="mailto:montanyecreative@outlook.com">
+					Montanye Creative
+				</Link>
 			</div>
 			<div className="copy-right grid md:flex items-center mx-auto mt-2 text-[12px]">
 				Copyright © {currentYear} Montanye Creative |{" "}
