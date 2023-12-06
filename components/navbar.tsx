@@ -10,8 +10,8 @@ const close = "/cross-1.svg";
 export const navLinks = [
 	{
 		id: 1,
-		title: "Infrared Photography",
-		link: "infrared-photography",
+		title: "Photography",
+		link: "photography",
 	},
 	{
 		id: 2,
@@ -27,6 +27,11 @@ export const navLinks = [
 		id: 4,
 		title: "Resume",
 		link: "resume",
+	},
+	{
+		id: 5,
+		title: "Contact",
+		link: "contact",
 	},
 ];
 
@@ -69,7 +74,7 @@ export default function Navbar() {
 						{navLinks.map((nav, index) => (
 							<li
 								key={nav.id}
-								className="text-white uppercase cursor-pointer text-[12px] lg:text-[13px] mr-3 md:mr-5 lg:mr-10"
+								className="text-white uppercase cursor-pointer text-[12px] lg:text-[13px] mr-3 md:mr-5 lg:mr-8"
 								onClick={() => setActive(nav.title)}
 							>
 								<a

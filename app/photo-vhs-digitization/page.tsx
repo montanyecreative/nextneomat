@@ -9,8 +9,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 // import Image from "next/image";
 // import Link from "next/link";
 
-const photo1 = "/banners/banner-home.jpg";
-const photo2 = "/banners/trailhead.jpeg";
+const photo1 = "/restoration/mike-ocean-original-restored.webp";
+const photo2 = "/restoration/mike-ocean-original.webp";
 
 export default function PhotoVHSDigitization() {
 	return (
@@ -20,8 +20,8 @@ export default function PhotoVHSDigitization() {
 				<div className="sm:mx-auto md:mx-auto flex banner-home-copy">
 					<ReactCompareSlider
 						className="w-full comparison-slider"
-						itemOne={<ReactCompareSliderImage src={photo1} srcSet={photo1} alt="Image one" />}
-						itemTwo={<ReactCompareSliderImage src={photo2} srcSet={photo2} alt="Image two" />}
+						itemOne={<ReactCompareSliderImage src={photo1} srcSet={photo1} alt="Image one" className="slider-image-override" />}
+						itemTwo={<ReactCompareSliderImage src={photo2} srcSet={photo2} alt="Image two" className="slider-image-override" />}
 					/>
 				</div>
 			</div>

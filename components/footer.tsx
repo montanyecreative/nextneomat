@@ -16,8 +16,8 @@ export default function Footer() {
 				</Link>{" "}
 			</div>
 			<div className="grid md:flex justify-center">
-				<Link href="/infrared-photography" className="mx-5 my-1 md:my-unset text-[13px] uppercase hover:text-red">
-					Infrared Photography
+				<Link href="/photography" className="mx-5 my-1 md:my-unset text-[13px] uppercase hover:text-red">
+					Photography
 				</Link>
 				<Link href="/photo-vhs-digitization" className="mx-5 my-1 md:my-unset text-[13px] uppercase hover:text-red">
 					Photo/VHS Digitization
