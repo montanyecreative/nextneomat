@@ -29,6 +29,9 @@ export default function Footer() {
 				<Link href="/resume" className="mx-5 my-1 md:my-unset text-[13px] uppercase hover:text-red">
 					Resume
 				</Link>
+				<Link href="/contact" className="mx-5 my-1 md:my-unset text-[13px] uppercase hover:text-red">
+					Contact
+				</Link>
 			</div>
 			<div className="social-media-links flex items-center mx-auto my-5">
 				<Link href="https://www.linkedin.com/in/johnmontanye/" className="mx-5 social-media-link-outline hover:bg-red">

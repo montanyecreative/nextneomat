@@ -25,7 +25,7 @@ export default function PhotoVHSDigitization() {
 					/>
 				</div>
 			</div>
-			<div className="container mx-auto">
+			<div className="container mx-auto my-5">
 				<h1 className="text-[32px] font-bold">Photo/VHS Digitization &amp; Restoration</h1>
 				<p className="my-2 mx-auto sm:mx-5 md:mx-unset">
 					Do you have tons of family photos laying in boxes? Have you been charged with sorting the family picture-books and have
