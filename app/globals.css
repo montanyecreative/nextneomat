@@ -97,6 +97,14 @@ h2 {
 	top: 0px;
 }
 
+/* Content Fixes */
+
+.resume-page {
+	padding-bottom: 4em;
+}
+
+/* Container & Page Fixes End */
+
 /* Tablet & Up */
 @media (min-width: 640px) {
 	body {
@@ -140,7 +148,6 @@ h2 {
 	.copy,
 	.digitization-page,
 	.banner-promotion,
-	.resume-page,
 	.team-page {
 		padding-top: 5em;
 		padding-bottom: 4em;
@@ -150,8 +157,7 @@ h2 {
 }
 
 /* Desktop & Up */
-@media (min-width: 900px) {
-}
+@media (min-width: 900px) {}
 
 /* Tailwind Utilities */
 @layer utilities {
@@ -326,6 +332,10 @@ h2 {
 		border: 1px solid #9d9e9e;
 		border-radius: 50%;
 		padding: 0.5em;
+	}
+
+	.page-banner-filler {
+		height: 100px;
 	}
 
 	.banner-home {

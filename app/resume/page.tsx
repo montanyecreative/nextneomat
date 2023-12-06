@@ -14,6 +14,7 @@ export default function Resume() {
 		<main>
 			<Navbar />
 			<div className="bg-black">
+				<div className="page-banner-filler bg-black"></div>
 				<div className="container resume-page mx-auto text-center text-white">
 					<IntroSection />
 					<MatrixSection />
