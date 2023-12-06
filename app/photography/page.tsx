@@ -134,9 +134,23 @@ export default function Photography() {
 				<div className="container resume-page mx-auto text-white">
 					<h1 className="text-[32px] mt-5">Infrared Photography</h1>
 					<p className="mt-5">
-						This page includes some of the various photography styles I have worked with. I have personally taken and edited all
-						the photos. If you would like to see more photography I have worked with, all of my photography is now available to
-						view and is available for purchase at my new shopify website.
+						A few years back, John was walking through an art show and stopped at a particular tent that drew his attention.
+						There, art centered around the usage of light in extreme conditions. Drawn by the curiosity of what else could be
+						done using light, John went on a journey to find out how color had been manipulated with light in the photography
+						world.
+					</p>
+					<p className="mt-5">
+						This led him to infrared styled photography. A style where common colors (red, green, blue) are heavily manipulated
+						with light to create a completely new visual experience. The resulting process ends with photos that are either
+						mostly red or mostly white as can be seen below.
+					</p>
+					<p className="mt-5">
+						The goal of this art is to give us a look at everyday moments that we often take for granted and give us a new
+						appreciation for how important light is to our perception of color.
+					</p>
+					<p className="mt-5">
+						If you would like to see more, all of my photography is now available to view and is available for purchase at my
+						new shopify website.
 					</p>
 					<div className="flex mt-5">
 						<Link
