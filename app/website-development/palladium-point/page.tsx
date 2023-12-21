@@ -50,7 +50,8 @@ export default function PalladiumPoint() {
 							share works as per contracted agreements but those brands and sites include:{" "}
 							<i>
 								Citizen Watches, Bulova Watches, Accutron Watches, Frederique Constant, New Balance, Johnston &amp; Murphy,
-								Sheet Music Plus, Cherished Memories, ReserveBar, LuxeDecor, SyllogisTeks, PohlmanUSA, and Our Lady's Inn
+								Sheet Music Plus, Cherished Memories, ReserveBar, LuxeDecor, SyllogisTeks, PohlmanUSA, and Our Lady&apos;s
+								Inn
 							</i>
 							. See{" "}
 							<Link href="/resume" className="underline" aria-label="Go to resume page.">

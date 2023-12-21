@@ -22,16 +22,16 @@ export default function IntroSection() {
 				Currently only looking for small freelance projects outside of 8am-6pm schedule.
 			</p>
 			<div className="page-links-container">
-				<Link href="/resume#highlights" className="mx-1 underline">
+				<Link href="/resume#highlights" className="mx-1 underline" aria-label="Go to Highlights section">
 					Highlights
 				</Link>
-				<Link href="/resume#experience" className="mx-1 underline">
+				<Link href="/resume#experience" className="mx-1 underline" aria-label="Go to Experience section">
 					Experience
 				</Link>
-				<Link href="/resume#education" className="mx-1 underline">
+				<Link href="/resume#education" className="mx-1 underline" aria-label="Go to Education section">
 					Education
 				</Link>
-				<Link href="/resume#skills" className="mx-1 underline">
+				<Link href="/resume#skills" className="mx-1 underline" aria-label="Go to Skills section">
 					Skills
 				</Link>
 			</div>

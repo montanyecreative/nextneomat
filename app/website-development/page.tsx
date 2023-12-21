@@ -39,7 +39,7 @@ export default function WebsiteDevelopment() {
 									<p className="my-5 mx-auto sm:mx-5 md:mx-unset">
 										To get in touch with us about how we can help you, please fill out the form on our contact page.
 									</p>
-									<Link href="/contact" aria-label="Go to contact page.">
+									<Link href="/contact" aria-label="Go to Contact page">
 										<Button
 											variant="outline"
 											className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
@@ -56,10 +56,11 @@ export default function WebsiteDevelopment() {
 							share works as per contracted agreements but those brands and sites include:{" "}
 							<i>
 								Citizen Watches, Bulova Watches, Accutron Watches, Frederique Constant, New Balance, Johnston &amp; Murphy,
-								Sheet Music Plus, Cherished Memories, ReserveBar, LuxeDecor, SyllogisTeks, PohlmanUSA, and Our Lady's Inn
+								Sheet Music Plus, Cherished Memories, ReserveBar, LuxeDecor, SyllogisTeks, PohlmanUSA, and Our Lady&apos;s
+								Inn
 							</i>
 							. See{" "}
-							<Link href="/resume" className="underline" aria-label="Go to resume page.">
+							<Link href="/resume" className="underline" aria-label="Go to Resume page">
 								resume
 							</Link>{" "}
 							for details.
@@ -75,7 +76,7 @@ export default function WebsiteDevelopment() {
 									</p>
 									<Link
 										href="https://www.palladiumpoint.com/"
-										aria-label="See more about the Palladium Point website project."
+										aria-label="See more about the Palladium Point website project"
 									>
 										<Button
 											variant="outline"
@@ -108,7 +109,7 @@ export default function WebsiteDevelopment() {
 									</p>
 									<Link
 										href="https://montanyecreative.store/"
-										aria-label="See more about the Montanye Creative Shopify website project."
+										aria-label="See more about the Montanye Creative Shopify website project"
 									>
 										<Button
 											variant="outline"
@@ -141,7 +142,7 @@ export default function WebsiteDevelopment() {
 									</p>
 									<Link
 										href="https://github.com/montanyecreative/montanyecreativegithub/blob/main/README.md"
-										aria-label="See more about the GitHub Enhanced README project."
+										aria-label="See more about the GitHub Enhanced README project"
 									>
 										<Button
 											variant="outline"

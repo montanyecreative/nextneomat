@@ -222,7 +222,7 @@ export default function PhotoVHSDigitization() {
 					</Card>
 				</div> */}
 				<div className="flex pb-20">
-					<Link href="/contact" aria-label="Go to contact page" className="mx-auto">
+					<Link href="/contact" aria-label="Go to Contact page" className="mx-auto">
 						<Button
 							variant="outline"
 							className="rounded-full px-10 text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
