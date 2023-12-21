@@ -39,7 +39,6 @@ export default function WebsiteDevelopment() {
 									<p className="my-5 mx-auto sm:mx-5 md:mx-unset">
 										To get in touch with us about how we can help you, please fill out the form on our contact page.
 									</p>
-
 									<Link href="/contact" aria-label="Go to contact page.">
 										<Button
 											variant="outline"
@@ -75,7 +74,7 @@ export default function WebsiteDevelopment() {
 										Insurance business website built using Next.JS, shadcnui, TailwindCSS, GitHub Flows, and Vercel.
 									</p>
 									<Link
-										href="/website-development/palladium-point"
+										href="https://www.palladiumpoint.com/"
 										aria-label="See more about the Palladium Point website project."
 									>
 										<Button
@@ -108,7 +107,7 @@ export default function WebsiteDevelopment() {
 										Gelato printing for localized processing and delivery.
 									</p>
 									<Link
-										href="/website-development/montanye-creative-shopify"
+										href="https://montanyecreative.store/"
 										aria-label="See more about the Montanye Creative Shopify website project."
 									>
 										<Button
@@ -141,7 +140,7 @@ export default function WebsiteDevelopment() {
 										GitHub statistics that are updated daily from API.
 									</p>
 									<Link
-										href="/website-development/github-enhanced-readme"
+										href="https://github.com/montanyecreative/montanyecreativegithub/blob/main/README.md"
 										aria-label="See more about the GitHub Enhanced README project."
 									>
 										<Button
