@@ -147,11 +147,14 @@ h2 {
 	/* Content Fixes */
 
 	.copy,
-	.digitization-page,
 	.banner-promotion,
 	.team-page {
 		padding-top: 5em;
 		padding-bottom: 4em;
+	}
+
+	.digitization-page {
+		padding-top: 5em;
 	}
 
 	/* Container & Page Fixes End */

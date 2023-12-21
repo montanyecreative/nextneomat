@@ -15,7 +15,7 @@ export default function PhotoVHSDigitization() {
 	return (
 		<main>
 			<Navbar />
-			<div className="digitization-page">
+			<div className="digitization-page bg-black">
 				<div className="sm:mx-auto md:mx-auto flex banner-home-copy">
 					<ReactCompareSlider
 						className="w-full comparison-slider"
@@ -24,7 +24,7 @@ export default function PhotoVHSDigitization() {
 					/>
 				</div>
 			</div>
-			<div className="container mx-auto my-5">
+			<div className="container mx-auto py-5 digitization-page bg-black text-white">
 				<h1 className="text-[32px] font-bold">Photo/VHS Digitization &amp; Restoration</h1>
 				<p className="my-2 mx-auto sm:mx-5 md:mx-unset">
 					Do you have tons of family photos laying in boxes? Have you been charged with sorting the family picture-books and have
@@ -48,7 +48,7 @@ export default function PhotoVHSDigitization() {
 					future.
 				</p>
 			</div>
-			<div className="container sm:mx-auto md:mx-auto my-10">
+			<div className="container sm:mx-auto md:mx-auto py-10 digitization-page bg-black text-white">
 				<div className="cards grid grid-cols-1 md:grid-cols-3 text-center">
 					<Card className="mr-2 rounded border-gray">
 						<CardHeader>
@@ -162,7 +162,7 @@ export default function PhotoVHSDigitization() {
 					</Card>
 				</div>
 			</div>
-			<div className="container sm:mx-auto md:mx-auto">
+			<div className="container sm:mx-auto md:mx-auto digitization-page bg-black text-white">
 				{/* <div className="cards grid grid-cols-1 md:grid-cols-2 text-center">
 					<Card className="mr-2 rounded border-gray">
 						<CardHeader>
@@ -221,11 +221,11 @@ export default function PhotoVHSDigitization() {
 						</CardFooter>
 					</Card>
 				</div> */}
-				<div className="flex my-20">
+				<div className="flex pb-20">
 					<Link href="/contact" aria-label="Go to contact page" className="mx-auto">
 						<Button
 							variant="outline"
-							className="rounded-full px-10 text-black hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
+							className="rounded-full px-10 text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
 						>
 							Get in Touch
 						</Button>
