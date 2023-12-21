@@ -163,7 +163,7 @@ export default function PhotoVHSDigitization() {
 				</div>
 			</div>
 			<div className="container sm:mx-auto md:mx-auto">
-				<div className="cards grid grid-cols-1 md:grid-cols-2 text-center">
+				{/* <div className="cards grid grid-cols-1 md:grid-cols-2 text-center">
 					<Card className="mr-2 rounded border-gray">
 						<CardHeader>
 							<CardTitle className="card-title">VHS Digitization</CardTitle>
@@ -220,7 +220,7 @@ export default function PhotoVHSDigitization() {
 							</svg>
 						</CardFooter>
 					</Card>
-				</div>
+				</div> */}
 				<div className="flex my-20">
 					<Link href="/contact" aria-label="Go to contact page" className="mx-auto">
 						<Button
