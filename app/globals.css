@@ -120,7 +120,8 @@ h2 {
 	.digitization-page,
 	.team-page,
 	.about-page,
-	.contact-page {
+	.contact-page,
+	.privacy-page {
 		min-width: 100%;
 	}
 
