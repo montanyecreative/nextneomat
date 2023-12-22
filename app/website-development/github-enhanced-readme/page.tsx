@@ -8,7 +8,7 @@ import Promotion from "@/components/promotion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
-const palladiumImage = "/projects/palladiumpoint.png";
+const palladiumImage = "/projects/palladium-point.webp";
 
 export default function GitHubEnhancedREADME() {
 	return (

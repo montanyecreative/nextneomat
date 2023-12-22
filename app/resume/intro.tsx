@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Slider } from "@/components/ui/slider";
 
-const johnImage = "/john.jpg";
+const johnImage = "/john.webp";
 
 export default function IntroSection() {
 	var beganStartMonth = 1;

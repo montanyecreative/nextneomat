@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const logo = "/logo.png";
+const logo = "/logo.webp";
 const open = "/hamburger-menu.svg";
 const close = "/cross-1.svg";
 

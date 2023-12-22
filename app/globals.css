@@ -344,7 +344,7 @@ h2 {
 	}
 
 	.banner-home {
-		background-image: url("../public/banners/banner-home.jpg");
+		background-image: url("../public/banners/banner-home.webp");
 		background-size: cover;
 		background-position: bottom;
 		height: 600px;
@@ -360,7 +360,7 @@ h2 {
 	}
 
 	.banner-promotion {
-		background-image: url("../public/banners/promotion.png");
+		background-image: url("../public/banners/promotion.webp");
 		background-size: cover;
 		background-position: center;
 		height: 335px;
@@ -368,7 +368,7 @@ h2 {
 	}
 
 	.banner-salesforce {
-		background-image: url("../public/banners/trailhead.jpeg");
+		background-image: url("../public/banners/trailhead.webp");
 		background-size: cover;
 		background-position: bottom;
 		height: 350px;

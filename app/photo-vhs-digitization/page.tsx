@@ -50,16 +50,23 @@ export default function PhotoVHSDigitization() {
 			</div>
 			<div className="container sm:mx-auto md:mx-auto py-10 digitization-page bg-black text-white">
 				<div className="cards grid grid-cols-1 md:grid-cols-3 text-center">
-					<Card className="mr-2 rounded border-gray">
+					<Card className="mr-2 rounded border-gray avatar-shadow">
 						<CardHeader>
 							<CardTitle className="card-title">Photo Digitization</CardTitle>
-							<CardDescription className="card-price">Up to 200 Photos $175 (incl. USB)</CardDescription>
+							<CardDescription className="card-price font-bold">
+								Up to 200 Photos $200 <br /> (incl. USB) $1/photo
+							</CardDescription>
 						</CardHeader>
 						<CardContent className="card-content">
 							<ul>
 								<li>- Scans in print photos</li>
 								<li>- Run through very basic image enhancement software</li>
 								<li>- Provided on USB or hard drive</li>
+								<li>
+									- Have favorites you want reprinted? Let us know and we can provide a shopping link to password
+									protected shopping where you can reprint your digital photos and have them shipped to your door for the
+									cost of the goods and shipping.
+								</li>
 							</ul>
 						</CardContent>
 						<CardFooter className="justify-center">
@@ -73,16 +80,23 @@ export default function PhotoVHSDigitization() {
 							</svg>
 						</CardFooter>
 					</Card>
-					<Card className="mr-2 rounded border-gray">
+					<Card className="mr-2 rounded border-gray avatar-shadow">
 						<CardHeader>
 							<CardTitle className="card-title">Photo Polishing Silver</CardTitle>
-							<CardDescription className="card-price">Up to 200 Photos $250 (incl. USB)</CardDescription>
+							<CardDescription className="card-price font-bold">
+								Up to 200 Photos $300 <br /> (incl. USB) $1.50/photo
+							</CardDescription>
 						</CardHeader>
 						<CardContent className="card-content">
 							<ul>
 								<li>- Scans in print photos</li>
 								<li>- Run through image enhancement techniques and software</li>
 								<li>- Provided on USB or hard drive</li>
+								<li>
+									- Have favorites you want reprinted? Let us know and we can provide a shopping link to password
+									protected shopping where you can reprint your digital and polished photos and have them shipped to your
+									door for the cost of the goods and shipping.
+								</li>
 							</ul>
 						</CardContent>
 						<CardFooter className="justify-center">
@@ -112,10 +126,12 @@ export default function PhotoVHSDigitization() {
 							</svg>
 						</CardFooter>
 					</Card>
-					<Card className="mr-2 rounded border-gray">
+					<Card className="mr-2 rounded border-gray avatar-shadow">
 						<CardHeader>
 							<CardTitle className="card-title">Photo Polishing Gold</CardTitle>
-							<CardDescription className="card-price">Up to 50 Photos $375 (incl. USB)</CardDescription>
+							<CardDescription className="card-price font-bold">
+								Up to 50 Photos $375 <br /> (incl. USB) $7.50/photo
+							</CardDescription>
 						</CardHeader>
 						<CardContent className="card-content">
 							<ul>
@@ -125,6 +141,11 @@ export default function PhotoVHSDigitization() {
 									and enhanced one by one
 								</li>
 								<li>- Provided on USB or hard drive</li>
+								<li>
+									- Have favorites you want reprinted? Let us know and we can provide a shopping link to password
+									protected shopping where you can reprint your digital and polished photos and have them shipped to your
+									door for the cost of the goods and shipping.
+								</li>
 							</ul>
 						</CardContent>
 						<CardFooter className="justify-center">

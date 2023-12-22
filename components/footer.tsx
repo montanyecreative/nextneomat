@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const logo = "/logo.png";
+const logo = "/logo.webp";
 
 export default function Footer() {
 	const date = new Date();
@@ -91,6 +91,19 @@ export default function Footer() {
 					Privacy Policy
 				</Link>
 			</div>
+			<script
+				data-name="BMC-Widget"
+				data-cfasync="false"
+				src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+				data-id="johnmontanye"
+				data-description="Support me on Buy me a coffee!"
+				data-message=""
+				data-color="#c6284a"
+				data-position="Right"
+				data-x_margin="25"
+				data-y_margin="25"
+				defer
+			></script>
 		</footer>
 	);
 }

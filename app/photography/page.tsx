@@ -7,25 +7,25 @@ import Promotion from "@/components/promotion";
 import Image from "next/image";
 import Link from "next/link";
 
-const image1 = "/photography/bird-at-lake.jpg";
-const image2 = "/photography/nature-lake-red.jpg";
-const image3 = "/photography/nature-lake-white.jpg";
-const image4 = "/photography/roses-white.jpg";
-const image5 = "/photography/roses.jpg";
-const image6 = "/photography/tree-at-lake.jpg";
-const image7 = "/photography/turn-in-path-red.jpg";
-const image8 = "/photography/lake-bridge.jpg";
-const image9 = "/photography/tower-in-trees.jpg";
-const image10 = "/photography/lake-sky-view.jpg";
-const image11 = "/photography/lake-reeds-white.jpg";
-const image12 = "/photography/zoo-bird-lake.jpg";
-const image13 = "/photography/storm-sunset.JPG";
-const image14 = "/photography/storm-severe-streeet.jpg";
-const image15 = "/photography/storm-severe-street-2.jpg";
-const image16 = "/photography/rain-on-sunny-day.jpg";
-const image17 = "/photography/rain-in-the-sunshine.jpg";
-const image18 = "/photography/pine-tree-lake.jpg";
-const image19 = "/photography/swamp-bridge.jpg";
+const image1 = "/photography/bird-at-lake.webp";
+const image2 = "/photography/nature-lake-red.webp";
+const image3 = "/photography/nature-lake-white.webp";
+const image4 = "/photography/roses-white.webp";
+const image5 = "/photography/roses.webp";
+const image6 = "/photography/tree-at-lake.webp";
+const image7 = "/photography/turn-in-path-red.webp";
+const image8 = "/photography/lake-bridge.webp";
+const image9 = "/photography/tower-in-trees.webp";
+const image10 = "/photography/lake-sky-view.webp";
+const image11 = "/photography/lake-reeds-white.webp";
+const image12 = "/photography/zoo-bird-lake.webp";
+const image13 = "/photography/storm-sunset.webp";
+const image14 = "/photography/storm-severe-streeet.webp";
+const image15 = "/photography/storm-severe-street-2.webp";
+const image16 = "/photography/rain-on-sunny-day.webp";
+const image17 = "/photography/rain-in-the-sunshine.webp";
+const image18 = "/photography/pine-tree-lake.webp";
+const image19 = "/photography/swamp-bridge.webp";
 
 const itemData = [
 	{

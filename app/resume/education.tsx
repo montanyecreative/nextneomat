@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-const websterUniversityLogo = "/resume/websteruniversity.png";
+const websterUniversityLogo = "/resume/webster-university.webp";
 
 export default function EducationSection() {
 	return (

@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 
-const citizenLogo = "/resume/citizen-logo.jpeg";
-const ignitionLogo = "/resume/ignition-commerce-logo.png";
+const citizenLogo = "/resume/citizen-logo.webp";
+const ignitionLogo = "/resume/ignition-commerce-logo.webp";
 const newbalanceLogo = "/resume/newbalance.svg";
 const syllogisteksLogo = "/resume/syllogisteks.ico";
 const montanyecreativeLogo = "/Montanye-Creative-Logo.svg";

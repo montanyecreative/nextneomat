@@ -8,9 +8,9 @@ import Promotion from "@/components/promotion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
-const palladiumImage = "/projects/palladiumpoint.png";
-const shopifyImage = "/projects/montanye-creative-shopify.png";
-const githubImage = "/projects/githubProject.png";
+const palladiumImage = "/projects/palladium-point.webp";
+const shopifyImage = "/projects/montanye-creative-shopify.webp";
+const githubImage = "/projects/github-project.webp";
 
 export default function WebsiteDevelopment() {
 	return (
