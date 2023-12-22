@@ -12,7 +12,7 @@ export default function Promotion() {
 						variant="outline"
 						className="rounded-full px-10 text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
 					>
-						See More
+						See Prints
 					</Button>
 				</Link>
 			</div>
