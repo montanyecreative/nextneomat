@@ -149,7 +149,7 @@ export default function Photography() {
 						appreciation for how important light is to our perception of color.
 					</p>
 					<p className="mt-5">
-						If you would like to see more, all of my photography is now available to view and is available for purchase at my
+						If you would like to see more, all of his photography is now available to view and is available for purchase at his
 						new shopify website.
 					</p>
 					<div className="flex mt-5">

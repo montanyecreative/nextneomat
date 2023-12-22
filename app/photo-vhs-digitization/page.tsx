@@ -50,7 +50,7 @@ export default function PhotoVHSDigitization() {
 			</div>
 			<div className="container sm:mx-auto md:mx-auto py-10 digitization-page bg-black text-white">
 				<div className="cards grid grid-cols-1 md:grid-cols-3 text-center">
-					<Card className="mr-2 rounded border-gray avatar-shadow">
+					<Card className="mr-2 my-5 md:my-unset rounded border-gray avatar-shadow">
 						<CardHeader>
 							<CardTitle className="card-title">Photo Digitization</CardTitle>
 							<CardDescription className="card-price font-bold">
@@ -80,7 +80,7 @@ export default function PhotoVHSDigitization() {
 							</svg>
 						</CardFooter>
 					</Card>
-					<Card className="mr-2 rounded border-gray avatar-shadow">
+					<Card className="mr-2 my-5 md:my-unset rounded border-gray avatar-shadow">
 						<CardHeader>
 							<CardTitle className="card-title">Photo Polishing Silver</CardTitle>
 							<CardDescription className="card-price font-bold">
@@ -126,7 +126,7 @@ export default function PhotoVHSDigitization() {
 							</svg>
 						</CardFooter>
 					</Card>
-					<Card className="mr-2 rounded border-gray avatar-shadow">
+					<Card className="mr-2 my-5 md:my-unset rounded border-gray avatar-shadow">
 						<CardHeader>
 							<CardTitle className="card-title">Photo Polishing Gold</CardTitle>
 							<CardDescription className="card-price font-bold">

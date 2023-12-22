@@ -5,7 +5,7 @@ const citizenLogo = "/resume/citizen-logo.webp";
 const ignitionLogo = "/resume/ignition-commerce-logo.webp";
 const newbalanceLogo = "/resume/newbalance.svg";
 const syllogisteksLogo = "/resume/syllogisteks.ico";
-const montanyecreativeLogo = "/Montanye-Creative-Logo.svg";
+const montanyecreativeLogo = "/logo.webp";
 const gatewayitconsultingLogo = "/resume/gitc.svg";
 
 export default function ExperienceSection() {

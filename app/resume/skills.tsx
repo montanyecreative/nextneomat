@@ -212,20 +212,6 @@ export default function SkillsSection() {
 						</div>
 						<div className="skill-container my-5">
 							<Avatar className="skill avatar-shadow mx-auto mb-3">
-								<AvatarImage src={dotnetImage} alt=".NET Icon" />
-								<AvatarFallback>.NET</AvatarFallback>
-							</Avatar>
-							<p>.NET</p>
-						</div>
-						<div className="skill-container my-5">
-							<Avatar className="skill avatar-shadow mx-auto mb-3">
-								<AvatarImage src={nodejsImage} alt="Node JS Icon" />
-								<AvatarFallback>Node JS</AvatarFallback>
-							</Avatar>
-							<p>Node JS</p>
-						</div>
-						<div className="skill-container my-5">
-							<Avatar className="skill avatar-shadow mx-auto mb-3">
 								<AvatarImage src={microsoftteamsImage} alt="Microsoft Teams Icon" />
 								<AvatarFallback>Microsoft Teams</AvatarFallback>
 							</Avatar>
@@ -242,10 +228,24 @@ export default function SkillsSection() {
 						</div>
 						<div className="skill-container my-5">
 							<Avatar className="skill avatar-shadow mx-auto mb-3">
+								<AvatarImage src={dotnetImage} alt=".NET Icon" />
+								<AvatarFallback>.NET</AvatarFallback>
+							</Avatar>
+							<p>.NET</p>
+						</div>
+						<div className="skill-container my-5">
+							<Avatar className="skill avatar-shadow mx-auto mb-3">
 								<AvatarImage src={nextdotjsImage} alt="NextJS Icon" />
 								<AvatarFallback>NextJS</AvatarFallback>
 							</Avatar>
 							<p>NextJS</p>
+						</div>
+						<div className="skill-container my-5">
+							<Avatar className="skill avatar-shadow mx-auto mb-3">
+								<AvatarImage src={nodejsImage} alt="Node JS Icon" />
+								<AvatarFallback>Node JS</AvatarFallback>
+							</Avatar>
+							<p>Node JS</p>
 						</div>
 						<div className="skill-container my-5">
 							<Avatar className="skill avatar-shadow mx-auto mb-3">
