@@ -61,7 +61,10 @@ export default function DecisionMaker() {
 				<div className="page-banner-filler bg-black"></div>
 				<div className="container mx-auto pt-5 pb-20 text-white">
 					<div className="tools-container">
-						<h1 className="text-[32px] mt-5 text-center">Decision Maker - The Choosinator</h1>
+						<h1 className="text-[32px] mt-5 text-center">
+							Decision Maker - <br className="flex md:hidden" />
+							The Choosinator
+						</h1>
 						<p className="my-2 mx-auto sm:mx-5 md:mx-unset text-center">
 							A random picker to help you pick an option from many when you are feeling indecisive.
 						</p>
@@ -116,7 +119,7 @@ export default function DecisionMaker() {
 							</Form>
 						</div>
 						<div className="mt-10 mb-5">
-							<p className="text-[16px] font-bold">
+							<p className="text-[16px] font-bold text-center md:text-left">
 								<span id="resolutionLabel">Result: </span>
 								<span id="resolution"></span>
 							</p>
