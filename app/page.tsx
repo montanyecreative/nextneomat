@@ -85,6 +85,27 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
+			<div className="container-fluid bg-black pb-2 pt-10 md:pt-unset">
+				<div className="container sm:mx-auto md:mx-auto text-center copy text-white">
+					<p className="mb-5">Check out some of the web tools and blogs we&apos;ve created.</p>
+					<Link href="/tools" aria-label="Go to the tools page" className="mx-3">
+						<Button
+							variant="outline"
+							className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
+						>
+							Tools
+						</Button>
+					</Link>
+					{/* <Link href="/blogs" aria-label="Go to the blogs page" className="mx-3">
+						<Button
+							variant="outline"
+							className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
+						>
+							Blogs
+						</Button>
+					</Link> */}
+				</div>
+			</div>
 			<Promotion />
 			<Footer />
 		</main>

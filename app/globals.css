@@ -187,6 +187,21 @@ h2 {
 		padding-right: 20rem;
 	}
 
+	.mx-30 {
+		margin-left: 10rem;
+		margin-right: 10rem;
+	}
+
+	.mx-40 {
+		margin-left: 15rem;
+		margin-right: 15rem;
+	}
+
+	.mx-50 {
+		margin-left: 20rem;
+		margin-right: 20rem;
+	}
+
 	.m-unset {
 		margin: unset;
 	}
@@ -424,6 +439,10 @@ h2 {
 
 	.card-content {
 		min-height: 250px;
+	}
+
+	.choices-field {
+		height: 200px;
 	}
 
 	@media (min-width: 767px) {
