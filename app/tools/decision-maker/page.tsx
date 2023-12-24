@@ -83,7 +83,7 @@ export default function DecisionMaker() {
 										control={form.control}
 										name="choices"
 										render={({ field }) => (
-											<FormItem>
+											<FormItem className="avatar-shadow">
 												<FormLabel>Message</FormLabel>
 												<FormControl>
 													<Textarea
