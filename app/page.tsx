@@ -96,14 +96,14 @@ export default function Home() {
 							Tools
 						</Button>
 					</Link>
-					{/* <Link href="/blogs" aria-label="Go to the blogs page" className="mx-3">
+					<Link href="/blogs" aria-label="Go to the blogs page" className="mx-3">
 						<Button
 							variant="outline"
 							className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
 						>
 							Blogs
 						</Button>
-					</Link> */}
+					</Link>
 				</div>
 			</div>
 			<Promotion />
