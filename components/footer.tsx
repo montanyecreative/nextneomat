@@ -54,6 +54,8 @@ export default function Footer() {
 					href="https://www.linkedin.com/in/johnmontanye/"
 					className="mx-5 social-media-link-outline hover:bg-red"
 					aria-label="Leave site to go to LinkedIn page"
+					target="_blank"
+					rel="noopener"
 				>
 					<svg width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path

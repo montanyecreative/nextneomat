@@ -157,6 +157,8 @@ export default function Photography() {
 							href="https://montanyecreative.store/"
 							aria-label="Leave website to go to montanycreative.store"
 							className="mx-auto"
+							target="_blank"
+							rel="noopener"
 						>
 							<Button
 								variant="outline"

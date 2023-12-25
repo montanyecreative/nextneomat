@@ -76,6 +76,8 @@ export default function WebsiteDevelopment() {
 									<Link
 										href="https://www.palladiumpoint.com/"
 										aria-label="See more about the Palladium Point website project"
+										target="_blank"
+										rel="noopener"
 									>
 										<Button
 											variant="outline"
@@ -109,6 +111,8 @@ export default function WebsiteDevelopment() {
 									<Link
 										href="https://montanyecreative.store/"
 										aria-label="See more about the Montanye Creative Shopify website project"
+										target="_blank"
+										rel="noopener"
 									>
 										<Button
 											variant="outline"
@@ -142,6 +146,8 @@ export default function WebsiteDevelopment() {
 									<Link
 										href="https://github.com/montanyecreative/montanyecreativegithub/blob/main/README.md"
 										aria-label="See more about the GitHub Enhanced README project"
+										target="_blank"
+										rel="noopener"
 									>
 										<Button
 											variant="outline"

@@ -29,7 +29,9 @@ export default function Home() {
 					</p>
 					<Link
 						href="https://github.com/montanyecreative/nextneomat"
-						aria-label="Leave website to go to GitHub code repository for website."
+						aria-label="Leave website to go to GitHub code repository for website"
+						target="_blank"
+						rel="noopener"
 					>
 						<Button
 							variant="outline"
@@ -58,7 +60,9 @@ export default function Home() {
 						</p>
 						<Link
 							href="https://www.salesforce.com/trailblazer/johnmontanye"
-							aria-label="Leave website to go to Trailblazer website."
+							aria-label="Leave website to go to Trailblazer website"
+							target="_blank"
+							rel="noopener"
 						>
 							<Button
 								variant="outline"
