@@ -39,8 +39,8 @@ export default function Tools() {
 											</Link>
 										</CommandItem>
 									</CommandGroup>
-									{/* <CommandSeparator className="bg-gray" />
-									<CommandGroup heading="Housing">
+									<CommandSeparator className="bg-gray" />
+									<CommandGroup heading="Finance">
 										<CommandItem>
 											<Link
 												href="/tools/house-salary-calculator"
@@ -50,7 +50,7 @@ export default function Tools() {
 												House Salary Calculator
 											</Link>
 										</CommandItem>
-									</CommandGroup> */}
+									</CommandGroup>
 								</CommandList>
 							</Command>
 						</div>
