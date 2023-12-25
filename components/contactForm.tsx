@@ -82,7 +82,7 @@ export default function ContactForm() {
 						<FormItem>
 							<FormLabel>Name</FormLabel>
 							<FormControl>
-								<Input placeholder="" {...field} />
+								<Input placeholder="" {...field} className="text-[16px]" />
 							</FormControl>
 							<FormDescription></FormDescription>
 							<FormMessage />
@@ -96,7 +96,7 @@ export default function ContactForm() {
 						<FormItem>
 							<FormLabel>Email</FormLabel>
 							<FormControl>
-								<Input placeholder="" {...field} />
+								<Input placeholder="" {...field} className="text-[16px]" />
 							</FormControl>
 							<FormDescription></FormDescription>
 							<FormMessage />
@@ -110,7 +110,7 @@ export default function ContactForm() {
 						<FormItem>
 							<FormLabel>Phone</FormLabel>
 							<FormControl>
-								<Input placeholder="" {...field} />
+								<Input placeholder="" {...field} className="text-[16px]" />
 							</FormControl>
 							<FormDescription></FormDescription>
 							<FormMessage />
@@ -124,7 +124,7 @@ export default function ContactForm() {
 						<FormItem>
 							<FormLabel>Message</FormLabel>
 							<FormControl>
-								<Textarea placeholder="" {...field} />
+								<Textarea placeholder="" {...field} className="text-[16px]" />
 							</FormControl>
 							<FormDescription></FormDescription>
 							<FormMessage />
