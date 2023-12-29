@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 
 const photo1 = "/restoration/mike-ocean-original-restored.webp";
 const photo2 = "/restoration/mike-ocean-original.webp";
+const usbCost = "+$14";
 
 export default function PhotoVHSDigitization() {
 	return (
@@ -43,9 +44,10 @@ export default function PhotoVHSDigitization() {
 					shopping where you can have your favorite restored photos printed in much larger formats in either frames or on canvas
 					for the cost of the materials and shipping and shipped straight to your door.
 				</p>
+				<p className="my-2 mx-auto sm:mx-5 md:mx-unset font-bold">Maximum Phyiscal Photo Size 8.5 x 11.7 inches</p>
 				<p className="my-2 mx-auto sm:mx-5 md:mx-unset font-bold">
-					At this time we do not support the digitization of negatives or slides. We are working on adding this service in the
-					future.
+					At this time we do not support the digitization of negatives or slides. We are working on adding this service for
+					slides, negatives, and medium format panoramic film in the future.
 				</p>
 			</div>
 			<div className="container sm:mx-auto md:mx-auto py-10 digitization-page bg-black text-white">
@@ -54,7 +56,8 @@ export default function PhotoVHSDigitization() {
 						<CardHeader>
 							<CardTitle className="card-title">Photo Digitization</CardTitle>
 							<CardDescription className="card-price font-bold">
-								Up to 200 Photos $200 <br /> (incl. USB) $1/photo
+								Up to 200 Photos <br />
+								$1/photo {usbCost} for USB
 							</CardDescription>
 						</CardHeader>
 						<CardContent className="card-content">
@@ -84,7 +87,7 @@ export default function PhotoVHSDigitization() {
 						<CardHeader>
 							<CardTitle className="card-title">Photo Polishing Silver</CardTitle>
 							<CardDescription className="card-price font-bold">
-								Up to 200 Photos $300 <br /> (incl. USB) $1.50/photo
+								Up to 200 Photos <br /> $4/photo {usbCost} for USB
 							</CardDescription>
 						</CardHeader>
 						<CardContent className="card-content">
@@ -130,7 +133,7 @@ export default function PhotoVHSDigitization() {
 						<CardHeader>
 							<CardTitle className="card-title">Photo Polishing Gold</CardTitle>
 							<CardDescription className="card-price font-bold">
-								Up to 50 Photos $375 <br /> (incl. USB) $7.50/photo
+								Up to 50 Photos <br /> $10/photo {usbCost} for USB
 							</CardDescription>
 						</CardHeader>
 						<CardContent className="card-content">
