@@ -44,10 +44,14 @@ export default function PhotoVHSDigitization() {
 					shopping where you can have your favorite restored photos printed in much larger formats in either frames or on canvas
 					for the cost of the materials and shipping and shipped straight to your door.
 				</p>
-				<p className="my-2 mx-auto sm:mx-5 md:mx-unset font-bold">Maximum Phyiscal Photo Size 8.5 x 11.7 inches</p>
 				<p className="my-2 mx-auto sm:mx-5 md:mx-unset font-bold">
 					At this time we do not support the digitization of negatives or slides. We are working on adding this service for
 					slides, negatives, and medium format panoramic film in the future.
+				</p>
+				<p className="my-2 mx-auto sm:mx-5 md:mx-unset font-bold">*Maximum Phyiscal Photo Size 8.5 x 11.7 inches*</p>
+				<p className="my-2 mx-auto sm:mx-5 md:mx-unset font-bold">
+					*If photos are heavily damaged, they may automatically qualify for Photo Polishing Gold. We may not be able to restore
+					very heavily damaged photos.*
 				</p>
 			</div>
 			<div className="container sm:mx-auto md:mx-auto py-10 digitization-page bg-black text-white">
