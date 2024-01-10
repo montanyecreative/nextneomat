@@ -91,7 +91,7 @@ export default function PhotoVHSDigitization() {
 						<CardHeader>
 							<CardTitle className="card-title">Photo Polishing Silver</CardTitle>
 							<CardDescription className="card-price font-bold">
-								Up to 200 Photos <br /> $4/photo {usbCost} for USB
+								Up to 200 Photos <br /> $5/photo {usbCost} for USB
 							</CardDescription>
 						</CardHeader>
 						<CardContent className="card-content">
