@@ -13,16 +13,24 @@ export default function ExperienceSection() {
 	var monthsInYear = 12;
 	var monthOffset = 1; //getMonth() returns 0-11
 	var yearOffset = 1;
-	var currentJobStartMonth = currentJobStart.getMonth() + monthOffset;
+	var currentJobStartMonth = currentJobStart.getMonth() - monthOffset;
 	var currentJobStartYear = 2022;
 	var amountJobMonths = monthsInYear - currentJobStartMonth;
 	var currentJobYears = yearDiff(new Date(currentJobStartYear, 10), new Date()) - yearOffset;
-
+	// side job variables
 	var currentSideJobStart = new Date("2023-01-01T23:15:30");
-	var currentSideJobStartMonth = currentSideJobStart.getMonth() + monthOffset;
+	var currentSideJobStartMonth = currentSideJobStart.getMonth() - monthOffset;
 	var currentSideJobStartYear = 2023;
 	var amountSideJobMonths = monthsInYear - currentSideJobStartMonth;
 	var currentSideJobYears = yearDiff(new Date(currentSideJobStartYear, 1), new Date()) - yearOffset;
+
+	if (currentJobYears >= 1) {
+		var amountJobMonths = currentJobStartMonth + monthsInYear - currentJobYears * monthsInYear;
+	}
+
+	if (currentSideJobYears >= 1) {
+		var amountSideJobMonths = currentSideJobStartMonth + monthsInYear - currentSideJobYears * monthsInYear;
+	}
 
 	function yearDiff(dateFrom: Date, dateTo: Date) {
 		return dateTo.getFullYear() - dateFrom.getFullYear();
