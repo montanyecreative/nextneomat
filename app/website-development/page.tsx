@@ -55,8 +55,8 @@ export default function WebsiteDevelopment() {
 							I have worked many other projects that are not shown here as I do not have direct permission from clients to
 							share works as per contracted agreements but those brands and sites include:{" "}
 							<i>
-								Citizen, Bulova, Accutron, Frederique Constant, New Balance, Johnston &amp; Murphy, Sheet Music Plus,
-								Cherished Memories, ReserveBar, LuxeDecor, SyllogisTeks, PohlmanUSA, and Our Lady&apos;s Inn
+								Citizen, Bulova, Accutron, Frederique Constant, Alpina, New Balance, Johnston &amp; Murphy, Sheet Music
+								Plus, Cherished Memories, ReserveBar, LuxeDecor, SyllogisTeks, PohlmanUSA, and Our Lady&apos;s Inn
 							</i>
 							. See{" "}
 							<Link href="/resume" className="underline" aria-label="Go to Resume page">
