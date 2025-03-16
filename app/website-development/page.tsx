@@ -24,9 +24,7 @@ export default function WebsiteDevelopment() {
 							<h1 className="text-[32px] my-5">Website Development</h1>
 							<div className="avatar-shadow rounded pt-5 pb-10">
 								<Card className="border-0">
-									<p className="my-5 mx-auto sm:mx-5 md:mx-unset">
-										Currently we offer custom web solutions for the following use cases:
-									</p>
+									<p className="my-5 mx-5">Currently we offer custom web solutions for the following use cases:</p>
 									<ul>
 										<li>Multi-Page Business or Personal websites</li>
 										<li>Single Page Landing Page websites</li>
@@ -36,7 +34,7 @@ export default function WebsiteDevelopment() {
 										<li>Core Web Vital Optimization</li>
 										<li>ADA Compliance</li>
 									</ul>
-									<p className="my-5 mx-auto sm:mx-5 md:mx-unset">
+									<p className="my-5 mx-5">
 										To get in touch with us about how we can help you, please fill out the form on our contact page.
 									</p>
 									<Link href="/contact" aria-label="Go to Contact page">
@@ -51,7 +49,7 @@ export default function WebsiteDevelopment() {
 							</div>
 						</div>
 						<h2 className="text-[30px] mt-5 text-white font-normal">Projects</h2>
-						<p className="my-2 mx-auto sm:mx-5 md:mx-unset">
+						<p className="my-2 mx-5">
 							I have worked many other projects that are not shown here as I do not have direct permission from clients to
 							share works as per contracted agreements but those brands and sites include:{" "}
 							<i>
@@ -70,7 +68,7 @@ export default function WebsiteDevelopment() {
 							<Card className="border-0">
 								<div className="webdev-project-details">
 									<h3 className="text-[28px] mt-5">Palladium Point</h3>
-									<p className=" mx-auto sm:mx-5 md:mx-20 mt-3 mb-5">
+									<p className=" mx-5 mt-3 mb-5">
 										Insurance business website built using Next.JS, shadcnui, TailwindCSS, GitHub Flows, and Vercel.
 									</p>
 									<Link
@@ -104,7 +102,7 @@ export default function WebsiteDevelopment() {
 							<Card className="border-0">
 								<div className="webdev-project-details">
 									<h3 className="text-[28px] mt-5">Montanye Creative Shopify</h3>
-									<p className=" mx-auto sm:mx-5 md:mx-20 mt-3 mb-5">
+									<p className=" mx-5 mt-3 mb-5">
 										Shopify e-commerce site for selling infrared photography prints and fulfilling them downstream with
 										Gelato printing for localized processing and delivery.
 									</p>
@@ -139,7 +137,7 @@ export default function WebsiteDevelopment() {
 							<Card className="border-0">
 								<div className="webdev-project-details">
 									<h3 className="text-[28px] mt-5">GitHub Enhanced README</h3>
-									<p className=" mx-auto sm:mx-5 md:mx-20 mt-3 mb-5">
+									<p className=" mx-5 mt-3 mb-5">
 										An enhanced README for my main GitHub repo. Highlights langauges and technologies I use as well as
 										GitHub statistics that are updated daily from API.
 									</p>
