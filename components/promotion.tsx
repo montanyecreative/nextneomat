@@ -8,8 +8,8 @@ export default function Promotion() {
 			<h2 className="text-white">Shop Infrared Photography</h2>
 			<div className="grid grid-row pt-10 justify-center">
 				<Link
-					href="https://montanyecreative.store/"
-					aria-label="Leave website to go to montanycreative.store"
+					href="https://montanyecreative.shop/"
+					aria-label="Leave website to go to montanycreative.shop"
 					target="_blank"
 					rel="noopener"
 				>

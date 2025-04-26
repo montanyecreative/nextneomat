@@ -107,7 +107,7 @@ export default function WebsiteDevelopment() {
 										Gelato printing for localized processing and delivery.
 									</p>
 									<Link
-										href="https://montanyecreative.store/"
+										href="https://montanyecreative.shop/"
 										aria-label="See more about the Montanye Creative Shopify website project"
 										target="_blank"
 										rel="noopener"

@@ -154,8 +154,8 @@ export default function Photography() {
 					</p>
 					<div className="flex mt-5">
 						<Link
-							href="https://montanyecreative.store/"
-							aria-label="Leave website to go to montanycreative.store"
+							href="https://montanyecreative.shop/"
+							aria-label="Leave website to go to montanycreative.shop"
 							className="mx-auto"
 							target="_blank"
 							rel="noopener"
