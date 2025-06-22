@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { HamburgerMenuIcon, Cross1Icon } from "@radix-ui/react-icons";
 
 const logo = "/logo.webp";
-const open = "/hamburger-menu.svg";
-const close = "/cross-1.svg";
 
 export const navLinks = [
 	{
@@ -38,9 +37,19 @@ export const navLinks = [
 export default function Navbar() {
 	const [active, setActive] = useState("Home");
 	const [toggle, setToggle] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 	const currentRoute = usePathname();
-
 	const [show, setShow] = useState(true);
+
+	const handleNavClick = (e: React.MouseEvent, nav: (typeof navLinks)[0]) => {
+		e.preventDefault();
+		setIsModalOpen(true);
+		setActive(nav.title);
+		// Close mobile menu after a short delay to allow modal to open
+		setTimeout(() => {
+			setToggle(false);
+		}, 100);
+	};
 
 	// non sticky nav {
 	// const controlNavbar = () => {
@@ -87,14 +96,19 @@ export default function Navbar() {
 						))}
 					</ul>
 					<div className="sm:hidden flex flex-1 justify-end items-center">
-						<Image
-							src={toggle ? close : open}
-							alt="menu"
-							className="w-[28px] h-[28px] object-contain"
+						<button
+							className="w-[28px] h-[28px] flex items-center justify-center"
 							onClick={() => setToggle(!toggle)}
-							height={28}
-							width={28}
-						/>
+							aria-label="Toggle menu"
+						>
+							<div className={`transition-transform duration-300 ${toggle ? "rotate-180" : "rotate-0"}`}>
+								{toggle ? (
+									<Cross1Icon className="w-8 h-8 text-white" />
+								) : (
+									<HamburgerMenuIcon className="w-8 h-8 text-white" />
+								)}
+							</div>
+						</button>
 
 						<div
 							className={`${
