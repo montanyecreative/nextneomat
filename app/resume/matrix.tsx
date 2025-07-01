@@ -287,7 +287,7 @@ export default function MatrixSection() {
 						</TableCell>
 					</TableRow>
 					<TableRow>
-						<TableCell>HTML/CSS (HTML5, ISML, TailwindCSS)</TableCell>
+						<TableCell>HTML/CSS (HTML5, ISML, SASS/SCSS, TailwindCSS)</TableCell>
 						<TableCell>{beganSkillYears ? beganSkillYears + "+" : ""}</TableCell>
 						<TableCell className="flex">
 							<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">

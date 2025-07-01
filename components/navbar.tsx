@@ -101,7 +101,7 @@ export default function Navbar() {
 							onClick={() => setToggle(!toggle)}
 							aria-label="Toggle menu"
 						>
-							<div className={`transition-transform duration-300 ${toggle ? "rotate-180" : "rotate-0"}`}>
+							<div className={`hamburger-icon ${toggle ? "rotate" : ""}`}>
 								{toggle ? (
 									<Cross1Icon className="w-8 h-8 text-white" />
 								) : (
@@ -112,14 +112,14 @@ export default function Navbar() {
 
 						<div
 							className={`${
-								!toggle ? "hidden" : "flex"
+								toggle ? "mobile-menu show" : "mobile-menu"
 							} p-6 text-white bg-black absolute top-20 right-0 md:mx-4 md:my-2 min-w-[100%] sidebar`}
 						>
 							<ul className="list-none flex justify-end items-start flex-1 flex-col">
 								{navLinks.map((nav, index) => (
 									<li
 										key={nav.id}
-										className={`font-medium cursor-pointer text-[18px] ${
+										className={`mobile-menu-item font-medium cursor-pointer text-[18px] ${
 											index === navLinks.length - 1 ? "mb-0" : "mb-4"
 										}`}
 										onClick={() => setActive(nav.title)}
