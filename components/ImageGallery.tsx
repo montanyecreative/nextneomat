@@ -34,11 +34,19 @@ export default function ImageGallery({ images, alt = "Gallery image" }: ImageGal
 	// Scroll to active thumbnail when currentIndex changes
 	useEffect(() => {
 		const activeThumbnail = thumbnailRefs.current[currentIndex];
-		if (activeThumbnail) {
-			activeThumbnail.scrollIntoView({
+		const thumbnailContainer = activeThumbnail?.parentElement;
+
+		if (activeThumbnail && thumbnailContainer) {
+			const containerWidth = thumbnailContainer.offsetWidth;
+			const thumbnailWidth = activeThumbnail.offsetWidth;
+			const thumbnailLeft = activeThumbnail.offsetLeft;
+
+			// Calculate scroll position to left-align the active thumbnail
+			const scrollPosition = thumbnailLeft - (containerWidth - thumbnailWidth) / 2;
+
+			thumbnailContainer.scrollTo({
+				left: Math.max(0, scrollPosition),
 				behavior: "smooth",
-				block: "nearest",
-				inline: "center",
 			});
 		}
 	}, [currentIndex]);
@@ -182,6 +190,7 @@ export default function ImageGallery({ images, alt = "Gallery image" }: ImageGal
 					<button
 						key={index}
 						onClick={() => goToImage(index)}
+						ref={(el) => (thumbnailRefs.current[index] = el)}
 						className={`relative flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden transition-all duration-200 ${
 							index === currentIndex ? "border-white border-2" : "border-white"
 						}`}
