@@ -16,6 +16,7 @@ export default function ImageGallery({ images, alt = "Gallery image" }: ImageGal
 	const [animationKey, setAnimationKey] = useState(0);
 	const [isMobile, setIsMobile] = useState(false);
 	const containerRef = useRef<HTMLDivElement>(null);
+	const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
 	// Detect mobile device
 	useEffect(() => {
@@ -29,6 +30,18 @@ export default function ImageGallery({ images, alt = "Gallery image" }: ImageGal
 		window.addEventListener("resize", checkMobile);
 		return () => window.removeEventListener("resize", checkMobile);
 	}, []);
+
+	// Scroll to active thumbnail when currentIndex changes
+	useEffect(() => {
+		const activeThumbnail = thumbnailRefs.current[currentIndex];
+		if (activeThumbnail) {
+			activeThumbnail.scrollIntoView({
+				behavior: "smooth",
+				block: "nearest",
+				inline: "center",
+			});
+		}
+	}, [currentIndex]);
 
 	const nextImage = () => {
 		if (isMobile) {
@@ -169,8 +182,8 @@ export default function ImageGallery({ images, alt = "Gallery image" }: ImageGal
 					<button
 						key={index}
 						onClick={() => goToImage(index)}
-						className={`relative flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
-							index === currentIndex ? "border-white ring-2 ring-blue-500" : "border-gray-600 hover:border-gray-400"
+						className={`relative flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden transition-all duration-200 ${
+							index === currentIndex ? "border-white border-2" : "border-white"
 						}`}
 					>
 						<Image src={image} alt={`${alt} thumbnail ${index + 1}`} fill className="object-cover" />
