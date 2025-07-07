@@ -26,7 +26,7 @@ export default function ImageGallery({ images, alt = "Gallery image" }: ImageGal
 	return (
 		<div className="relative w-full mx-auto">
 			{/* Main Image */}
-			<div className="relative aspect-video bg-gray-900 rounded-lg overflow-hidden">
+			<div className="relative aspect-video rounded-lg overflow-hidden">
 				<Image
 					src={images[currentIndex]}
 					alt={`${alt} ${currentIndex + 1}`}
@@ -68,7 +68,7 @@ export default function ImageGallery({ images, alt = "Gallery image" }: ImageGal
 					<button
 						key={index}
 						onClick={() => goToImage(index)}
-						className={`relative flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+						className={`relative flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden transition-all duration-200 ${
 							index === currentIndex ? "border-white ring-2 ring-blue-500" : "border-gray-600 hover:border-gray-400"
 						}`}
 					>

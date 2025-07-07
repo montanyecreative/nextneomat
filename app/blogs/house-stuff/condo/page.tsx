@@ -5,8 +5,7 @@ import Footer from "@/components/footer";
 import ImageGallery from "@/components/ImageGallery";
 
 export default function Condo() {
-	// Array of blog images from public/blogs folder
-	const blogImages = [
+	const condoImages = [
 		"/blogs/1.webp",
 		"/blogs/2.webp",
 		"/blogs/3.webp",
@@ -44,9 +43,8 @@ export default function Condo() {
 			<div className="page-banner-filler bg-black"></div>
 			<div className="container sm:mx-auto md:mx-auto privacy-page bg-black text-white">
 				<div className="grid grid-cols-1 pt-10 pb-20 mx-auto md:mx-20 justify-center">
-					{/* Image Gallery */}
 					<div className="mb-8">
-						<ImageGallery images={blogImages} alt="Property photos" />
+						<ImageGallery images={condoImages} alt="Property photos" />
 					</div>
 					<h2 className="text-[34px] mb-2 text-white">Manchester, MO 63088</h2>
 					<p className="italic">2 Bed, 3 Bath</p>
