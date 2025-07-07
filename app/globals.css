@@ -552,5 +552,38 @@ h2 {
 }
 
 .hamburger-icon.rotate {
-	transform: rotate(180deg);
+	transform: rotate(90deg);
+}
+
+/* Image Gallery Slide Animations */
+@keyframes slideInLeft {
+	from {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+@keyframes slideInRight {
+	from {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+@media (max-width: 640px) {
+	.animate-slide-in-left {
+		animation: slideInLeft 0.3s ease-out;
+	}
+
+	.animate-slide-in-right {
+		animation: slideInRight 0.3s ease-out;
+	}
 }
