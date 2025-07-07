@@ -62,6 +62,25 @@ body {
 	background: #555;
 }
 
+/* Custom scrollbar for image gallery */
+.custom-scrollbar::-webkit-scrollbar {
+	height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+	background: #2a2a2a;
+	border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+	background: #555;
+	border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+	background: #777;
+}
+
 main {
 	width: 100%;
 }

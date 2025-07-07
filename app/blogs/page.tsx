@@ -34,18 +34,14 @@ export default function Blogs() {
 											</Link>
 										</CommandItem>
 									</CommandGroup>
-									{/* <CommandSeparator className="bg-gray" />
-									<CommandGroup heading="Coffee">
+									<CommandSeparator className="bg-gray" />
+									<CommandGroup heading="House Stuff">
 										<CommandItem>
-											<Link
-												href="/tools/house-salary-calculator"
-												className="underline"
-												aria-label="Go to favorite coffees page"
-											>
-												Favorite Coffees
+											<Link href="/blogs/house-stuff/condo" className="underline" aria-label="Go to condo page">
+												Condo
 											</Link>
 										</CommandItem>
-									</CommandGroup> */}
+									</CommandGroup>
 								</CommandList>
 							</Command>
 						</div>
