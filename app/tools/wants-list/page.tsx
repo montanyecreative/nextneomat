@@ -12,7 +12,7 @@ interface WantsListItem {
 	importance: "High" | "Medium" | "Low";
 	price: string;
 	amazonLink: string;
-	otherLink: string;
+	itemLink: string;
 }
 
 export default function WantsList() {
@@ -25,7 +25,7 @@ export default function WantsList() {
 				importance: "High" as const,
 				price: "$9.99",
 				amazonLink: "",
-				otherLink: "https://www.target.com/p/kitchenaid-utility-shears/-/A-53277187#lnk=sametab",
+				itemLink: "https://www.target.com/p/kitchenaid-utility-shears/-/A-53277187#lnk=sametab",
 			},
 			{
 				id: 2,
@@ -34,7 +34,7 @@ export default function WantsList() {
 				importance: "Medium" as const,
 				price: "$49.99",
 				amazonLink: "",
-				otherLink: "https://www.crateandbarrel.com/schmidt-brothers-acacia-18-magnetic-wall-bar/s108280",
+				itemLink: "https://www.crateandbarrel.com/schmidt-brothers-acacia-18-magnetic-wall-bar/s108280",
 			},
 			{
 				id: 3,
@@ -43,7 +43,7 @@ export default function WantsList() {
 				importance: "Low" as const,
 				price: "$0.01-50.00",
 				amazonLink: "",
-				otherLink: "https://www.crateandbarrel.com/gift-cards/",
+				itemLink: "https://www.crateandbarrel.com/gift-cards/",
 			},
 			{
 				id: 4,
@@ -52,7 +52,7 @@ export default function WantsList() {
 				importance: "Low" as const,
 				price: "$49.95",
 				amazonLink: "",
-				otherLink: "https://www.crateandbarrel.com/anchor-hocking-glass-mixing-bowls-set-of-10/s354925",
+				itemLink: "https://www.crateandbarrel.com/anchor-hocking-glass-mixing-bowls-set-of-10/s354925",
 			},
 			{
 				id: 5,
@@ -61,7 +61,7 @@ export default function WantsList() {
 				importance: "Medium" as const,
 				price: "$18.99",
 				amazonLink: "",
-				otherLink: "https://www.target.com/p/cuisinart-6pc-stainless-steel-magnetic-measuring-spoon-set/-/A-82429018#lnk=sametab",
+				itemLink: "https://www.target.com/p/cuisinart-6pc-stainless-steel-magnetic-measuring-spoon-set/-/A-82429018#lnk=sametab",
 			},
 			{
 				id: 6,
@@ -70,7 +70,7 @@ export default function WantsList() {
 				importance: "Low" as const,
 				price: "$39.00",
 				amazonLink: "",
-				otherLink: "https://www.crateandbarrel.com/yamazaki-white-toilet-paper-stand-with-tray/s313698",
+				itemLink: "https://www.crateandbarrel.com/yamazaki-white-toilet-paper-stand-with-tray/s313698",
 			},
 		];
 
@@ -151,7 +151,7 @@ export default function WantsList() {
 												className="text-white cursor-pointer hover:text-blue-300"
 												onClick={() => sortItems("name")}
 											>
-												Item Name{getSortIcon("name")}
+												Item name{getSortIcon("name")}
 											</TableHead>
 											<TableHead className="text-white">Description</TableHead>
 											<TableHead
@@ -166,8 +166,8 @@ export default function WantsList() {
 											>
 												Importance{getSortIcon("importance")}
 											</TableHead>
-											<TableHead className="text-white">Amazon</TableHead>
-											<TableHead className="text-white">Other Sites</TableHead>
+											{/* <TableHead className="text-white">Amazon</TableHead> */}
+											<TableHead className="text-white">Item link</TableHead>
 										</TableRow>
 									</TableHeader>
 									<TableBody>
@@ -190,28 +190,14 @@ export default function WantsList() {
 													</span>
 												</TableCell>
 												<TableCell className="text-white">
-													{item.amazonLink ? (
+													{item.itemLink ? (
 														<a
-															href={item.amazonLink}
+															href={item.itemLink}
 															target="_blank"
 															rel="noopener noreferrer"
 															className="text-white-400 hover:text-red hover:cursor-pointer underline"
 														>
-															View on Amazon
-														</a>
-													) : (
-														<span className="text-white-400">-</span>
-													)}
-												</TableCell>
-												<TableCell className="text-white">
-													{item.otherLink ? (
-														<a
-															href={item.otherLink}
-															target="_blank"
-															rel="noopener noreferrer"
-															className="text-white-400 hover:text-red hover:cursor-pointer underline"
-														>
-															View Alternative
+															View item
 														</a>
 													) : (
 														<span className="text-white-400">-</span>
