@@ -9,72 +9,54 @@ const montanyecreativeLogo = "/logo.webp";
 const gatewayitconsultingLogo = "/resume/gitc.svg";
 
 export default function ExperienceSection() {
-	// months start at 0, 0-11
-	// currentJobStartMonth oct
-	var currentJobStartMonth = 9;
-	var currentJobStartYear = 2022;
-	var currentJobMonths = monthDiff(new Date(currentJobStartYear, currentJobStartMonth), new Date());
-	var currentJobYears = getFullYearDiff("2022-10-01", new Date());
-	var displayCurrentJobMonths = calculateCurrentJobMonths();
+	// Helper function to calculate years and months between two dates
+	function calculateYearsAndMonths(startDate: Date, endDate: Date = new Date()) {
+		let years = endDate.getFullYear() - startDate.getFullYear();
+		let months = endDate.getMonth() - startDate.getMonth();
 
-	// side job variables
-	var currentSideJobStartMonth = 0;
-	var currentSideJobStartYear = 2023;
-	var currentSideJobMonths = monthDiff(new Date(currentSideJobStartYear, currentSideJobStartMonth), new Date());
-	var currentSideJobYears = getFullYearDiff("2023-01-01", new Date());
-	var displayCurrentSideJobMonths = calculateCurrentSideJobMonths();
-
-	function getFullYearDiff(dateStart: string, dateEnd: Date) {
-		const start = new Date(dateStart);
-		const end = new Date(dateEnd);
-		const actualCurrentYearDiff = end.getFullYear() - start.getFullYear();
-
-		if (end.getMonth() < start.getMonth() || (end.getMonth() === start.getMonth() && end.getDate() < start.getDate())) {
-			return actualCurrentYearDiff - 1;
-		}
-	}
-
-	function calculateCurrentJobMonths() {
-		function getFullYearDiffCurrent() {
-			const start = new Date("2022-10-01");
-			const end = new Date();
-			const actualCurrentYearDiff = end.getFullYear() - start.getFullYear();
-
-			if (end.getMonth() < start.getMonth() || (end.getMonth() === start.getMonth() && end.getDate() < start.getDate())) {
-				return actualCurrentYearDiff - 1;
-			}
+		// Adjust if the end date hasn't reached the start date's day of month
+		if (endDate.getDate() < startDate.getDate()) {
+			months--;
 		}
 
-		var currentJobYearsInMonths = (getFullYearDiffCurrent() ?? 0) * 12;
-		if (currentJobMonths > currentJobYearsInMonths) {
-			return (currentJobMonths = currentJobMonths - currentJobYearsInMonths);
-		}
-	}
-
-	function calculateCurrentSideJobMonths() {
-		function getFullYearDiffCurrentSide() {
-			const start = new Date("2022-10-01");
-			const end = new Date();
-			const actualCurrentYearDiff = end.getFullYear() - start.getFullYear();
-
-			if (end.getMonth() < start.getMonth() || (end.getMonth() === start.getMonth() && end.getDate() < start.getDate())) {
-				return actualCurrentYearDiff - 1;
-			}
+		// Handle negative months
+		if (months < 0) {
+			months += 12;
+			years--;
 		}
 
-		var currentSideJobYearsInMonths = (getFullYearDiffCurrentSide() ?? 0) * 12;
-		if (currentSideJobMonths > currentSideJobYearsInMonths) {
-			return (currentSideJobMonths = currentSideJobMonths - currentSideJobYearsInMonths);
+		return { years, months };
+	}
+
+	// Format years and months for display
+	function formatDuration(years: number, months: number): string {
+		const parts: string[] = [];
+
+		if (years > 0) {
+			parts.push(`${years} ${years === 1 ? "year" : "years"}`);
 		}
+
+		if (months > 0) {
+			parts.push(`${months} ${months === 1 ? "month" : "months"}`);
+		}
+
+		// Edge case: if both are 0, show "0 months"
+		if (parts.length === 0) {
+			return "0 months";
+		}
+
+		return parts.join(" ");
 	}
 
-	function monthDiff(dateFrom: Date, dateTo: Date) {
-		return dateTo.getMonth() - dateFrom.getMonth() + 12 * (dateTo.getFullYear() - dateFrom.getFullYear());
-	}
+	// Current job: October 2022
+	const currentJobStart = new Date(2022, 9, 1); // Month is 0-indexed, so 9 = October
+	const currentJobDuration = calculateYearsAndMonths(currentJobStart);
+	const currentJobDisplay = formatDuration(currentJobDuration.years, currentJobDuration.months);
 
-	function yearDiff(dateFrom: Date, dateTo: Date) {
-		return dateTo.getFullYear() - dateFrom.getFullYear();
-	}
+	// Side job: March 2023
+	const currentSideJobStart = new Date(2023, 2, 1); // Month is 0-indexed, so 2 = March
+	const currentSideJobDuration = calculateYearsAndMonths(currentSideJobStart);
+	const currentSideJobDisplay = formatDuration(currentSideJobDuration.years, currentSideJobDuration.months);
 
 	return (
 		<div className="resume-intro text-left" id="experience">
@@ -89,10 +71,7 @@ export default function ExperienceSection() {
 							clipRule="evenodd"
 						></path>
 					</svg>
-					<p className="text-[18px] ml-1">
-						October, 2022 - Current ({currentJobYears ?? 0} {currentJobYears && currentJobYears > 1 ? "years " : "year "}
-						{displayCurrentJobMonths} {displayCurrentJobMonths! > 1 ? "months" : "month"})
-					</p>
+					<p className="text-[18px] ml-1">October, 2022 - Current ({currentJobDisplay})</p>
 				</div>
 				<div className="company-section">
 					<div className="flex">
@@ -360,11 +339,7 @@ export default function ExperienceSection() {
 							clipRule="evenodd"
 						></path>
 					</svg>
-					<p className="text-[18px] ml-1">
-						March 2023 - Current ({currentSideJobYears ?? 0}{" "}
-						{currentSideJobYears && currentSideJobYears > 1 ? "years " : "year "}
-						{displayCurrentSideJobMonths} {displayCurrentSideJobMonths! > 1 ? "months" : "month"})
-					</p>
+					<p className="text-[18px] ml-1">March 2023 - Current ({currentSideJobDisplay})</p>
 				</div>
 				<div className="company-section">
 					<div className="flex">
