@@ -190,7 +190,9 @@ export default function ImageGallery({ images, alt = "Gallery image" }: ImageGal
 					<button
 						key={index}
 						onClick={() => goToImage(index)}
-						ref={(el) => (thumbnailRefs.current[index] = el)}
+						ref={(el) => {
+							thumbnailRefs.current[index] = el;
+						}}
 						className={`relative flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden transition-all duration-200 ${
 							index === currentIndex ? "border-white border-2" : "border-white"
 						}`}
