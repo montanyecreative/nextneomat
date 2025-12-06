@@ -348,11 +348,19 @@ export default function ExperienceSection() {
 					</div>
 					<h4 className="text-[24px] mb-2">Owner &amp; Lead Software Engineer</h4>
 					<p className="ml-5">
-						<i>Clients include internal.</i>
+						<i>Clients include internal and Palladium Point.</i>
 					</p>
 					<p className="ml-5 mt-1">
-						- Designed, developed, and maintain external facing digital portfolio website using React, Material Design (MUI),
-						JavaScript, HTML5, CSS.
+						- Designed, developed, and maintain external facing one-page newsletter website using Next.JS, React JS, TypeScript,
+						HTML5, CSS, SASS, TailwindCSS, GSAP, Google Analytics, and shadcnui.
+					</p>
+					<p className="ml-5 mt-1">
+						- Designed, developed, and maintain external facing insurance talent recruitment website using Next.JS, React JS,
+						TypeScript, HTML5, CSS, SASS, TailwindCSS, GSAP, Google Analytics, and shadcnui.
+					</p>
+					<p className="ml-5 mt-1">
+						- Designed, developed, and maintain external facing digital portfolio website using Next.JS, React JS, TypeScript,
+						HTML5, CSS, SASS, TailwindCSS, GSAP, Google Analytics, and shadcnui.
 					</p>
 				</div>
 			</div>
