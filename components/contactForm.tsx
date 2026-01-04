@@ -3,6 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,6 +30,9 @@ const formSchema = z.object({
 });
 
 export default function ContactForm() {
+	const { executeRecaptcha } = useGoogleReCaptcha();
+	const [isSubmitting, setIsSubmitting] = useState(false);
+
 	const date = new Date().toDateString();
 	var hours = new Date().getHours();
 	var minutes = new Date().getMinutes();
@@ -52,24 +57,60 @@ export default function ContactForm() {
 
 	const FORM_URL = "https://usebasin.com/f/720ce3ef2f52";
 
-	function onSubmit(values: z.infer<typeof formSchema>) {
-		fetch(FORM_URL, {
-			method: "POST",
-			headers: {
-				"content-type": "application/json",
-				accept: "application/json",
-			},
-			body: JSON.stringify(values),
-		})
-			.then((res) => {
-				if (res.status === 200) {
-					form.reset();
-					alert("Thank you for your submission! We'll be in contact soon!");
-				}
-			})
-			.catch((error) => {
-				console.log(error);
+	async function onSubmit(values: z.infer<typeof formSchema>) {
+		if (isSubmitting) return;
+
+		// Check if reCAPTCHA is available
+		if (!executeRecaptcha) {
+			alert("reCAPTCHA is not loaded. Please refresh the page and try again.");
+			return;
+		}
+
+		setIsSubmitting(true);
+
+		try {
+			// Execute reCAPTCHA
+			const token = await executeRecaptcha("contact_form");
+
+			// Verify the token with our API
+			const verifyResponse = await fetch("/api/verify-recaptcha", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ token }),
 			});
+
+			const verifyData = await verifyResponse.json();
+
+			if (!verifyData.success) {
+				alert("reCAPTCHA verification failed. Please try again.");
+				setIsSubmitting(false);
+				return;
+			}
+
+			// If verification succeeds, submit the form
+			const submitResponse = await fetch(FORM_URL, {
+				method: "POST",
+				headers: {
+					"content-type": "application/json",
+					accept: "application/json",
+				},
+				body: JSON.stringify(values),
+			});
+
+			if (submitResponse.status === 200) {
+				form.reset();
+				alert("Thank you for your submission! We'll be in contact soon!");
+			} else {
+				alert("There was an error submitting your form. Please try again.");
+			}
+		} catch (error) {
+			console.error("Form submission error:", error);
+			alert("There was an error submitting your form. Please try again.");
+		} finally {
+			setIsSubmitting(false);
+		}
 	}
 
 	return (
@@ -134,9 +175,10 @@ export default function ContactForm() {
 				<Button
 					type="submit"
 					variant="outline"
-					className="rounded-full px-10 text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
+					disabled={isSubmitting}
+					className="rounded-full px-10 text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px] disabled:opacity-50 disabled:cursor-not-allowed"
 				>
-					Submit
+					{isSubmitting ? "Submitting..." : "Submit"}
 				</Button>
 			</form>
 		</Form>
