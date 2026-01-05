@@ -4,25 +4,39 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import Promotion from "@/components/promotion";
+import Salesforce from "@/components/salesforce";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
 const palladiumImage = "/projects/palladium-point.webp";
 const producersCircleImage = "/projects/the-producers-circle.webp";
-const shopifyImage = "/projects/montanye-creative-shopify.webp";
+const photographyImage = "/projects/montanye-creative-photography.webp";
 const githubImage = "/projects/github-project.webp";
 
 export default function WebsiteDevelopment() {
 	return (
 		<main>
 			<Navbar />
-			<div className="bg-black">
-				<div className="page-banner-filler bg-black"></div>
+			<div className="bg-transparent">
+				<div className="sm:mx-auto md:mx-auto flex banner-home-copy gradient-banner-pulse">
+					<div className="w-full comparison-slider relative">
+						<h1 className="text-[42px] absolute top-1/2 -translate-y-1/2 left-0 p-5 text-white md:block hidden md:mx-10 aktiv-grotesk">
+							<span className="aktiv-grotesk-medium">Create value with</span>
+							<br /> design &amp; technology.
+						</h1>
+						<p className="text-[20px] absolute top-1/2 -translate-y-1/2 right-5 p-5 text-white md:block hidden w-[600px]">
+							Montanye Creative is a midwest based Design &amp; Technology Studio. We assist individuals and organizations by
+							identifying and executing necessary digital initiatives.
+						</p>
+					</div>
+				</div>
 				<div className="container-fluid webdev-page mx-auto md:mx-10 text-center text-white">
 					<div className="webdev-intro">
 						<div className="mb-20">
-							<h1 className="text-[32px] my-5">Website Development</h1>
+							<h1 className="text-[32px] mt-5 md:hidden">
+								<b>Create value with</b>
+								<br /> design &amp; technology.
+							</h1>
 							<div>
 								<p className="my-5 mx-5">Currently we offer custom web solutions for the following use cases:</p>
 								<div className="visual-list-item mb-4 inline-flex">
@@ -212,7 +226,7 @@ export default function WebsiteDevelopment() {
 							rel="noopener"
 							className="avatar-shadow rounded transition-transform duration-300 hover:scale-[1.025] group block"
 						>
-							<Card className="border-0">
+							<Card className="border-0 glass-card bg-transparent">
 								<div className="webdev-project-details">
 									<h3 className="text-[28px] mt-5">Palladium Point</h3>
 									<p className="mx-5 mt-3 mb-5">
@@ -243,7 +257,7 @@ export default function WebsiteDevelopment() {
 							rel="noopener"
 							className="avatar-shadow rounded transition-transform duration-300 hover:scale-[1.025] group block"
 						>
-							<Card className="border-0">
+							<Card className="border-0 glass-card bg-transparent">
 								<div className="webdev-project-details">
 									<h3 className="text-[28px] mt-5">The Producers Circle</h3>
 									<p className="mx-5 mt-3 mb-5">
@@ -274,7 +288,7 @@ export default function WebsiteDevelopment() {
 							rel="noopener"
 							className="avatar-shadow rounded transition-transform duration-300 hover:scale-[1.025] group block"
 						>
-							<Card className="border-0">
+							<Card className="border-0 glass-card bg-transparent">
 								<div className="webdev-project-details">
 									<h3 className="text-[28px] mt-5">Montanye Creative Photography</h3>
 									<p className="mx-5 mt-3 mb-5">
@@ -289,7 +303,7 @@ export default function WebsiteDevelopment() {
 									</Button>
 									<div className="webdev-project-image mt-5">
 										<Image
-											src={shopifyImage}
+											src={photographyImage}
 											alt="Image of Montanye Creative Photography website home page"
 											width="1000"
 											height="1000"
@@ -306,7 +320,7 @@ export default function WebsiteDevelopment() {
 							rel="noopener"
 							className="avatar-shadow rounded transition-transform duration-300 hover:scale-[1.025] group block"
 						>
-							<Card className="border-0">
+							<Card className="border-0 glass-card bg-transparent">
 								<div className="webdev-project-details">
 									<h3 className="text-[28px] mt-5">GitHub Enhanced README</h3>
 									<p className="mx-5 mt-3 mb-5">
@@ -334,7 +348,7 @@ export default function WebsiteDevelopment() {
 					</div>
 				</div>
 			</div>
-			<Promotion />
+			<Salesforce />
 			<Footer />
 		</main>
 	);

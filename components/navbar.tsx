@@ -40,6 +40,7 @@ export default function Navbar() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const currentRoute = usePathname();
 	const [show, setShow] = useState(true);
+	const [lastScrollY, setLastScrollY] = useState(0);
 
 	const handleNavClick = (e: React.MouseEvent, nav: (typeof navLinks)[0]) => {
 		e.preventDefault();
@@ -51,27 +52,40 @@ export default function Navbar() {
 		}, 100);
 	};
 
-	// non sticky nav {
-	// const controlNavbar = () => {
-	// 	if (window.scrollY < 50) {
-	// 		setShow(true);
-	// 	} else {
-	// 		setShow(false);
-	// 	}
-	// };
+	useEffect(() => {
+		const controlNavbar = () => {
+			const currentScrollY = window.scrollY;
 
-	// useEffect(() => {
-	// 	window.addEventListener("scroll", controlNavbar);
-	// 	return () => {
-	// 		window.removeEventListener("scroll", controlNavbar);
-	// 	};
-	// }, []);
-	// }
+			// Always show navbar at the top of the page
+			if (currentScrollY < 10) {
+				setShow(true);
+			} else {
+				// Hide when scrolling down, show when scrolling up
+				if (currentScrollY > lastScrollY && currentScrollY > 100) {
+					setShow(false);
+				} else if (currentScrollY < lastScrollY) {
+					setShow(true);
+				}
+			}
+
+			setLastScrollY(currentScrollY);
+		};
+
+		window.addEventListener("scroll", controlNavbar);
+		return () => {
+			window.removeEventListener("scroll", controlNavbar);
+		};
+	}, [lastScrollY]);
 
 	return (
-		<nav className={`w-full flex py-6 justify-between items-center navbar ${show && "nav-show"}`} id="navbar">
-			<div className="container mx-auto">
-				<div className="flex">
+		<nav
+			className={`w-full flex flex-col lg:flex-row py-6 justify-between items-center navbar ${show && "nav-show"} ${
+				toggle ? "mobile-menu-open" : ""
+			}`}
+			id="navbar"
+		>
+			<div className="w-full px-4 md:px-6 lg:px-8">
+				<div className="flex justify-between items-center">
 					<div className="logo">
 						<Link href="/" className="flex">
 							<Image src={logo} alt="logo" width="40" height="25" />
@@ -79,11 +93,11 @@ export default function Navbar() {
 						</Link>
 					</div>
 
-					<ul className="list-none sm:flex hidden justify-end flex-1 items-center">
+					<ul className="list-none lg:flex hidden justify-end flex-1 items-center">
 						{navLinks.map((nav, index) => (
 							<li
 								key={nav.id}
-								className="text-white uppercase cursor-pointer text-[12px] lg:text-[13px] mr-3 md:mr-5 lg:mr-8"
+								className="text-white  cursor-pointer text-[14px] lg:text-[16px] mr-3 md:mr-5 lg:mr-8"
 								onClick={() => setActive(nav.title)}
 							>
 								<a
@@ -95,47 +109,35 @@ export default function Navbar() {
 							</li>
 						))}
 					</ul>
-					<div className="sm:hidden flex flex-1 justify-end items-center">
-						<button
-							className="w-[28px] h-[28px] flex items-center justify-center"
-							onClick={() => setToggle(!toggle)}
-							aria-label="Toggle menu"
-						>
-							<div className={`hamburger-icon ${toggle ? "rotate" : ""}`}>
-								{toggle ? (
-									<Cross1Icon className="w-8 h-8 text-white" />
-								) : (
-									<HamburgerMenuIcon className="w-8 h-8 text-white" />
-								)}
-							</div>
-						</button>
-
-						<div
-							className={`${
-								toggle ? "mobile-menu show" : "mobile-menu"
-							} p-6 text-white bg-black absolute top-20 right-0 md:mx-4 md:my-2 min-w-[100%] sidebar`}
-						>
-							<ul className="list-none flex justify-end items-start flex-1 flex-col">
-								{navLinks.map((nav, index) => (
-									<li
-										key={nav.id}
-										className={`mobile-menu-item font-medium cursor-pointer text-[18px] ${
-											index === navLinks.length - 1 ? "mb-0" : "mb-4"
-										}`}
-										onClick={() => setActive(nav.title)}
-									>
-										<a
-											href={`/${nav.link}`}
-											className={currentRoute === "/" + nav.link ? "custom-underline" : ""}
-										>
-											{nav.title}
-										</a>
-									</li>
-								))}
-							</ul>
+					<button
+						className="lg:hidden w-[28px] h-[28px] flex items-center justify-center"
+						onClick={() => setToggle(!toggle)}
+						aria-label="Toggle menu"
+					>
+						<div className={`hamburger-icon ${toggle ? "rotate" : ""}`}>
+							{toggle ? <Cross1Icon className="w-8 h-8 text-white" /> : <HamburgerMenuIcon className="w-8 h-8 text-white" />}
 						</div>
-					</div>
+					</button>
 				</div>
+
+				<ul className={`list-none lg:hidden flex flex-col items-start flex-1 mobile-menu-items ${toggle ? "show" : ""}`}>
+					{navLinks.map((nav, index) => (
+						<li
+							key={nav.id}
+							className={`mobile-menu-item font-medium cursor-pointer text-[18px] ${
+								index === navLinks.length - 1 ? "mb-0" : "mb-4"
+							}`}
+							onClick={() => {
+								setActive(nav.title);
+								setToggle(false);
+							}}
+						>
+							<a href={`/${nav.link}`} className={currentRoute === "/" + nav.link ? "custom-underline" : ""}>
+								{nav.title}
+							</a>
+						</li>
+					))}
+				</ul>
 			</div>
 		</nav>
 	);

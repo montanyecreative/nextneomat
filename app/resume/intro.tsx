@@ -17,8 +17,7 @@ export default function IntroSection() {
 
 	return (
 		<div className="resume-intro" id="highlights">
-			<h1 className="text-[32px] mt-5">Resume</h1>
-			<p className="my-2 mx-auto sm:mx-5 md:mx-unset italic">
+			<p className="my-2 lg:mt-10 mx-auto sm:mx-5 md:mx-unset italic">
 				Currently only looking for small freelance projects outside of 8am-6pm schedule.
 			</p>
 			<div className="page-links-container">

@@ -12,7 +12,7 @@ export default function Footer() {
 	const currentRoute = usePathname();
 
 	return (
-		<footer className="container sm:mx-auto md:mx-auto grid text-center py-10 bg-black text-white" id="footer">
+		<footer className="container sm:mx-auto md:mx-auto grid text-center py-10 glass-footer text-white" id="footer">
 			<div className="logo mb-10">
 				<Link href="/" className="flex justify-center" aria-label="Go to Home page">
 					<Image src={logo} alt="logo" width="40" height="25" />
@@ -22,7 +22,7 @@ export default function Footer() {
 			<div className="grid md:flex justify-center">
 				<Link
 					href="/photography"
-					className={`mx-5 my-2 md:my-unset text-[13px] uppercase hover:text-red ${
+					className={`mx-5 my-2 md:my-unset text-[13px] hover:text-red ${
 						currentRoute === "/photography" ? "custom-underline" : ""
 					}`}
 					aria-label="Go to Photography page"
@@ -31,7 +31,7 @@ export default function Footer() {
 				</Link>
 				<Link
 					href="/photo-vhs-digitization"
-					className={`mx-5 my-2 md:my-unset text-[13px] uppercase hover:text-red ${
+					className={`mx-5 my-2 md:my-unset text-[13px] hover:text-red ${
 						currentRoute === "/photo-vhs-digitization" ? "custom-underline" : ""
 					}`}
 					aria-label="Go to Photo/VHS Digitization page"
@@ -41,7 +41,7 @@ export default function Footer() {
 
 				<Link
 					href="/website-development"
-					className={`mx-5 my-2 md:my-unset text-[13px] uppercase hover:text-red ${
+					className={`mx-5 my-2 md:my-unset text-[13px] hover:text-red ${
 						currentRoute === "/website-development" ? "custom-underline" : ""
 					}`}
 					aria-label="Go to Website Development page"
@@ -50,18 +50,14 @@ export default function Footer() {
 				</Link>
 				<Link
 					href="/resume"
-					className={`mx-5 my-2 md:my-unset text-[13px] uppercase hover:text-red ${
-						currentRoute === "/resume" ? "custom-underline" : ""
-					}`}
+					className={`mx-5 my-2 md:my-unset text-[13px] hover:text-red ${currentRoute === "/resume" ? "custom-underline" : ""}`}
 					aria-label="Go to Resume page"
 				>
 					Resume
 				</Link>
 				<Link
 					href="/contact"
-					className={`mx-5 my-2 md:my-unset text-[13px] uppercase hover:text-red ${
-						currentRoute === "/contact" ? "custom-underline" : ""
-					}`}
+					className={`mx-5 my-2 md:my-unset text-[13px] hover:text-red ${currentRoute === "/contact" ? "custom-underline" : ""}`}
 					aria-label="Go to Contact page"
 				>
 					Contact

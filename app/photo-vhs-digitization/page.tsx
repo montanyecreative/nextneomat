@@ -16,18 +16,21 @@ export default function PhotoVHSDigitization() {
 	return (
 		<main>
 			<Navbar />
-			<div className="digitization-page bg-black">
-				<div className="sm:mx-auto md:mx-auto flex banner-home-copy">
+			<div className="digitization-page bg-transparent">
+				<div className="sm:mx-auto md:mx-auto flex banner-home-copy relative">
 					<ReactCompareSlider
 						className="w-full comparison-slider"
 						itemOne={<ReactCompareSliderImage src={photo1} srcSet={photo1} alt="Image one" className="slider-image-override" />}
 						itemTwo={<ReactCompareSliderImage src={photo2} srcSet={photo2} alt="Image two" className="slider-image-override" />}
 					/>
+					<h1 className="text-[42px] absolute bottom-0 left-0 p-5 text-white md:block hidden proxima-nova-medium">
+						Photo/VHS Digitization &amp; Restoration
+					</h1>
 				</div>
 			</div>
-			<div className="container mx-auto py-5 digitization-page bg-black text-white">
-				<h1 className="text-[32px] font-bold">Photo/VHS Digitization &amp; Restoration</h1>
-				<p className="my-2 mx-auto sm:mx-5 md:mx-unset">
+			<div className="container mx-auto py-5 digitization-page bg-transparent text-white">
+				<h1 className="text-[32px] font-bold md:hidden">Photo/VHS Digitization &amp; Restoration</h1>
+				<p className="my-2 lg:mt-20 mx-auto sm:mx-5 md:mx-unset">
 					Do you have tons of family photos laying in boxes? Have you been charged with sorting the family picture-books and have
 					put it off because of how daunting it is? Have a bunch of old VHS tapes that you want to preserve?
 				</p>
@@ -54,7 +57,7 @@ export default function PhotoVHSDigitization() {
 					very heavily damaged photos.*
 				</p>
 			</div>
-			<div className="container sm:mx-auto md:mx-auto py-10 digitization-page bg-black text-white">
+			<div className="container sm:mx-auto md:mx-auto py-10 digitization-page bg-transparent text-white">
 				<div className="cards grid grid-cols-1 md:grid-cols-3 text-center">
 					<Card className="mr-2 my-5 md:my-unset rounded border-gray avatar-shadow">
 						<CardHeader>
@@ -190,7 +193,7 @@ export default function PhotoVHSDigitization() {
 					</Card>
 				</div>
 			</div>
-			<div className="container sm:mx-auto md:mx-auto digitization-page bg-black text-white">
+			<div className="container sm:mx-auto md:mx-auto digitization-page bg-transparent text-white">
 				{/* <div className="cards grid grid-cols-1 md:grid-cols-2 text-center">
 					<Card className="mr-2 rounded border-gray">
 						<CardHeader>

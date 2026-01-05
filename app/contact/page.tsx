@@ -9,8 +9,8 @@ export default function ContactUs() {
 	return (
 		<main>
 			<Navbar />
-			<div className="bg-black">
-				<div className="page-banner-filler bg-black"></div>
+			<div className="bg-transparent">
+				<div className="page-banner-filler bg-transparent"></div>
 				<div className="container resume-page mx-auto text-white">
 					<h1 className="text-[32px] mt-5">Contact Us</h1>
 					<p className="my-3">Please fill out the form below and we will get in touch with you as soon as we can.</p>

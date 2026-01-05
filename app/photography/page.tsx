@@ -129,11 +129,24 @@ export default function Photography() {
 	return (
 		<main>
 			<Navbar />
-			<div className="bg-black">
-				<div className="page-banner-filler bg-black"></div>
+			<div className="bg-transparent">
+				<div className="sm:mx-auto md:mx-auto flex banner-home-copy">
+					<div className="w-full comparison-slider relative">
+						<Image
+							src="/banners/joshua-tree-ocean-red.webp"
+							alt="Joshua Tree Ocean Red"
+							fill
+							className="object-cover"
+							priority
+						/>
+						<h1 className="text-[42px] absolute bottom-0 left-0 p-5 text-white md:block hidden proxima-nova-medium">
+							Infrared Photography
+						</h1>
+					</div>
+				</div>
 				<div className="container resume-page mx-auto text-white">
-					<h1 className="text-[32px] mt-5">Infrared Photography</h1>
-					<p className="mt-5">
+					<h1 className="text-[32px] mt-5 md:hidden">Infrared Photography</h1>
+					<p className="mt-5 lg:mt-20">
 						A few years back, John was walking through an art show and stopped at a particular tent that drew his attention.
 						There, art centered around the usage of light in extreme conditions. Drawn by the curiosity of what else could be
 						done using light, John went on a journey to find out how color had been manipulated with light in the photography
@@ -152,7 +165,7 @@ export default function Photography() {
 						If you would like to see more, all of his photography is now available to view and is available for purchase at his
 						new shopify website.
 					</p>
-					<div className="flex mt-5">
+					<div className="flex mt-10">
 						<Link
 							href="https://montanyecreative.shop/"
 							aria-label="Leave website to go to montanycreative.shop"
@@ -169,11 +182,44 @@ export default function Photography() {
 						</Link>
 					</div>
 				</div>
-				<div className="container mx-auto text-white">
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-1">
-						{itemData.map((item) => (
-							<Image src={item.img} alt={item.title} key={item.title} className="infrared-photo" width="200" height="200" />
-						))}
+				<div className="container mx-auto px-4 md:px-8 lg:px-12 py-10 text-white">
+					<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+						{itemData.map((item, index) => {
+							const isCenterSection = index >= 6 && index <= 13;
+							const spansTwoCols = isCenterSection && index % 2 === 0;
+							const heightVariation = index % 3;
+							const imageHeight = spansTwoCols
+								? "500px"
+								: heightVariation === 0
+								? "400px"
+								: heightVariation === 1
+								? "450px"
+								: "380px";
+
+							return (
+								<div
+									key={item.title}
+									className={`relative overflow-hidden rounded-xl group cursor-pointer hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-2xl ${
+										spansTwoCols ? "md:col-span-2" : ""
+									}`}
+									style={{
+										minHeight: imageHeight,
+									}}
+								>
+									<Image
+										src={item.img}
+										alt={item.title}
+										fill
+										className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+										sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+									/>
+									<div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+									<div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+										<p className="text-white text-sm font-medium">{item.title}</p>
+									</div>
+								</div>
+							);
+						})}
 					</div>
 				</div>
 			</div>

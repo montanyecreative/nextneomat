@@ -10,8 +10,8 @@ export default function BecomeADeveloper() {
 	return (
 		<main>
 			<Navbar />
-			<div className="page-banner-filler bg-black"></div>
-			<div className="container sm:mx-auto md:mx-auto privacy-page bg-black text-white">
+			<div className="page-banner-filler bg-transparent"></div>
+			<div className="container sm:mx-auto md:mx-auto privacy-page bg-transparent text-white">
 				<div className="grid grid-cols-1 pt-10 pb-20 mx-auto md:mx-20 justify-center">
 					<h2 className="text-[34px] mb-2 text-white">Want to become a website developer?</h2>
 					<p className="italic">

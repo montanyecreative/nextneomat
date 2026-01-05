@@ -59,10 +59,16 @@ export default function ContactForm() {
 		},
 	});
 
-	const FORM_URL = "https://usebasin.com/f/720ce3ef2f52";
+	const FORM_URL = process.env.NEXT_PUBLIC_USEBASIN_FORM_URL || "";
 
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		if (isSubmitting) return;
+
+		if (!FORM_URL) {
+			console.error("USEBASIN_FORM_URL is not set. Please add NEXT_PUBLIC_USEBASIN_FORM_URL to your environment variables.");
+			alert("Form configuration error. Please contact support.");
+			return;
+		}
 
 		setIsSubmitting(true);
 

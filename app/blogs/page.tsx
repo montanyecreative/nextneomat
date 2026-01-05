@@ -10,8 +10,8 @@ export default function Blogs() {
 	return (
 		<main>
 			<Navbar />
-			<div className="bg-black">
-				<div className="page-banner-filler bg-black"></div>
+			<div className="bg-transparent">
+				<div className="page-banner-filler bg-transparent"></div>
 				<div className="container mx-auto pt-5 pb-20 text-white">
 					<div className="blogs-container">
 						<h1 className="text-[32px] mt-5 text-center">Blogs</h1>
