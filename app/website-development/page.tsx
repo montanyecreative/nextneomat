@@ -19,7 +19,7 @@ export default function WebsiteDevelopment() {
 			<Navbar />
 			<div className="bg-black">
 				<div className="page-banner-filler bg-black"></div>
-				<div className="container webdev-page mx-auto text-center text-white">
+				<div className="container-fluid webdev-page mx-auto md:mx-10 text-center text-white">
 					<div className="webdev-intro">
 						<div className="mb-20">
 							<h1 className="text-[32px] my-5">Website Development</h1>
@@ -190,7 +190,7 @@ export default function WebsiteDevelopment() {
 							</div>
 						</div>
 						<h2 className="text-[30px] mt-5 text-white font-normal">Projects</h2>
-						<p className="my-2 mx-5">
+						<p className="my-2 mx-10">
 							I have worked many other projects that are not shown here as I do not have direct permission from clients to
 							share works as per contracted agreements but those brands and sites include:{" "}
 							<i>
@@ -204,143 +204,133 @@ export default function WebsiteDevelopment() {
 							for details.
 						</p>
 					</div>
-					<div className="webdev-projects grid grid-cols-1 mt-10 mb-20">
-						<div className="avatar-shadow rounded">
+					<div className="webdev-projects grid grid-cols-1 md:grid-cols-2 gap-6 mt-10 mb-20">
+						<Link
+							href="https://www.palladiumpoint.com/"
+							aria-label="See more about the Palladium Point website project"
+							target="_blank"
+							rel="noopener"
+							className="avatar-shadow rounded transition-transform duration-300 hover:scale-[1.025] group block"
+						>
 							<Card className="border-0">
 								<div className="webdev-project-details">
 									<h3 className="text-[28px] mt-5">Palladium Point</h3>
-									<p className=" mx-5 mt-3 mb-5">
+									<p className="mx-5 mt-3 mb-5">
 										Insurance business website built using Next.JS, shadcnui, TailwindCSS, GitHub Flows, and Vercel.
 									</p>
-									<Link
-										href="https://www.palladiumpoint.com/"
-										aria-label="See more about the Palladium Point website project"
-										target="_blank"
-										rel="noopener"
+									<Button
+										variant="outline"
+										className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white group-hover:bg-red group-hover:border-red group-hover:text-white cursor-pointer uppercase text-[12px] transition-colors duration-300"
 									>
-										<Button
-											variant="outline"
-											className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
-										>
-											See Project
-										</Button>
-										<div className="webdev-project-image mt-5">
-											<Image
-												src={palladiumImage}
-												alt="Image of Palladium Point website home page"
-												width="1000"
-												height="1000"
-												className="mx-unset md:mr-20"
-											/>
-										</div>
-									</Link>
+										See Project
+									</Button>
+									<div className="webdev-project-image mt-5">
+										<Image
+											src={palladiumImage}
+											alt="Image of Palladium Point website home page"
+											width="1000"
+											height="1000"
+											className="mx-unset md:mr-20"
+										/>
+									</div>
 								</div>
 							</Card>
-						</div>
-					</div>
-					<div className="webdev-projects grid grid-cols-1 mt-10 mb-20">
-						<div className="avatar-shadow rounded">
+						</Link>
+						<Link
+							href="https://www.theproducercircle.com/"
+							aria-label="See more about the The Producers Circle website project"
+							target="_blank"
+							rel="noopener"
+							className="avatar-shadow rounded transition-transform duration-300 hover:scale-[1.025] group block"
+						>
 							<Card className="border-0">
 								<div className="webdev-project-details">
 									<h3 className="text-[28px] mt-5">The Producers Circle</h3>
-									<p className=" mx-5 mt-3 mb-5">
+									<p className="mx-5 mt-3 mb-5">
 										Landing page website built using Next.JS, shadcnui, TailwindCSS, GSAP, GitHub Flows, and Vercel.
 									</p>
-									<Link
-										href="https://www.theproducercircle.com/"
-										aria-label="See more about the The Producers Circle website project"
-										target="_blank"
-										rel="noopener"
+									<Button
+										variant="outline"
+										className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white group-hover:bg-red group-hover:border-red group-hover:text-white cursor-pointer uppercase text-[12px] transition-colors duration-300"
 									>
-										<Button
-											variant="outline"
-											className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
-										>
-											See Project
-										</Button>
-										<div className="webdev-project-image mt-5">
-											<Image
-												src={producersCircleImage}
-												alt="Image of The Producers Circle website home page"
-												width="1000"
-												height="1000"
-												className="mx-unset md:mr-20"
-											/>
-										</div>
-									</Link>
+										See Project
+									</Button>
+									<div className="webdev-project-image mt-5">
+										<Image
+											src={producersCircleImage}
+											alt="Image of The Producers Circle website home page"
+											width="1000"
+											height="1000"
+											className="mx-unset md:mr-20"
+										/>
+									</div>
 								</div>
 							</Card>
-						</div>
-					</div>
-					<div className="webdev-projects grid grid-cols-1 my-20">
-						<div className="avatar-shadow rounded">
+						</Link>
+						<Link
+							href="https://montanyecreative.shop/"
+							aria-label="See more about the Montanye Creative Shopify website project"
+							target="_blank"
+							rel="noopener"
+							className="avatar-shadow rounded transition-transform duration-300 hover:scale-[1.025] group block"
+						>
 							<Card className="border-0">
 								<div className="webdev-project-details">
-									<h3 className="text-[28px] mt-5">Montanye Creative Shopify</h3>
-									<p className=" mx-5 mt-3 mb-5">
-										Shopify e-commerce site for selling infrared photography prints and fulfilling them downstream with
-										Gelato printing for localized processing and delivery.
+									<h3 className="text-[28px] mt-5">Montanye Creative Photography</h3>
+									<p className="mx-5 mt-3 mb-5">
+										E-commerce site for selling infrared photography prints and fulfilling them downstream with Bayphoto
+										printing for localized processing and delivery.
 									</p>
-									<Link
-										href="https://montanyecreative.shop/"
-										aria-label="See more about the Montanye Creative Shopify website project"
-										target="_blank"
-										rel="noopener"
+									<Button
+										variant="outline"
+										className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white group-hover:bg-red group-hover:border-red group-hover:text-white cursor-pointer uppercase text-[12px] transition-colors duration-300"
 									>
-										<Button
-											variant="outline"
-											className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
-										>
-											See Project
-										</Button>
-										<div className="webdev-project-image mt-5">
-											<Image
-												src={shopifyImage}
-												alt="Image of Montanye Creative Photography website home page"
-												width="1000"
-												height="1000"
-												className="mx-unset md:mr-20"
-											/>
-										</div>
-									</Link>
+										See Project
+									</Button>
+									<div className="webdev-project-image mt-5">
+										<Image
+											src={shopifyImage}
+											alt="Image of Montanye Creative Photography website home page"
+											width="1000"
+											height="1000"
+											className="mx-unset md:mr-20"
+										/>
+									</div>
 								</div>
 							</Card>
-						</div>
-					</div>
-					<div className="webdev-projects grid grid-cols-1 my-20">
-						<div className="avatar-shadow rounded">
+						</Link>
+						<Link
+							href="https://github.com/montanyecreative/montanyecreativegithub/blob/main/README.md"
+							aria-label="See more about the GitHub Enhanced README project"
+							target="_blank"
+							rel="noopener"
+							className="avatar-shadow rounded transition-transform duration-300 hover:scale-[1.025] group block"
+						>
 							<Card className="border-0">
 								<div className="webdev-project-details">
 									<h3 className="text-[28px] mt-5">GitHub Enhanced README</h3>
-									<p className=" mx-5 mt-3 mb-5">
+									<p className="mx-5 mt-3 mb-5">
 										An enhanced README for my main GitHub repo. Highlights langauges and technologies I use as well as
 										GitHub statistics that are updated daily from API.
 									</p>
-									<Link
-										href="https://github.com/montanyecreative/montanyecreativegithub/blob/main/README.md"
-										aria-label="See more about the GitHub Enhanced README project"
-										target="_blank"
-										rel="noopener"
+									<Button
+										variant="outline"
+										className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white group-hover:bg-red group-hover:border-red group-hover:text-white cursor-pointer uppercase text-[12px] transition-colors duration-300"
 									>
-										<Button
-											variant="outline"
-											className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
-										>
-											See Project
-										</Button>
-										<div className="webdev-project-image mt-5">
-											<Image
-												src={githubImage}
-												alt="Image of GitHub Readme project web page"
-												width="1000"
-												height="1000"
-												className="mx-unset md:mr-20"
-											/>
-										</div>
-									</Link>
+										See Project
+									</Button>
+									<div className="webdev-project-image mt-5">
+										<Image
+											src={githubImage}
+											alt="Image of GitHub Readme project web page"
+											width="1000"
+											height="1000"
+											className="mx-unset md:mr-20"
+										/>
+									</div>
 								</div>
 							</Card>
-						</div>
+						</Link>
 					</div>
 				</div>
 			</div>

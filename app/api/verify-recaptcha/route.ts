@@ -29,14 +29,10 @@ export async function POST(request: NextRequest) {
 			// You can adjust this threshold based on your needs (0.0 to 1.0)
 			return NextResponse.json({ success: true, score: data.score });
 		} else {
-			return NextResponse.json(
-				{ success: false, error: "reCAPTCHA verification failed", score: data.score },
-				{ status: 403 }
-			);
+			return NextResponse.json({ success: false, error: "reCAPTCHA verification failed", score: data.score }, { status: 403 });
 		}
 	} catch (error) {
 		console.error("reCAPTCHA verification error:", error);
 		return NextResponse.json({ success: false, error: "Verification failed" }, { status: 500 });
 	}
 }
-

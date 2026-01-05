@@ -124,7 +124,12 @@ export default function Navbar() {
 										}`}
 										onClick={() => setActive(nav.title)}
 									>
-										<a href={`/${nav.link}`}>{nav.title}</a>
+										<a
+											href={`/${nav.link}`}
+											className={currentRoute === "/" + nav.link ? "custom-underline" : ""}
+										>
+											{nav.title}
+										</a>
 									</li>
 								))}
 							</ul>

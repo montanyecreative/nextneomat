@@ -30,7 +30,11 @@ const formSchema = z.object({
 });
 
 export default function ContactForm() {
-	const { executeRecaptcha } = useGoogleReCaptcha();
+	// Always call the hook (must be called unconditionally per React rules)
+	// It will be undefined if provider isn't set up, which we handle in onSubmit
+	const recaptcha = useGoogleReCaptcha();
+	const executeRecaptcha = recaptcha?.executeRecaptcha;
+	const recaptchaEnabled = !!process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	const date = new Date().toDateString();
@@ -60,36 +64,33 @@ export default function ContactForm() {
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		if (isSubmitting) return;
 
-		// Check if reCAPTCHA is available
-		if (!executeRecaptcha) {
-			alert("reCAPTCHA is not loaded. Please refresh the page and try again.");
-			return;
-		}
-
 		setIsSubmitting(true);
 
 		try {
-			// Execute reCAPTCHA
-			const token = await executeRecaptcha("contact_form");
+			// Only verify reCAPTCHA if it's enabled and available
+			if (recaptchaEnabled && executeRecaptcha) {
+				// Execute reCAPTCHA
+				const token = await executeRecaptcha("contact_form");
 
-			// Verify the token with our API
-			const verifyResponse = await fetch("/api/verify-recaptcha", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ token }),
-			});
+				// Verify the token with our API
+				const verifyResponse = await fetch("/api/verify-recaptcha", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ token }),
+				});
 
-			const verifyData = await verifyResponse.json();
+				const verifyData = await verifyResponse.json();
 
-			if (!verifyData.success) {
-				alert("reCAPTCHA verification failed. Please try again.");
-				setIsSubmitting(false);
-				return;
+				if (!verifyData.success) {
+					alert("reCAPTCHA verification failed. Please try again.");
+					setIsSubmitting(false);
+					return;
+				}
 			}
 
-			// If verification succeeds, submit the form
+			// Submit the form (with or without reCAPTCHA verification)
 			const submitResponse = await fetch(FORM_URL, {
 				method: "POST",
 				headers: {
