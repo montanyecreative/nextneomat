@@ -25,8 +25,8 @@ export default function WebsiteDevelopment() {
 							<br /> design &amp; technology.
 						</h1>
 						<p className="text-[20px] absolute top-1/2 -translate-y-1/2 right-5 p-5 text-white md:block hidden w-[600px]">
-							Montanye Creative is a midwest based Design &amp; Technology Studio. We assist individuals and organizations by
-							identifying and executing necessary digital initiatives.
+							Montanye Creative is a midwest based Design &amp; Technology Lab. We assist individuals and organizations by
+							identifying and executing necessary digital initiatives, producing high-end and conversion driving experiences.
 						</p>
 					</div>
 				</div>
