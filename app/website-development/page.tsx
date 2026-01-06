@@ -1,17 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Salesforce from "@/components/salesforce";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-
-const palladiumImage = "/projects/palladium-point.webp";
-const producersCircleImage = "/projects/the-producers-circle.webp";
-const photographyImage = "/projects/montanye-creative-photography.webp";
-const githubImage = "/projects/github-project.webp";
+import Projects from "./projects";
 
 export default function WebsiteDevelopment() {
 	return (
@@ -21,7 +15,7 @@ export default function WebsiteDevelopment() {
 				<div className="sm:mx-auto md:mx-auto flex banner-home-copy gradient-banner-pulse">
 					<div className="w-full comparison-slider relative">
 						<h1 className="text-[42px] absolute top-1/2 -translate-y-1/2 left-0 p-5 text-white md:block hidden md:mx-10 aktiv-grotesk">
-							<span className="aktiv-grotesk-medium">Create value with</span>
+							<span className="aktiv-grotesk-semibold">Create value with</span>
 							<br /> design &amp; technology.
 						</h1>
 						<p className="text-[20px] absolute top-1/2 -translate-y-1/2 right-5 p-5 text-white md:block hidden w-[600px]">
@@ -203,149 +197,24 @@ export default function WebsiteDevelopment() {
 								</Link>
 							</div>
 						</div>
-						<h2 className="text-[30px] mt-5 text-white font-normal">Projects</h2>
-						<p className="my-2 mx-10">
-							I have worked many other projects that are not shown here as I do not have direct permission from clients to
-							share works as per contracted agreements but those brands and sites include:{" "}
-							<i>
-								Citizen, Bulova, Accutron, Frederique Constant, Alpina, New Balance, Johnston &amp; Murphy, Sheet Music
-								Plus, Cherished Memories, ReserveBar, LuxeDecor, SyllogisTeks, PohlmanUSA, and Our Lady&apos;s Inn
-							</i>
-							. See{" "}
-							<Link href="/resume" className="underline" aria-label="Go to Resume page">
-								resume
-							</Link>{" "}
-							for details.
-						</p>
 					</div>
-					<div className="webdev-projects grid grid-cols-1 md:grid-cols-2 gap-6 mt-10 mb-20">
-						<Link
-							href="https://www.palladiumpoint.com/"
-							aria-label="See more about the Palladium Point website project"
-							target="_blank"
-							rel="noopener"
-							className="avatar-shadow rounded transition-transform duration-300 hover:scale-[1.025] group block"
-						>
-							<Card className="border-0 glass-card bg-transparent">
-								<div className="webdev-project-details">
-									<h3 className="text-[28px] mt-5">Palladium Point</h3>
-									<p className="mx-5 mt-3 mb-5">
-										Insurance business website built using Next.JS, shadcnui, TailwindCSS, GitHub Flows, and Vercel.
-									</p>
-									<Button
-										variant="outline"
-										className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white group-hover:bg-red group-hover:border-red group-hover:text-white cursor-pointer uppercase text-[12px] transition-colors duration-300"
-									>
-										See Project
-									</Button>
-									<div className="webdev-project-image mt-5">
-										<Image
-											src={palladiumImage}
-											alt="Image of Palladium Point website home page"
-											width="1000"
-											height="1000"
-											className="mx-unset md:mr-20"
-										/>
-									</div>
-								</div>
-							</Card>
-						</Link>
-						<Link
-							href="https://www.theproducercircle.com/"
-							aria-label="See more about the The Producers Circle website project"
-							target="_blank"
-							rel="noopener"
-							className="avatar-shadow rounded transition-transform duration-300 hover:scale-[1.025] group block"
-						>
-							<Card className="border-0 glass-card bg-transparent">
-								<div className="webdev-project-details">
-									<h3 className="text-[28px] mt-5">The Producers Circle</h3>
-									<p className="mx-5 mt-3 mb-5">
-										Landing page website built using Next.JS, shadcnui, TailwindCSS, GSAP, GitHub Flows, and Vercel.
-									</p>
-									<Button
-										variant="outline"
-										className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white group-hover:bg-red group-hover:border-red group-hover:text-white cursor-pointer uppercase text-[12px] transition-colors duration-300"
-									>
-										See Project
-									</Button>
-									<div className="webdev-project-image mt-5">
-										<Image
-											src={producersCircleImage}
-											alt="Image of The Producers Circle website home page"
-											width="1000"
-											height="1000"
-											className="mx-unset md:mr-20"
-										/>
-									</div>
-								</div>
-							</Card>
-						</Link>
-						<Link
-							href="https://montanyecreative.shop/"
-							aria-label="See more about the Montanye Creative Shopify website project"
-							target="_blank"
-							rel="noopener"
-							className="avatar-shadow rounded transition-transform duration-300 hover:scale-[1.025] group block"
-						>
-							<Card className="border-0 glass-card bg-transparent">
-								<div className="webdev-project-details">
-									<h3 className="text-[28px] mt-5">Montanye Creative Photography</h3>
-									<p className="mx-5 mt-3 mb-5">
-										E-commerce site for selling infrared photography prints and fulfilling them downstream with Bayphoto
-										printing for localized processing and delivery.
-									</p>
-									<Button
-										variant="outline"
-										className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white group-hover:bg-red group-hover:border-red group-hover:text-white cursor-pointer uppercase text-[12px] transition-colors duration-300"
-									>
-										See Project
-									</Button>
-									<div className="webdev-project-image mt-5">
-										<Image
-											src={photographyImage}
-											alt="Image of Montanye Creative Photography website home page"
-											width="1000"
-											height="1000"
-											className="mx-unset md:mr-20"
-										/>
-									</div>
-								</div>
-							</Card>
-						</Link>
-						<Link
-							href="https://github.com/montanyecreative/montanyecreativegithub/blob/main/README.md"
-							aria-label="See more about the GitHub Enhanced README project"
-							target="_blank"
-							rel="noopener"
-							className="avatar-shadow rounded transition-transform duration-300 hover:scale-[1.025] group block"
-						>
-							<Card className="border-0 glass-card bg-transparent">
-								<div className="webdev-project-details">
-									<h3 className="text-[28px] mt-5">GitHub Enhanced README</h3>
-									<p className="mx-5 mt-3 mb-5">
-										An enhanced README for my main GitHub repo. Highlights langauges and technologies I use as well as
-										GitHub statistics that are updated daily from API.
-									</p>
-									<Button
-										variant="outline"
-										className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white group-hover:bg-red group-hover:border-red group-hover:text-white cursor-pointer uppercase text-[12px] transition-colors duration-300"
-									>
-										See Project
-									</Button>
-									<div className="webdev-project-image mt-5">
-										<Image
-											src={githubImage}
-											alt="Image of GitHub Readme project web page"
-											width="1000"
-											height="1000"
-											className="mx-unset md:mr-20"
-										/>
-									</div>
-								</div>
-							</Card>
-						</Link>
-					</div>
+				</div>
+				<div className="container-fluid mx-5 md:mx-0 text-center text-white">
+					<h2 className="text-[30px] mt-5 text-white font-normal">Projects</h2>
+					<p className="my-2 mx-10">
+						I have worked many other projects that are not shown here as I do not have direct permission from clients to share
+						works as per contracted agreements but those brands and sites include:{" "}
+						<i>
+							Citizen, Bulova, Accutron, Frederique Constant, Alpina, New Balance, Johnston &amp; Murphy, Sheet Music Plus,
+							Cherished Memories, ReserveBar, LuxeDecor, SyllogisTeks, PohlmanUSA, and Our Lady&apos;s Inn
+						</i>
+						. See{" "}
+						<Link href="/resume" className="underline" aria-label="Go to Resume page">
+							resume
+						</Link>{" "}
+						for details.
+					</p>
+					<Projects />
 				</div>
 			</div>
 			<Salesforce />
