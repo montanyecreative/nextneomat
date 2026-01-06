@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -19,6 +19,15 @@ interface Project {
 }
 
 const projects: Project[] = [
+	{
+		title: "Compounds Coffee",
+		description:
+			"Coffee website for exploring coffee brews, recipes, and roasters built using Next.JS, shadcnui, TailwindCSS, GitHub Flows, and Vercel.",
+		href: "https://www.compoundscoffee.com/",
+		ariaLabel: "See more about the Compounds Coffee website project",
+		imageSrc: "/projects/compounds-coffee-website.webp",
+		imageAlt: "Image of Compounds Coffee website home page",
+	},
 	{
 		title: "Palladium Point",
 		description: "Insurance business website built using Next.JS, shadcnui, TailwindCSS, GitHub Flows, and Vercel.",
@@ -55,12 +64,15 @@ const projects: Project[] = [
 	},
 ];
 
+const formatProjectCounter = (index: number, total: number) => `${String(index + 1).padStart(2, "0")}/${String(total).padStart(2, "0")}`;
+
 export default function Projects() {
 	const sectionRef = useRef<HTMLElement>(null);
 	const listRef = useRef<HTMLUListElement>(null);
 	const fillRef = useRef<HTMLDivElement>(null);
 	const listItemRefs = useRef<(HTMLLIElement | null)[]>([]);
 	const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
+	const [activeIndex, setActiveIndex] = useState(0);
 
 	useEffect(() => {
 		if (!sectionRef.current || !listRef.current || !fillRef.current) return;
@@ -77,6 +89,10 @@ export default function Projects() {
 				end: `+=${listItems.length * 50}%`,
 				pin: true,
 				scrub: true,
+				onUpdate: (self) => {
+					const targetIndex = Math.round(self.progress * (listItems.length - 1));
+					setActiveIndex((prev) => (prev === targetIndex ? prev : targetIndex));
+				},
 			},
 		});
 
@@ -133,9 +149,12 @@ export default function Projects() {
 	}, []);
 
 	return (
-		<section ref={sectionRef} className="pin-section w-full min-h-screen flex justify-center items-center mt-0 pt-0">
+		<section
+			ref={sectionRef}
+			className="pin-section w-full min-h-screen flex justify-center items-center mt-0 pt-0 aktiv-grotesk-regular"
+		>
 			<div className="content w-full mx-10 flex px-[20px] relative">
-				<ul ref={listRef} className="list text-[30px] text-white m-0 p-0 pr-[40px] list-none flex-grow-0">
+				<ul ref={listRef} className="list text-[30px] text-white m-0 p-0 pr-[40px] list-none flex-grow-0 aktiv-grotesk">
 					{projects.map((project, index) => (
 						<li
 							key={project.href}
@@ -148,6 +167,9 @@ export default function Projects() {
 						</li>
 					))}
 				</ul>
+				<div className="absolute -top-[30px] left-0 z-20 text-[16px] tracking-[0.3em] uppercase text-white pointer-events-none">
+					{formatProjectCounter(activeIndex, projects.length)}
+				</div>
 				<div ref={fillRef} className="fill absolute top-0 left-0 w-[2px] h-full bg-mcRed" />
 				<div className="right flex-grow relative">
 					{projects.map((project, index) => (
@@ -156,14 +178,14 @@ export default function Projects() {
 							ref={(el) => {
 								slideRefs.current[index] = el;
 							}}
-							className="slide absolute w-full top-1/2 -translate-y-1/2 left-0 opacity-0 invisible rounded-[10px]"
+							className="slide absolute w-8/10 top-1/2 -translate-y-1/2 right-4 opacity-0 invisible rounded-[10px]"
 						>
 							<div className="flex flex-col items-center">
 								<Image
 									src={project.imageSrc}
 									alt={project.imageAlt}
-									width={300}
-									height={300}
+									width={1000}
+									height={1000}
 									className="w-full rounded-[10px] mb-4"
 								/>
 								<p className="text-white text-sm text-center mb-4 px-4">{project.description}</p>

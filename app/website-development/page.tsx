@@ -18,13 +18,13 @@ export default function WebsiteDevelopment() {
 							<span className="aktiv-grotesk-semibold">Create value with</span>
 							<br /> design &amp; technology.
 						</h1>
-						<p className="text-[20px] absolute top-1/2 -translate-y-1/2 right-5 p-5 text-white md:block hidden w-[600px]">
+						<p className="text-[20px] absolute top-1/2 -translate-y-1/2 right-5 p-5 text-white md:block hidden w-[600px] aktiv-grotesk-regular">
 							Montanye Creative is a midwest based Design &amp; Technology Lab. We assist individuals and organizations by
 							identifying and executing necessary digital initiatives, producing high-end and conversion driving experiences.
 						</p>
 					</div>
 				</div>
-				<div className="container-fluid webdev-page mx-auto md:mx-10 text-center text-white">
+				<div className="container-fluid webdev-page mx-auto md:mx-10 text-center text-white aktiv-grotesk-regular">
 					<div className="webdev-intro">
 						<div className="mb-20">
 							<h1 className="text-[32px] mt-5 md:hidden">
@@ -199,7 +199,7 @@ export default function WebsiteDevelopment() {
 						</div>
 					</div>
 				</div>
-				<div className="container-fluid mx-5 md:mx-0 text-center text-white">
+				<div className="container-fluid mx-5 md:mx-0 text-center text-white aktiv-grotesk-regular">
 					<h2 className="text-[30px] mt-5 text-white font-normal">Projects</h2>
 					<p className="my-2 mx-10">
 						I have worked many other projects that are not shown here as I do not have direct permission from clients to share
