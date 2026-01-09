@@ -145,23 +145,23 @@ export default function Photography() {
 					</div>
 				</div>
 				<div className="container resume-page mx-auto text-white">
-					<h1 className="text-[32px] mt-5 md:hidden">Infrared Photography</h1>
-					<p className="mt-5 lg:mt-20">
+					<h1 className="text-[32px] mt-5 md:hidden proxima-nova-semibold">Infrared Photography</h1>
+					<p className="mt-5 lg:mt-20 aktiv-grotesk-regular">
 						A few years back, John was walking through an art show and stopped at a particular tent that drew his attention.
 						There, art centered around the usage of light in extreme conditions. Drawn by the curiosity of what else could be
 						done using light, John went on a journey to find out how color had been manipulated with light in the photography
 						world.
 					</p>
-					<p className="mt-5">
+					<p className="mt-5 aktiv-grotesk-regular">
 						This led him to infrared styled photography. A style where common colors (red, green, blue) are heavily manipulated
 						with light to create a completely new visual experience. The resulting process ends with photos that are either
 						mostly red or mostly white as can be seen below.
 					</p>
-					<p className="mt-5">
+					<p className="mt-5 aktiv-grotesk-regular">
 						The goal of this art is to give us a look at everyday moments that we often take for granted and give us a new
 						appreciation for how important light is to our perception of color.
 					</p>
-					<p className="mt-5">
+					<p className="mt-5 aktiv-grotesk-regular">
 						If you would like to see more, all of his photography is now available to view and is available for purchase at his
 						new shopify website.
 					</p>
@@ -215,7 +215,7 @@ export default function Photography() {
 									/>
 									<div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 									<div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-										<p className="text-white text-sm font-medium">{item.title}</p>
+										<p className="text-white text-sm font-medium proxima-nova-semibold">{item.title}</p>
 									</div>
 								</div>
 							);

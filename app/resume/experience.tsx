@@ -60,7 +60,7 @@ export default function ExperienceSection() {
 
 	return (
 		<div className="resume-intro text-left" id="experience">
-			<h1 className="text-[32px] my-5">Experience</h1>
+			<h1 className="text-[32px] my-5 proxima-nova-semibold">Experience</h1>
 			<div className="job border-t py-4">
 				<div className="flex py-1">
 					<svg width="24" height="24" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,7 +76,7 @@ export default function ExperienceSection() {
 				<div className="company-section">
 					<div className="flex">
 						<Image src={citizenLogo} className="job-logo" alt="Citizen Watch America logo" width="40" height="25" />
-						<h3 className="text-[28px] ml-2">Citizen Watch America</h3>
+						<h3 className="text-[28px] ml-2 proxima-nova-semibold">Citizen Watch America</h3>
 					</div>
 					<h4 className="text-[24px] mb-2">Salesforce Commerce Cloud Developer</h4>
 					<p className="ml-5">
@@ -99,7 +99,7 @@ export default function ExperienceSection() {
 				<div className="company-section">
 					<div className="flex">
 						<Image src={ignitionLogo} className="job-logo" alt="Ignition Commerce logo" width="30" height="25" />
-						<h3 className="text-[28px] ml-2">Ignition Commerce</h3>
+						<h3 className="text-[28px] ml-2 proxima-nova-semibold">Ignition Commerce</h3>
 					</div>
 					<h4 className="text-[24px] mb-2">Salesforce Commerce Cloud Developer</h4>
 					<p className="ml-5">
@@ -152,7 +152,7 @@ export default function ExperienceSection() {
 				<div className="company-section">
 					<div className="flex">
 						<Image src={newbalanceLogo} className="job-logo" alt="New Balance logo" width="30" height="25" />
-						<h3 className="text-[28px] ml-2">New Balance</h3>
+						<h3 className="text-[28px] ml-2 proxima-nova-semibold">New Balance</h3>
 					</div>
 					<h4 className="text-[24px] mb-2">Software Engineer - Salesforce Commerce Cloud Developer</h4>
 					<p className="ml-5">
@@ -223,7 +223,7 @@ export default function ExperienceSection() {
 				<div className="company-section">
 					<div className="flex">
 						<Image src={syllogisteksLogo} className="job-logo" alt="SyllogisTeks logo" width="30" height="25" />
-						<h3 className="text-[28px] ml-2">SyllogisTeks</h3>
+						<h3 className="text-[28px] ml-2 proxima-nova-semibold">SyllogisTeks</h3>
 					</div>
 					<div className="flex py-1">
 						<svg width="24" height="24" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -344,7 +344,7 @@ export default function ExperienceSection() {
 				<div className="company-section">
 					<div className="flex">
 						<Image src={montanyecreativeLogo} className="job-logo" alt="Montanye Creative logo" width="30" height="25" />
-						<h3 className="text-[28px] ml-2">Montanye Creative</h3>
+						<h3 className="text-[28px] ml-2 proxima-nova-semibold">Montanye Creative</h3>
 					</div>
 					<h4 className="text-[24px] mb-2">Owner &amp; Lead Software Engineer</h4>
 					<p className="ml-5">
@@ -379,7 +379,7 @@ export default function ExperienceSection() {
 				<div className="company-section">
 					<div className="flex">
 						<Image src={gatewayitconsultingLogo} className="job-logo" alt="Gateway IT Consulting logo" width="30" height="25" />
-						<h3 className="text-[28px] ml-2">Gateway IT Consulting</h3>
+						<h3 className="text-[28px] ml-2 proxima-nova-semibold">Gateway IT Consulting</h3>
 					</div>
 					<h4 className="text-[24px] mb-2">Owner &amp; Lead Software Engineer</h4>
 					<p className="ml-5">

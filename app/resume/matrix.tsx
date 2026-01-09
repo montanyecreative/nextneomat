@@ -19,9 +19,9 @@ export default function MatrixSection() {
 					<Table>
 						<TableHeader>
 							<TableRow>
-								<TableHead>Skill</TableHead>
-								<TableHead># Years Used</TableHead>
-								<TableHead>Proficiency</TableHead>
+								<TableHead className="proxima-nova-semibold">Skill</TableHead>
+								<TableHead className="proxima-nova-semibold"># Years Used</TableHead>
+								<TableHead className="proxima-nova-semibold">Proficiency</TableHead>
 							</TableRow>
 						</TableHeader>
 						<TableBody>

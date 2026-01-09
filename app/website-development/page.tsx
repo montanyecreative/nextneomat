@@ -12,7 +12,7 @@ export default function WebsiteDevelopment() {
 		<main>
 			<Navbar />
 			<div className="bg-transparent">
-				<div className="sm:mx-auto md:mx-auto flex banner-home-copy gradient-banner-pulse">
+				<div className="sm:mx-auto md:mx-auto flex banner-home-copy website-development-banner-gradient">
 					<div className="w-full comparison-slider relative">
 						<h1 className="text-[42px] absolute top-1/2 -translate-y-1/2 left-0 p-5 text-white md:block hidden md:mx-10 aktiv-grotesk">
 							<span className="aktiv-grotesk-semibold">Create value with</span>

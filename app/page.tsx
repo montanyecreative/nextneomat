@@ -12,16 +12,17 @@ export default function Home() {
 			<Navbar />
 			<div className="banner-home">
 				<div className="container sm:mx-auto md:mx-auto flex banner-home-copy items-center">
-					<h1 className="text-[42px] text-center">
-						John Montanye, creative <br />
-						&amp; software engineer.
+					<h1 className="text-[42px] text-center proxima-nova-semibold">
+						Technology simplified
+						<br />
+						<span className="proxima-nova-regular">yet uncompromised</span>
 					</h1>
 				</div>
 			</div>
 			<div className="container-fluid bg-transparent">
 				<div className="container sm:mx-auto md:mx-auto text-center copy text-white">
 					<h2 className="mb-5 pt-10 md:pt-unset text-white">Website Development</h2>
-					<p className="mb-5">
+					<p className="mb-5 aktiv-grotesk-regular">
 						Specializing in custom web solutions that combine modern design with cutting-edge technology. From responsive
 						business websites to dynamic web applications, I create digital experiences that are both beautiful and functional.
 						Every project is built with attention to detail, performance optimization, and user experience in mind.
@@ -51,7 +52,7 @@ export default function Home() {
 				<div className="container sm:mx-auto md:mx-auto text-center copy text-white">
 					<div className="glass-card rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
 						<h2 className="mb-5 pt-10 md:pt-unset text-white">About this site</h2>
-						<p className="mb-5">
+						<p className="mb-5 aktiv-grotesk-regular">
 							This website was developed using NextJS, ReactJS, TypeScript, shadcn/ui, Tailwind CSS, and HTML5. The different
 							looking style is based off design patterns and concepts of Neumorphism and Glassmorphism. The design emphasis
 							was to create a &quot;texturized&quot; feel to the website. Check out the code for this website on Github below.
@@ -89,7 +90,7 @@ export default function Home() {
 			</div>
 			<div className="container-fluid bg-transparent pb-2 pt-10 md:pt-unset">
 				<div className="container sm:mx-auto md:mx-auto text-center copy text-white">
-					<p className="mb-5">Check out some of the web tools and blogs we&apos;ve created.</p>
+					<p className="mb-5 aktiv-grotesk-regular">Here are some collections of our miscellaneous tools and blogs.</p>
 					<Link href="/tools" aria-label="Go to the tools page" className="mx-3">
 						<Button
 							variant="outline"

@@ -42,16 +42,16 @@ export default function Condo() {
 			<Navbar />
 			<div className="page-banner-filler bg-transparent"></div>
 			<div className="container sm:mx-auto md:mx-auto privacy-page bg-transparent text-white">
-				<div className="grid grid-cols-1 pt-10 pb-20 mx-auto md:mx-20 justify-center">
+				<div className="grid grid-cols-1 pt-10 pb-20 mx-auto md:mx-20 justify-center aktiv-grotesk-regular">
 					<div className="mb-8">
 						<ImageGallery images={condoImages} alt="Property photos" />
 					</div>
-					<h2 className="text-[34px] mb-2 text-white">Manchester, MO 63088</h2>
-					<p className="italic">2 Bed, 3 Bath</p>
-					<p className="italic">Built In: 1997</p>
-					<p className="italic">1,976sqft. 4,791.6sqft Lot</p>
-					<h3 className="font-bold mt-3 mb-2">Overview</h3>
-					<p className="my-1">
+					<h2 className="text-[34px] mb-2 text-white proxima-nova-semibold">Manchester, MO 63088</h2>
+					<p className="italic aktiv-grotesk-regular">2 Bed, 3 Bath</p>
+					<p className="italic aktiv-grotesk-regular">Built In: 1997</p>
+					<p className="italic aktiv-grotesk-regular">1,976sqft. 4,791.6sqft Lot</p>
+					<h3 className="font-bold mt-3 mb-2 proxima-nova-semibold">Overview</h3>
+					<p className="my-1 aktiv-grotesk-regular">
 						Welcome to this fantastic Villa in popular The Crossings at Big Bend. From the front porch with its darling wicker
 						swing, you enter the foyer and you are immediately impressed with the scenic backyard privacy and the
 						sunlight-filled living room. This open and welcoming first floor features a powder room, gas fireplace, bay window

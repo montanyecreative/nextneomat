@@ -61,18 +61,18 @@ export default function DecisionMaker() {
 				<div className="page-banner-filler bg-transparent"></div>
 				<div className="container mx-auto pt-5 pb-20 text-white">
 					<div className="tools-container">
-						<h1 className="text-[32px] mt-5 text-center">
+						<h1 className="text-[32px] mt-5 text-center proxima-nova-semibold">
 							Decision Maker - <br className="flex md:hidden" />
 							The Choosinator
 						</h1>
-						<p className="my-2 mx-auto sm:mx-5 md:mx-unset text-center">
+						<p className="my-2 mx-auto sm:mx-5 md:mx-unset text-center aktiv-grotesk-regular">
 							A random picker to help you pick an option from many when you are feeling indecisive.
 						</p>
-						<p className="my-2 mx-auto sm:mx-5 md:mx-unset text-center">
+						<p className="my-2 mx-auto sm:mx-5 md:mx-unset text-center aktiv-grotesk-regular">
 							Enter your choices below, separating them by a &quot;,&quot; (comma) or new line (enter) and click the button to
 							make a decision.
 						</p>
-						<p className="my-2 mx-auto sm:mx-5 md:mx-unset text-center italic">
+						<p className="my-2 mx-auto sm:mx-5 md:mx-unset text-center aktiv-grotesk-regular">
 							If you accidentally add an extra new line (enter), it will get added to the result possibility, making it look
 							like the tool is returning an incorrect result.
 						</p>
@@ -89,7 +89,7 @@ export default function DecisionMaker() {
 														placeholder=""
 														{...field}
 														id="choices"
-														className="choices-field text-[16px]"
+														className="choices-field text-[16px] glass-card rounded-lg aktiv-grotesk-regular"
 													/>
 												</FormControl>
 												<FormDescription></FormDescription>
@@ -117,13 +117,13 @@ export default function DecisionMaker() {
 								</form>
 							</Form>
 						</div>
-						<div className="mt-10 mb-5">
+						<div className="mt-10 mb-5 aktiv-grotesk-regular">
 							<p className="text-[16px] font-bold text-center md:text-left">
 								<span id="resolutionLabel">Result: </span>
 								<span id="resolution"></span>
 							</p>
 						</div>
-						<p className="mt-20 mx-auto sm:mx-5 md:mx-unset text-center italic opacity-50">
+						<p className="mt-20 mx-auto sm:mx-5 md:mx-unset text-center italic opacity-50 aktiv-grotesk-regular">
 							*You are responsible for your own decisions. Montanye Creative LLC will not be responsible for any errors or
 							omissions in articles or postings, for hyperlinks embedded in messages, or for any results obtained from the use
 							of such information. Montanye Creative LLC will not be liable for any loss or damage caused by a reader&apos;s

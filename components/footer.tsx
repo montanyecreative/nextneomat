@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { navLinks } from "@/lib/navLinks";
 
 const logo = "/logo.webp";
 
@@ -12,7 +13,10 @@ export default function Footer() {
 	const currentRoute = usePathname();
 
 	return (
-		<footer className="container sm:mx-auto md:mx-auto grid text-center py-10 glass-footer text-white" id="footer">
+		<footer
+			className="container sm:mx-auto md:mx-auto grid text-center py-10 glass-footer text-white aktiv-grotesk-regular"
+			id="footer"
+		>
 			<div className="logo mb-10">
 				<Link href="/" className="flex justify-center" aria-label="Go to Home page">
 					<Image src={logo} alt="logo" width="40" height="25" />
@@ -20,48 +24,18 @@ export default function Footer() {
 				</Link>{" "}
 			</div>
 			<div className="grid md:flex justify-center">
-				<Link
-					href="/photography"
-					className={`mx-5 my-2 md:my-unset text-[13px] hover:text-red ${
-						currentRoute === "/photography" ? "custom-underline" : ""
-					}`}
-					aria-label="Go to Photography page"
-				>
-					Photography
-				</Link>
-				<Link
-					href="/photo-vhs-digitization"
-					className={`mx-5 my-2 md:my-unset text-[13px] hover:text-red ${
-						currentRoute === "/photo-vhs-digitization" ? "custom-underline" : ""
-					}`}
-					aria-label="Go to Photo/VHS Digitization page"
-				>
-					Photo/VHS Digitization
-				</Link>
-
-				<Link
-					href="/website-development"
-					className={`mx-5 my-2 md:my-unset text-[13px] hover:text-red ${
-						currentRoute === "/website-development" ? "custom-underline" : ""
-					}`}
-					aria-label="Go to Website Development page"
-				>
-					Website Development
-				</Link>
-				<Link
-					href="/resume"
-					className={`mx-5 my-2 md:my-unset text-[13px] hover:text-red ${currentRoute === "/resume" ? "custom-underline" : ""}`}
-					aria-label="Go to Resume page"
-				>
-					Resume
-				</Link>
-				<Link
-					href="/contact"
-					className={`mx-5 my-2 md:my-unset text-[13px] hover:text-red ${currentRoute === "/contact" ? "custom-underline" : ""}`}
-					aria-label="Go to Contact page"
-				>
-					Contact
-				</Link>
+				{navLinks.map((nav) => (
+					<Link
+						key={nav.id}
+						href={`/${nav.link}`}
+						className={`mx-5 my-2 md:my-unset text-[14px] hover:text-red ${
+							currentRoute === `/${nav.link}` ? "custom-underline" : ""
+						}`}
+						aria-label={`Go to ${nav.title} page`}
+					>
+						{nav.title}
+					</Link>
+				))}
 			</div>
 			<div className="social-media-links flex items-center mx-auto my-5">
 				<Link
@@ -95,13 +69,13 @@ export default function Footer() {
 					</svg>
 				</Link>
 			</div>
-			<div className="contact-information grid md:flex items-center mx-auto mt-5 text-[12px]">
+			<div className="contact-information grid md:flex items-center mx-auto mt-5 text-[14px]">
 				<span className="font-bold mx-1">CONTACT INFORMATION:</span>
 				<Link className="underline" href="mailto:montanyecreative@outlook.com" aria-label="Email montanyecreative@outlook.com">
 					Montanye Creative
 				</Link>
 			</div>
-			<div className="copy-right grid md:flex items-center mx-auto mt-2 text-[12px]">
+			<div className="copy-right grid md:flex items-center mx-auto mt-2 text-[14px]">
 				Copyright © {currentYear} Montanye Creative |{" "}
 				<Link className="ml-1 underline hover:text-red" href="/privacy-policy" aria-label="Go to Privacy Policy page">
 					Privacy Policy

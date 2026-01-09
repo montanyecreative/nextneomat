@@ -90,13 +90,15 @@ export default function HouseSalaryCalculator() {
 				<div className="page-banner-filler bg-transparent"></div>
 				<div className="container mx-auto pt-5 pb-20 text-white">
 					<div className="tools-container mx-auto md:mx-30">
-						<h1 className="text-[32px] mt-5 text-center">House Salary Calculator</h1>
-						<p className="my-2 mx-auto sm:mx-5 md:mx-unset text-center">
+						<h1 className="text-[32px] mt-5 text-center proxima-nova-semibold">House Salary Calculator</h1>
+						<p className="my-2 mx-auto sm:mx-5 md:mx-unset text-center aktiv-grotesk-regular">
 							The point of this calculator is to make sure you are looking at a safe maximum to pay monthly for a mortgage
 							using the salary you are at or planning to have.
 						</p>
-						<p className="my-2 mx-auto sm:mx-5 md:mx-unset text-center">The calculator also works the same for rent.</p>
-						<p className="my-2 mx-auto sm:mx-5 md:mx-unset text-center">
+						<p className="my-2 mx-auto sm:mx-5 md:mx-unset text-center aktiv-grotesk-regular">
+							The calculator also works the same for rent.
+						</p>
+						<p className="my-2 mx-auto sm:mx-5 md:mx-unset text-center aktiv-grotesk-regular">
 							The calculator is taking taxes at a rate of roughly 1/3 your salary and factoring that into the results.
 						</p>
 						<div className="my-10">
@@ -113,7 +115,7 @@ export default function HouseSalaryCalculator() {
 														{...field}
 														type="number"
 														id="salary"
-														className="text-[16px]"
+														className="text-[16px] glass-card rounded-lg aktiv-grotesk-regular"
 													/>
 												</FormControl>
 												<FormDescription></FormDescription>
@@ -141,7 +143,7 @@ export default function HouseSalaryCalculator() {
 								</form>
 							</Form>
 						</div>
-						<div className="mt-10 mb-5">
+						<div className="mt-10 mb-5 aktiv-grotesk-regular">
 							<p className="text-[16px] font-bold text-center md:text-left">
 								<span id="money">Max house cost: $</span>
 								<span id="showMaxCost">0.00</span>
@@ -151,7 +153,7 @@ export default function HouseSalaryCalculator() {
 								<span id="showCap">0.00</span>
 							</p>
 						</div>
-						<p className="mt-20 mx-auto sm:mx-5 md:mx-unset text-center italic opacity-50">
+						<p className="mt-20 mx-auto sm:mx-5 md:mx-unset text-center italic opacity-50 aktiv-grotesk-regular">
 							*You are responsible for your own investment decisions. Montanye Creative LLC will not be responsible for any
 							errors or omissions in articles or postings, for hyperlinks embedded in messages, or for any results obtained
 							from the use of such information. Montanye Creative LLC will not be liable for any loss or damage caused by a

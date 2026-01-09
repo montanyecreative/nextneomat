@@ -6,7 +6,7 @@ const websterUniversityLogo = "/resume/webster-university.webp";
 export default function EducationSection() {
 	return (
 		<div className="resume-intro text-left" id="education">
-			<h1 className="text-[32px] my-5">Education</h1>
+			<h1 className="text-[32px] my-5 proxima-nova-semibold">Education</h1>
 			<div className="job border-t py-4">
 				<div className="flex py-1">
 					<svg width="24" height="24" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">

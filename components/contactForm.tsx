@@ -122,7 +122,7 @@ export default function ContactForm() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} method="POST" action={FORM_URL} className="space-y-8">
+			<form onSubmit={form.handleSubmit(onSubmit)} method="POST" action={FORM_URL} className="space-y-8 aktiv-grotesk-regular">
 				<FormField
 					control={form.control}
 					name="name"

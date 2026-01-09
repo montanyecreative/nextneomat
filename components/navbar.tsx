@@ -3,36 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HamburgerMenuIcon, Cross1Icon } from "@radix-ui/react-icons";
+import { navLinks } from "@/lib/navLinks";
 
 const logo = "/logo.webp";
-
-export const navLinks = [
-	{
-		id: 1,
-		title: "Photography",
-		link: "photography",
-	},
-	{
-		id: 2,
-		title: "Photo/VHS Digitization",
-		link: "photo-vhs-digitization",
-	},
-	{
-		id: 3,
-		title: "Website Development",
-		link: "website-development",
-	},
-	{
-		id: 4,
-		title: "Resume",
-		link: "resume",
-	},
-	{
-		id: 5,
-		title: "Contact",
-		link: "contact",
-	},
-];
 
 export default function Navbar() {
 	const [active, setActive] = useState("Home");
@@ -89,7 +62,13 @@ export default function Navbar() {
 					<div className="logo">
 						<Link href="/" className="flex">
 							<Image src={logo} alt="logo" width="40" height="25" />
-							<span className="text-white ml-2 text-[20px]">Montanye Creative</span>
+							<span
+								className={`text-white ml-2 text-[20px] proxima-nova-regular ${
+									currentRoute === "/" ? "custom-underline" : ""
+								}`}
+							>
+								Montanye Creative
+							</span>
 						</Link>
 					</div>
 
@@ -97,7 +76,7 @@ export default function Navbar() {
 						{navLinks.map((nav, index) => (
 							<li
 								key={nav.id}
-								className="text-white  cursor-pointer text-[14px] lg:text-[16px] mr-3 md:mr-5 lg:mr-8"
+								className="text-white proxima-nova-regular cursor-pointer text-[14px] lg:text-[16px] mr-3 md:mr-5 lg:mr-8"
 								onClick={() => setActive(nav.title)}
 							>
 								<a

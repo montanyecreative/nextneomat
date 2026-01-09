@@ -22,7 +22,7 @@ export default function IntroSection() {
 				<AvatarImage src={johnImage} alt="John Montanye" />
 				<AvatarFallback>John Montanye</AvatarFallback>
 			</Avatar>
-			<h5 className="my-5 text-[24px]">John Montanye</h5>
+			<h5 className="my-5 text-[24px] proxima-nova-semibold">John Montanye</h5>
 			<p className="my-5 mx-auto sm:mx-5 md:mx-unset">
 				Ambitious Salesforce B2C Commerce Cloud Developer with {beganStartYears ? beganStartYears + "+" : ""} years of hands-on
 				industry experience, including experience with Salesforce Commerce Cloud, SFRA, Page Designer, JavaScript, ISML/SASS,
@@ -42,17 +42,29 @@ export default function IntroSection() {
 			</div>
 			<p className="mt-3 text-[16px]">Fullstack</p>
 			<div className="page-links-container my-10 flex flex-wrap justify-center gap-2">
-				<Button asChild variant="outline" className="rounded-full w-28 hover:bg-[#c6284a] hover:border-[#c6284a]">
+				<Button
+					asChild
+					variant="outline"
+					className="rounded-full w-28 hover:bg-[#c6284a] hover:border-[#c6284a] proxima-nova-semibold"
+				>
 					<Link href="/resume#experience" aria-label="Go to Experience section">
 						Experience
 					</Link>
 				</Button>
-				<Button asChild variant="outline" className="rounded-full w-28 hover:bg-[#c6284a] hover:border-[#c6284a]">
+				<Button
+					asChild
+					variant="outline"
+					className="rounded-full w-28 hover:bg-[#c6284a] hover:border-[#c6284a] proxima-nova-semibold"
+				>
 					<Link href="/resume#education" aria-label="Go to Education section">
 						Education
 					</Link>
 				</Button>
-				<Button asChild variant="outline" className="rounded-full w-28 hover:bg-[#c6284a] hover:border-[#c6284a]">
+				<Button
+					asChild
+					variant="outline"
+					className="rounded-full w-28 hover:bg-[#c6284a] hover:border-[#c6284a] proxima-nova-semibold"
+				>
 					<Link href="/resume#skills" aria-label="Go to Skills section">
 						Skills
 					</Link>

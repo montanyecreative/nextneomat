@@ -51,7 +51,7 @@ export default function SkillsSection() {
 		<div className="avatar-shadow my-10" id="skills">
 			<Card className="border-0">
 				<CardHeader>
-					<CardTitle className="card-title text-[32px]">Skills</CardTitle>
+					<CardTitle className="card-title text-[32px] proxima-nova-semibold">Skills</CardTitle>
 				</CardHeader>
 				<CardContent className="card-content">
 					<div className="grid grid-cols-2 md:grid-cols-6 gap-1">

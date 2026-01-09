@@ -12,13 +12,13 @@ export default function BecomeADeveloper() {
 			<Navbar />
 			<div className="page-banner-filler bg-transparent"></div>
 			<div className="container sm:mx-auto md:mx-auto privacy-page bg-transparent text-white">
-				<div className="grid grid-cols-1 pt-10 pb-20 mx-auto md:mx-20 justify-center">
-					<h2 className="text-[34px] mb-2 text-white">Want to become a website developer?</h2>
-					<p className="italic">
+				<div className="grid grid-cols-1 pt-10 pb-20 mx-auto md:mx-20 justify-center aktiv-grotesk-regular">
+					<h2 className="text-[34px] mb-2 text-white proxima-nova-semibold">Want to become a website developer?</h2>
+					<p className="italic aktiv-grotesk-regular">
 						<b>Published</b>: 08/29/2021 <b>Last updated</b>: 03/11/2023
 					</p>
-					<h3 className="font-bold mt-3 mb-2">Overview</h3>
-					<p className="my-1">
+					<h3 className="font-bold mt-3 mb-2 proxima-nova-semibold">Overview</h3>
+					<p className="my-1 aktiv-grotesk-regular">
 						To become a website developer, you must understand the basic building blocks that make up a website and how they
 						function. Skills you must learn include HTML5, CSS, and JavaScript. Responsive Design will make your website look
 						good no matter the screen size and should always be a priority when you are developing any website or app. SASS is a
@@ -27,28 +27,28 @@ export default function BecomeADeveloper() {
 						prebuilt HTML elements and designs for those elements so that you can write less code and get your web app up and
 						running quicker.
 					</p>
-					<h3 className="font-bold mt-3 mb-2">Nice to haves are:</h3>
-					<p className="my-1">
+					<h3 className="font-bold mt-3 mb-2 proxima-nova-semibold">Nice to haves are:</h3>
+					<p className="my-1 aktiv-grotesk-regular">
 						<b>- The Agile Methodology</b>, which defines how you will be planning, designing, and developing websites in your
 						daily career. It will also define how to communicate with teams that interface with websites and application
 						projects.
 					</p>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						<b>- Git &amp; Version Control</b> will help you organize code and avoid coding errors when working with more than
 						one person on a project.
 					</p>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						<b>- ReactJS, Angular, and VueJS</b> are JavaScript libraries and frameworks (in case of Angular) that are similar
 						to SASS in that they include several pre-built JavaScript functionalities that make developing easier and quicker.
 						These libraries are highly prized in recruiting for jobs.
 					</p>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						<b>- NPM</b> is a package manager tool that is essential to installing several of the libraries and frameworks
 						discussed above. It is often used in a CLI format that can be worked by entering different commands to achieve
 						different results.
 					</p>
-					<h3 className="font-bold mt-3 mb-2">Skills to Learn:</h3>
-					<p className="my-1">
+					<h3 className="font-bold mt-3 mb-2 proxima-nova-semibold">Skills to Learn:</h3>
+					<p className="my-1 aktiv-grotesk-regular">
 						- HTML5{" "}
 						<Link
 							href="https://www.w3schools.com/html/html_intro.asp"
@@ -60,7 +60,7 @@ export default function BecomeADeveloper() {
 							Get Started
 						</Link>
 					</p>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						- CSS3{" "}
 						<Link
 							href="https://www.w3schools.com/css/css_intro.asp"
@@ -72,7 +72,7 @@ export default function BecomeADeveloper() {
 							Get Started
 						</Link>
 					</p>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						- SASS{" "}
 						<Link
 							href="https://sass-lang.com/guide"
@@ -84,7 +84,7 @@ export default function BecomeADeveloper() {
 							Get Started
 						</Link>
 					</p>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						- Responsive Design{" "}
 						<Link
 							href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design"
@@ -96,7 +96,7 @@ export default function BecomeADeveloper() {
 							Get Started
 						</Link>
 					</p>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						- JavaScript{" "}
 						<Link
 							href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/A_first_splash"
@@ -108,7 +108,7 @@ export default function BecomeADeveloper() {
 							Get Started
 						</Link>
 					</p>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						- Bootstrap{" "}
 						<Link
 							href="https://getbootstrap.com/docs/5.0/getting-started/introduction/"
@@ -120,7 +120,7 @@ export default function BecomeADeveloper() {
 							Get Started
 						</Link>
 					</p>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						- Material Design{" "}
 						<Link
 							href="https://material.io/design/introduction"
@@ -132,7 +132,7 @@ export default function BecomeADeveloper() {
 							Get Started
 						</Link>
 					</p>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						- Agile Methodology{" "}
 						<Link
 							href="https://medium.com/shecancode/an-introduction-to-agile-software-development-914339dcec66"
@@ -144,7 +144,7 @@ export default function BecomeADeveloper() {
 							Get Started
 						</Link>
 					</p>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						- Git &amp; Version Control{" "}
 						<Link
 							href="https://www.atlassian.com/git/tutorials/what-is-version-control"
@@ -156,7 +156,7 @@ export default function BecomeADeveloper() {
 							Get Started
 						</Link>
 					</p>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						- ReactJS{" "}
 						<Link
 							href="https://reactjs.org/tutorial/tutorial.html"
@@ -168,7 +168,7 @@ export default function BecomeADeveloper() {
 							Get Started
 						</Link>
 					</p>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						- Angular{" "}
 						<Link
 							href="https://angular.io/guide/what-is-angular"
@@ -180,7 +180,7 @@ export default function BecomeADeveloper() {
 							Get Started
 						</Link>
 					</p>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						- VueJS{" "}
 						<Link
 							href="https://vuejs.org/v2/guide/"
@@ -192,7 +192,7 @@ export default function BecomeADeveloper() {
 							Get Started
 						</Link>
 					</p>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						- NPM &amp; Node.JS{" "}
 						<Link
 							href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm"
@@ -204,8 +204,8 @@ export default function BecomeADeveloper() {
 							Get Started
 						</Link>
 					</p>
-					<h3 className="font-bold mt-3 mb-2">Books to Read:</h3>
-					<p className="my-1">
+					<h3 className="font-bold mt-3 mb-2 proxima-nova-semibold">Books to Read:</h3>
+					<p className="my-1 aktiv-grotesk-regular">
 						<Link
 							href="https://www.amazon.com/Web-Design-HTML-JavaScript-jQuery/dp/1118907442/"
 							target="_blank"
@@ -240,7 +240,7 @@ export default function BecomeADeveloper() {
 						</Link>
 					</p>
 					<h3 className="font-bold mt-3 mb-2">Bootcamps:</h3>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						<Link
 							href="https://brainstation.io/course/online/remote-web-development-bootcamp"
 							target="_blank"
@@ -251,7 +251,7 @@ export default function BecomeADeveloper() {
 							Coding Bootcamp Online by Brainstation
 						</Link>
 					</p>
-					<p className="my-1">
+					<p className="my-1 aktiv-grotesk-regular">
 						<Link
 							href="https://www.thinkful.com/bootcamp/web-development/#introduction"
 							target="_blank"
@@ -262,8 +262,8 @@ export default function BecomeADeveloper() {
 							Software Engineering Bootcamp by Thinkful
 						</Link>
 					</p>
-					<h3 className="font-bold mt-3 mb-2">Courses:</h3>
-					<p className="my-1">
+					<h3 className="font-bold mt-3 mb-2 proxima-nova-semibold">Courses:</h3>
+					<p className="my-1 aktiv-grotesk-regular">
 						<Link
 							href="https://javascript30.com/"
 							target="_blank"
