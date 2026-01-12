@@ -1,131 +1,155 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Promotion from "@/components/promotion";
 import Image from "next/image";
 import Link from "next/link";
 
-const image1 = "/photography/bird-at-lake.webp";
-const image2 = "/photography/nature-lake-red.webp";
-const image3 = "/photography/nature-lake-white.webp";
-const image4 = "/photography/roses-white.webp";
-const image5 = "/photography/roses.webp";
-const image6 = "/photography/tree-at-lake.webp";
-const image7 = "/photography/turn-in-path-red.webp";
-const image8 = "/photography/lake-bridge.webp";
-const image9 = "/photography/tower-in-trees.webp";
-const image10 = "/photography/lake-sky-view.webp";
-const image11 = "/photography/lake-reeds-white.webp";
-const image12 = "/photography/zoo-bird-lake.webp";
-const image13 = "/photography/storm-sunset.webp";
-const image14 = "/photography/storm-severe-streeet.webp";
-const image15 = "/photography/storm-severe-street-2.webp";
-const image16 = "/photography/rain-on-sunny-day.webp";
-const image17 = "/photography/rain-in-the-sunshine.webp";
-const image18 = "/photography/pine-tree-lake.webp";
-const image19 = "/photography/swamp-bridge.webp";
-
 const itemData = [
 	{
-		img: image1,
-		title: "Bird at the lake",
+		img: "/photography/castlewood-tree-hunched-sun-red.webp",
+		title: "Castlewood tree hunched sun red",
 		category: "infrared",
 	},
 	{
-		img: image2,
-		title: "Nature lake red",
+		img: "/photography/castlewood-tree-hunched-white.webp",
+		title: "Castlewood tree hunched white",
 		category: "infrared",
 	},
 	{
-		img: image3,
-		title: "Nature lake white",
+		img: "/photography/castlewood-tree-top-white.webp",
+		title: "Castlewood tree top white",
 		category: "infrared",
 	},
 	{
-		img: image4,
-		title: "Roses white",
+		img: "/photography/flower-prairie-red.webp",
+		title: "Flower prairie red",
 		category: "infrared",
 	},
 	{
-		img: image5,
+		img: "/photography/garden-pools-red.webp",
+		title: "Garden pools red",
+		category: "infrared",
+	},
+	{
+		img: "/photography/harmony-lake-night-red.webp",
+		title: "Harmony lake night red",
+		category: "infrared",
+	},
+	{
+		img: "/photography/joshua-tree-ocean-red.webp",
+		title: "Joshua tree ocean red",
+		category: "infrared",
+	},
+	{
+		img: "/photography/harmony-lake-red-2.webp",
+		title: "Harmony lake red",
+		category: "infrared",
+	},
+	{
+		img: "/photography/lake-bridge-red.webp",
+		title: "Lake bridge red",
+		category: "infrared",
+	},
+	{
+		img: "/photography/lone-elk-park-white.webp",
+		title: "Lone elk park white",
+		category: "infrared",
+	},
+	{
+		img: "/photography/path-meets-sky-red.webp",
+		title: "Path meets sky red",
+		category: "infrared",
+	},
+	{
+		img: "/photography/pink-peones-dual-red.webp",
+		title: "Pink peonies dual red",
+		category: "infrared",
+	},
+	{
+		img: "/photography/pink-peones-group-smaller-red.webp",
+		title: "Pink peonies group red",
+		category: "infrared",
+	},
+	{
+		img: "/photography/old-trees-praries-red.webp",
+		title: "Old trees prairies red",
+		category: "infrared",
+	},
+	{
+		img: "/photography/railing-flower-basket-white.webp",
+		title: "Railing flower basket white",
+		category: "infrared",
+	},
+	{
+		img: "/photography/roses-red.webp",
 		title: "Roses red",
 		category: "infrared",
 	},
 	{
-		img: image6,
-		title: "Tree at the lake",
+		img: "/photography/roses-white.webp",
+		title: "Roses white",
 		category: "infrared",
 	},
 	{
-		img: image7,
-		title: "Turn in the path",
+		img: "/photography/storm-severe-street-2-red.webp",
+		title: "Severe storm street 2 red",
 		category: "infrared",
 	},
 	{
-		img: image8,
-		title: "Stone bridge in lake",
+		img: "/photography/storm-severe-street-red.webp",
+		title: "Severe storm street red",
 		category: "infrared",
 	},
 	{
-		img: image9,
-		title: "Wooden tower in the trees",
+		img: "/photography/storms-leaving-sunset.webp",
+		title: "Storms leaving sunset",
+		category: "non-infrared",
+	},
+	{
+		img: "/photography/woods-gazebo-red.webp",
+		title: "Woods gazebo red",
 		category: "infrared",
 	},
 	{
-		img: image10,
-		title: "Grass and trees with lake and sky in the background",
+		img: "/photography/towering-storm-white.webp",
+		title: "Towering storm white",
 		category: "infrared",
 	},
 	{
-		img: image11,
-		title: "Lake reeds and surface algae",
+		img: "/photography/tree-against-building-red.webp",
+		title: "Tree against building red",
 		category: "infrared",
 	},
 	{
-		img: image12,
-		title: "Zoo birds on lake",
+		img: "/photography/tree-sky-white.webp",
+		title: "Tree sky white",
 		category: "infrared",
 	},
 	{
-		img: image13,
-		title: "Severe storm passing at sunset",
+		img: "/photography/under-cover-prarie-meets-sky-red-3.webp",
+		title: "Under cover prairie meets sky red",
 		category: "infrared",
 	},
 	{
-		img: image14,
-		title: "Severe storm passing road 1",
+		img: "/photography/white-flower-tree-red.webp",
+		title: "White flower tree red",
 		category: "infrared",
 	},
 	{
-		img: image15,
-		title: "Severe storm passing road 2",
-		category: "infrared",
-	},
-	{
-		img: image16,
-		title: "Rain on a sunny day 1",
-		category: "infrared",
-	},
-	{
-		img: image17,
-		title: "Rain on a sunny day 2",
-		category: "infrared",
-	},
-	{
-		img: image18,
-		title: "Pine tree with lake background on early spring day",
-		category: "infrared",
-	},
-	{
-		img: image19,
-		title: "Bridge on marsh in summer forest and in shade",
+		img: "/photography/winding-path-1-white.webp",
+		title: "Winding path white",
 		category: "infrared",
 	},
 ];
 
 export default function Photography() {
+	const [selectedImage, setSelectedImage] = useState<number | null>(null);
+
 	return (
 		<main>
 			<Navbar />
@@ -185,22 +209,16 @@ export default function Photography() {
 				<div className="container mx-auto px-4 md:px-8 lg:px-12 py-10 text-white">
 					<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
 						{itemData.map((item, index) => {
-							const isCenterSection = index >= 6 && index <= 13;
-							const spansTwoCols = isCenterSection && index % 2 === 0;
-							const heightVariation = index % 3;
-							const imageHeight = spansTwoCols
-								? "500px"
-								: heightVariation === 0
-								? "400px"
-								: heightVariation === 1
-								? "450px"
-								: "380px";
+							const positionInCycle = index % 7;
+							const isWidePhoto = positionInCycle === 6; // Every 7th photo (indices 6, 13, 20, etc.)
+							const imageHeight = isWidePhoto ? "500px" : "450px";
 
 							return (
 								<div
 									key={item.title}
+									onClick={() => setSelectedImage(index)}
 									className={`relative overflow-hidden rounded-xl group cursor-pointer hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-2xl ${
-										spansTwoCols ? "md:col-span-2" : ""
+										isWidePhoto ? "md:col-span-2" : ""
 									}`}
 									style={{
 										minHeight: imageHeight,
@@ -225,6 +243,24 @@ export default function Photography() {
 			</div>
 			<Promotion />
 			<Footer />
+
+			<Dialog open={selectedImage !== null} onOpenChange={(open) => !open && setSelectedImage(null)}>
+				<DialogContent className="max-w-[95vw] max-h-[95vh] w-fit h-fit p-0 bg-transparent border-0 z-[1001] [&>button]:z-[1002] [&>button]:text-white [&>button]:hover:text-white [&>button]:bg-black/70 [&>button]:rounded-full [&>button]:w-10 [&>button]:h-10 [&>button]:flex [&>button]:items-center [&>button]:justify-center [&>button]:hover:bg-black/90 [&>button]:transition-colors [&>button]:fixed [&>button]:right-4 [&>button]:top-4">
+					{selectedImage !== null && (
+						<div className="relative max-w-[95vw] max-h-[95vh] w-auto h-auto">
+							<img
+								src={itemData[selectedImage].img}
+								alt={itemData[selectedImage].title}
+								className="max-w-[95vw] max-h-[95vh] w-auto h-auto object-contain rounded-lg"
+								style={{ display: "block" }}
+							/>
+							<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent rounded-b-lg p-4">
+								<p className="text-white proxima-nova-semibold">{itemData[selectedImage].title}</p>
+							</div>
+						</div>
+					)}
+				</DialogContent>
+			</Dialog>
 		</main>
 	);
 }

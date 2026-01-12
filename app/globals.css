@@ -765,6 +765,35 @@ h2 {
 	.glass-input::placeholder {
 		color: rgba(255, 255, 255, 0.5);
 	}
+
+	.glass-form-inverse {
+		background: rgba(255, 255, 255, 0.25);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		border: 1px solid rgba(0, 0, 0, 0.18);
+		box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+	}
+
+	.glass-form-deep-blue {
+		background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.7) 100%);
+		backdrop-filter: blur(25px);
+		-webkit-backdrop-filter: blur(25px);
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.6), 0 8px 25px -8px rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+			inset 0 -1px 0 0 rgba(0, 0, 0, 0.3);
+		position: relative;
+	}
+
+	.glass-form-deep-blue::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+		pointer-events: none;
+	}
 }
 
 /* Mobile Menu Animations */

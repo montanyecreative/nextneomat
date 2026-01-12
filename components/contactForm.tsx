@@ -9,7 +9,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
 
 const formSchema = z.object({
 	date: z.string().max(100, {
@@ -122,15 +122,23 @@ export default function ContactForm() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} method="POST" action={FORM_URL} className="space-y-8 aktiv-grotesk-regular">
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				method="POST"
+				action={FORM_URL}
+				className="space-y-8 aktiv-grotesk-regular glass-form-deep-blue p-8 rounded-2xl relative"
+			>
 				<FormField
 					control={form.control}
 					name="name"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Name</FormLabel>
 							<FormControl>
-								<Input placeholder="" {...field} className="text-[16px]" />
+								<Input
+									placeholder="Name"
+									{...field}
+									className="text-[16px] !shadow-none !bg-black/40 !border-white/10 hover:!bg-black/50 focus:!bg-black/50 focus:!border-white/20"
+								/>
 							</FormControl>
 							<FormDescription></FormDescription>
 							<FormMessage />
@@ -142,9 +150,12 @@ export default function ContactForm() {
 					name="email"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Email</FormLabel>
 							<FormControl>
-								<Input placeholder="" {...field} className="text-[16px]" />
+								<Input
+									placeholder="Email"
+									{...field}
+									className="text-[16px] !shadow-none !bg-black/40 !border-white/10 hover:!bg-black/50 focus:!bg-black/50 focus:!border-white/20"
+								/>
 							</FormControl>
 							<FormDescription></FormDescription>
 							<FormMessage />
@@ -156,9 +167,12 @@ export default function ContactForm() {
 					name="phone"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Phone</FormLabel>
 							<FormControl>
-								<Input placeholder="" {...field} className="text-[16px]" />
+								<Input
+									placeholder="Phone"
+									{...field}
+									className="text-[16px] !shadow-none !bg-black/40 !border-white/10 hover:!bg-black/50 focus:!bg-black/50 focus:!border-white/20"
+								/>
 							</FormControl>
 							<FormDescription></FormDescription>
 							<FormMessage />
@@ -170,9 +184,12 @@ export default function ContactForm() {
 					name="message"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Message</FormLabel>
 							<FormControl>
-								<Textarea placeholder="" {...field} className="text-[16px]" />
+								<Textarea
+									placeholder="What can we help you with?"
+									{...field}
+									className="text-[16px] min-h-[120px] !shadow-none !bg-black/40 !border-white/10 hover:!bg-black/50 focus:!bg-black/50 focus:!border-white/20"
+								/>
 							</FormControl>
 							<FormDescription></FormDescription>
 							<FormMessage />
