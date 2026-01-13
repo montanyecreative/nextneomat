@@ -233,7 +233,7 @@ export default function Photography() {
 									/>
 									<div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 									<div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-										<p className="text-white text-sm font-medium proxima-nova-semibold">{item.title}</p>
+										<p className="text-white proxima-nova-semibold">{item.title}</p>
 									</div>
 								</div>
 							);

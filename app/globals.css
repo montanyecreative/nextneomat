@@ -693,8 +693,98 @@ h2 {
 	}
 }
 
-/* Glassmorphism Utilities */
+/* Animated Underline */
 @layer utilities {
+	.animated-underline {
+		position: relative;
+	}
+
+	.animated-underline:not(p):not(span.block) {
+		display: inline-block;
+	}
+
+	.animated-underline::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background-color: #c6284a; /* red-500 */
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.3s ease-in-out;
+	}
+
+	/* For paragraphs and block spans, use text-decoration to underline each line */
+	p.animated-underline,
+	span.animated-underline.block {
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		text-decoration-thickness: 2px;
+		text-underline-offset: 2px;
+		position: relative;
+		transition: text-decoration-color 0.3s ease-in-out;
+	}
+
+	/* For wrapped lines, use the same animation as h3 */
+	.animated-underline-line {
+		position: relative;
+		display: inline-block;
+	}
+
+	.animated-underline-line::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background-color: #c6284a;
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.3s ease-in-out;
+	}
+
+	.group:hover .animated-underline::after {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
+
+	.group:hover .animated-underline-line::after {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
+
+	.group:hover p.animated-underline,
+	.group:hover span.animated-underline.block {
+		text-decoration-color: #c6284a;
+	}
+
+	.group:not(:hover) .animated-underline::after {
+		transform: scaleX(0);
+		transform-origin: right;
+		transition: transform 0.3s ease-in-out;
+	}
+
+	.group:not(:hover) .animated-underline-line::after {
+		transform: scaleX(0);
+		transform-origin: right;
+		transition: transform 0.3s ease-in-out;
+	}
+
+	.group:not(:hover) p.animated-underline,
+	.group:not(:hover) span.animated-underline.block {
+		text-decoration-color: transparent;
+	}
+
+	/* Hide ::after for paragraphs and block spans since they use text-decoration */
+	p.animated-underline::after,
+	span.animated-underline.block::after {
+		display: none;
+	}
+
+	/* Glassmorphism Utilities */
 	.glass {
 		background: rgba(0, 0, 0, 0.4);
 		backdrop-filter: blur(20px);

@@ -5,6 +5,7 @@ import Footer from "@/components/footer";
 import Promotion from "@/components/promotion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import FeatureGrid from "@/components/FeatureGrid";
 
 export default function Home() {
 	return (
@@ -19,22 +20,25 @@ export default function Home() {
 					</h1>
 				</div>
 			</div>
-			<div className="container-fluid bg-transparent">
-				<div className="container sm:mx-auto md:mx-auto text-center copy text-white">
-					<h2 className="mb-5 pt-10 md:pt-unset text-white">Website Development</h2>
-					<p className="mb-5 aktiv-grotesk-regular">
-						Specializing in custom web solutions that combine modern design with cutting-edge technology. From responsive
-						business websites to dynamic web applications, I create digital experiences that are both beautiful and functional.
-						Every project is built with attention to detail, performance optimization, and user experience in mind.
+			<div className="container-fluid bg-transparent py-10 md:py-16">
+				<div className="container sm:mx-auto md:mx-auto">
+					<h2 className="mb-5 pt-10 md:pt-unset text-white text-center">What sets us apart</h2>
+					<p className="mb-5 pb-10 aktiv-grotesk-regular text-center">
+						Whether it's the extreme attention to detail we spend when designing and developing a website, our professional and
+						industry grade level of advice in a consulting conversation, or digitzing your precious family photos, you receieve
+						the utmost care and attention.
 					</p>
-					<Link href="/website-development" aria-label="Go to the website development page" className="mx-3">
-						<Button
-							variant="outline"
-							className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
-						>
-							View My Work
-						</Button>
-					</Link>
+					<FeatureGrid />
+					<div className="flex justify-center mt-10 pt-5">
+						<Link href="/website-development" aria-label="Go to the website development page">
+							<Button
+								variant="outline"
+								className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
+							>
+								Learn more
+							</Button>
+						</Link>
+					</div>
 				</div>
 			</div>
 			<div
