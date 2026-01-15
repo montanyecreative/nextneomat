@@ -5,7 +5,11 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Salesforce from "@/components/salesforce";
 import { Button } from "@/components/ui/button";
-import Projects from "./projects";
+import Projects from "@/app/website-development/Projects";
+import FeatureGrid from "@/components/FeatureGrid";
+import WebsiteSolutions from "@/app/website-development/WebsiteSolutions";
+import CustomerExperienceTools from "@/app/website-development/CustomerExperienceTools";
+import PlatformsAndTechnologies from "@/app/website-development/PlatformsAndTechnologies";
 
 export default function WebsiteDevelopment() {
 	return (
@@ -25,183 +29,46 @@ export default function WebsiteDevelopment() {
 					</div>
 				</div>
 				<div className="container-fluid webdev-page mx-auto md:mx-10 text-center text-white aktiv-grotesk-regular">
-					<div className="webdev-intro">
-						<div className="mb-20">
-							<h1 className="text-[32px] mt-5 md:hidden">
-								<b>Create value with</b>
-								<br /> design &amp; technology.
-							</h1>
-							<div>
-								<p className="my-5 mx-5">Currently we offer custom web solutions for the following use cases:</p>
-								<div className="visual-list-item mb-4 inline-flex">
-									<svg
-										width="20"
-										height="20"
-										viewBox="0 0 15 15"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-										className="visual-list-item-icon-alternative"
-									>
-										<path
-											d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-											fill="currentColor"
-											fillRule="evenodd"
-											clipRule="evenodd"
-										></path>
-									</svg>
-									<p>Multi-Page Business or Personal websites</p>
-								</div>
-								<br />
-								<div className="visual-list-item mb-4 inline-flex">
-									<svg
-										width="20"
-										height="20"
-										viewBox="0 0 15 15"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-										className="visual-list-item-icon-alternative"
-									>
-										<path
-											d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-											fill="currentColor"
-											fillRule="evenodd"
-											clipRule="evenodd"
-										></path>
-									</svg>
-									<p>Single Page Landing Page websites</p>
-								</div>
-								<br />
-								<div className="visual-list-item mb-4 inline-flex">
-									<svg
-										width="20"
-										height="20"
-										viewBox="0 0 15 15"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-										className="visual-list-item-icon-alternative"
-									>
-										<path
-											d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-											fill="currentColor"
-											fillRule="evenodd"
-											clipRule="evenodd"
-										></path>
-									</svg>
-									<p>Save the Date wedding websites</p>
-								</div>
-								<br />
-								<div className="visual-list-item mb-4 inline-flex">
-									<svg
-										width="20"
-										height="20"
-										viewBox="0 0 15 15"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-										className="visual-list-item-icon-alternative"
-									>
-										<path
-											d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-											fill="currentColor"
-											fillRule="evenodd"
-											clipRule="evenodd"
-										></path>
-									</svg>
-									<p>Small to medium Shopify websites</p>
-								</div>
-								<br />
-								<div className="visual-list-item mb-4 inline-flex">
-									<svg
-										width="20"
-										height="20"
-										viewBox="0 0 15 15"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-										className="visual-list-item-icon-alternative"
-									>
-										<path
-											d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-											fill="currentColor"
-											fillRule="evenodd"
-											clipRule="evenodd"
-										></path>
-									</svg>
-									<p>Salesforce Commerce Cloud Consulting</p>
-								</div>
-								<br />
-								<div className="visual-list-item mb-4 inline-flex">
-									<svg
-										width="20"
-										height="20"
-										viewBox="0 0 15 15"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-										className="visual-list-item-icon-alternative"
-									>
-										<path
-											d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-											fill="currentColor"
-											fillRule="evenodd"
-											clipRule="evenodd"
-										></path>
-									</svg>
-									<p>Hosting/application optimization</p>
-								</div>
-								<br />
-								<div className="visual-list-item mb-4 inline-flex">
-									<svg
-										width="20"
-										height="20"
-										viewBox="0 0 15 15"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-										className="visual-list-item-icon-alternative"
-									>
-										<path
-											d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-											fill="currentColor"
-											fillRule="evenodd"
-											clipRule="evenodd"
-										></path>
-									</svg>
-									<p>Core Web Vital Optimization</p>
-								</div>
-								<br />
-								<div className="visual-list-item mb-4 inline-flex">
-									<svg
-										width="20"
-										height="20"
-										viewBox="0 0 15 15"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-										className="visual-list-item-icon-alternative"
-									>
-										<path
-											d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-											fill="currentColor"
-											fillRule="evenodd"
-											clipRule="evenodd"
-										></path>
-									</svg>
-									<p>ADA Compliance</p>
-								</div>
-								<p className="my-5 mx-5">
-									To get in touch with us about how we can help you, please fill out the form on our contact page.
-								</p>
-								<Link href="/contact" aria-label="Go to Contact page">
-									<Button
-										variant="outline"
-										className="rounded-full px-10 mt-5 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
-									>
-										Get in Touch
-									</Button>
-								</Link>
-							</div>
+					<div className="mb-20">
+						<h1 className="text-[32px] mt-5 md:hidden">
+							<b>Create value with</b>
+							<br /> design &amp; technology.
+						</h1>
+						<div className="my-20">
+							<h2 className="mb-10 pt-10 md:pt-unset text-white text-center">Features</h2>
+							<FeatureGrid />
+						</div>
+						<div className="my-10">
+							<Link href="/contact" aria-label="Go to Contact page">
+								<Button
+									variant="outline"
+									className="rounded-full px-10 mt-5 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
+								>
+									Get in Touch
+								</Button>
+							</Link>
 						</div>
 					</div>
 				</div>
-				<div className="container-fluid mx-5 md:mx-0 text-center text-white aktiv-grotesk-regular">
-					<h2 className="text-[30px] mt-5 text-white font-normal">Projects</h2>
-					<p className="my-2 mx-10">
+				<div className="container-fluid px-auto md:px-10 text-center text-white aktiv-grotesk-regular bg-charcoal/20 py-5">
+					<div className="mb-20">
+						<h2 className="my-10 md:pt-unset text-white text-center">Website solutions</h2>
+						<WebsiteSolutions />
+					</div>
+				</div>
+				<div className="container-fluid px-auto md:px-10 text-white aktiv-grotesk-regular py-5">
+					<div className="mb-20">
+						<CustomerExperienceTools />
+					</div>
+				</div>
+				<div className="container-fluid px-auto md:px-10 text-white bg-charcoal/20 aktiv-grotesk-regular py-5">
+					<div className="mb-20">
+						<PlatformsAndTechnologies />
+					</div>
+				</div>
+				<div className="container mx-auto text-center text-white text-center aktiv-grotesk-regular">
+					<h2 className="text-[30px] text-white proxima-nova-semibold mt-10 pt-5">Projects</h2>
+					<p className="mt-5">
 						I have worked many other projects that are not shown here as I do not have direct permission from clients to share
 						works as per contracted agreements but those brands and sites include:{" "}
 						<i>
@@ -214,6 +81,8 @@ export default function WebsiteDevelopment() {
 						</Link>{" "}
 						for details.
 					</p>
+				</div>
+				<div className="container-fluid px-auto md:px-10 text-white aktiv-grotesk-regular">
 					<Projects />
 				</div>
 			</div>
