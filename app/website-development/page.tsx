@@ -50,7 +50,7 @@ export default function WebsiteDevelopment() {
 						</div>
 					</div>
 				</div>
-				<div className="container-fluid px-auto md:px-10 text-center text-white aktiv-grotesk-regular bg-charcoal/20 py-5">
+				<div className="container-fluid px-auto md:px-10 text-center text-white aktiv-grotesk-regular bg-[#242424] py-5">
 					<div className="mb-20">
 						<h2 className="my-10 md:pt-unset text-white text-center">Website solutions</h2>
 						<WebsiteSolutions />
@@ -61,7 +61,7 @@ export default function WebsiteDevelopment() {
 						<CustomerExperienceTools />
 					</div>
 				</div>
-				<div className="container-fluid px-auto md:px-10 text-white bg-charcoal/20 aktiv-grotesk-regular py-5">
+				<div className="container-fluid px-auto md:px-10 text-white bg-[#242424] aktiv-grotesk-regular py-5">
 					<div className="mb-20">
 						<PlatformsAndTechnologies />
 					</div>
@@ -82,9 +82,7 @@ export default function WebsiteDevelopment() {
 						for details.
 					</p>
 				</div>
-				<div className="container-fluid px-auto md:px-10 text-white aktiv-grotesk-regular">
-					<Projects />
-				</div>
+				<div className="container-fluid px-auto md:px-10 text-white aktiv-grotesk-regular">{/* <Projects /> */}</div>
 			</div>
 			<Salesforce />
 			<Footer />

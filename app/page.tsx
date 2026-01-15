@@ -21,7 +21,7 @@ export default function Home() {
 				</div>
 			</div>
 			<div className="container-fluid bg-transparent py-10 md:py-16">
-				<div className="container sm:mx-auto md:mx-auto">
+				<div className="container sm:mx-auto md:mx-auto text-center">
 					<h2 className="mb-5 pt-10 md:pt-unset text-white text-center">What sets us apart</h2>
 					<p className="mb-5 pb-10 aktiv-grotesk-regular text-center">
 						Whether it's the extreme attention to detail we spend when designing and developing a website, our professional and

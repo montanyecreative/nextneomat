@@ -151,9 +151,9 @@ export default function Projects() {
 	return (
 		<section
 			ref={sectionRef}
-			className="pin-section w-full min-h-screen flex justify-center items-center mt-0 pt-0 aktiv-grotesk-regular"
+			className="pin-section w-full min-h-screen flex justify-center items-center -mt-20 pt-0 aktiv-grotesk-regular"
 		>
-			<div className="content w-full mx-10 flex px-[20px] relative">
+			<div className="content w-full mx-10 flex items-start px-[20px] relative">
 				<ul ref={listRef} className="list text-[30px] text-white m-0 p-0 pr-[40px] list-none flex-grow-0 aktiv-grotesk">
 					{projects.map((project, index) => (
 						<li
@@ -171,14 +171,14 @@ export default function Projects() {
 					{formatProjectCounter(activeIndex, projects.length)}
 				</div>
 				<div ref={fillRef} className="fill absolute top-0 left-0 w-[2px] h-full bg-mcRed" />
-				<div className="right flex-grow relative">
+				<div className="right flex-grow relative h-full flex items-start">
 					{projects.map((project, index) => (
 						<div
 							key={project.href}
 							ref={(el) => {
 								slideRefs.current[index] = el;
 							}}
-							className="slide absolute w-8/10 top-1/2 -translate-y-1/2 right-4 opacity-0 invisible rounded-[10px]"
+							className="slide absolute w-8/10 top-0 right-4 opacity-0 invisible rounded-[10px]"
 						>
 							<div className="flex flex-col items-center">
 								<Image
