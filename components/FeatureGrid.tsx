@@ -165,17 +165,14 @@ export default function FeatureGrid() {
 				))}
 			</div>
 
-			{/* Modal Overlay */}
 			<div
-				className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 animate-in fade-in-0"
+				className="fixed inset-0 z-[1000] bg-black/90 flex items-start md:items-center justify-center p-4 animate-in fade-in-0 overflow-y-auto"
 				onClick={() => setSelectedItem(null)}
 			>
-				{/* Modal Content */}
 				<div
-					className="glass-form-deep-blue border-white/15 text-white p-8 max-w-2xl w-full rounded-2xl relative animate-in zoom-in-95 slide-in-from-bottom-2"
+					className="glass-form-deep-blue border-white/15 text-white p-6 md:p-8 max-w-2xl w-full rounded-2xl relative animate-in zoom-in-95 slide-in-from-bottom-2 my-4 md:my-auto"
 					onClick={(e) => e.stopPropagation()}
 				>
-					{/* Close Button */}
 					<button
 						onClick={() => setSelectedItem(null)}
 						className="absolute right-4 top-4 rounded-full w-8 h-8 flex items-center justify-center bg-white/10 hover:bg-white/20 text-white opacity-70 hover:opacity-100 transition-all"
@@ -183,8 +180,6 @@ export default function FeatureGrid() {
 					>
 						<X className="h-4 w-4" />
 					</button>
-
-					{/* Modal Content */}
 					<div className="flex flex-col">
 						<div className="flex mb-6 mx-auto">
 							<img
