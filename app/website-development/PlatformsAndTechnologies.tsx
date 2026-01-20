@@ -7,12 +7,12 @@ export default function PlatformsAndTechnologies() {
 	const contentRef = useRef<HTMLDivElement>(null);
 	const title = "Platforms & technologies";
 	const description =
-		"Description text goes here. This section provides context and information about the images displayed in the other columns.";
+		"Over the past 8 years, we've worked with technologies that are powering some of the world's most successful businesses. From Vercel, Shopify, GitHub, and several other platforms, we have an unparalleled understanding of the best solution for your unique business needs.";
 	const images = [
-		{ src: "/placeholder-image.webp", alt: "Image 1" },
-		{ src: "/placeholder-image.webp", alt: "Image 2" },
-		{ src: "/placeholder-image.webp", alt: "Image 3" },
-		{ src: "/placeholder-image.webp", alt: "Image 4" },
+		{ src: "website-development/vercel-logo.webp", alt: "Vercel Logo" },
+		{ src: "website-development/contentful-logo.webp", alt: "Contentful Logo" },
+		{ src: "website-development/github-logo.webp", alt: "GitHub Logo" },
+		{ src: "website-development/shopify-logo.webp", alt: "Shopify Logo" },
 	];
 
 	const contentStyles = useFadeInFromLeftOnScroll(contentRef);
@@ -24,10 +24,10 @@ export default function PlatformsAndTechnologies() {
 				<p className="text-white/90 aktiv-grotesk-regular">{description}</p>
 			</div>
 			<div className="md:col-span-2 flex items-center justify-center">
-				<div className="grid grid-cols-2 gap-4">
+				<div className="grid grid-cols-2 gap-10 mt-10">
 					{images.map((image, index) => (
 						<div key={index} className="flex items-center justify-center">
-							<img src={image.src} alt={image.alt} width="100" height="30" className="w-[100px] h-[30px] object-contain" />
+							<img src={image.src} alt={image.alt} width="275" height="55" className="w-[275px] h-[55px] object-contain" />
 						</div>
 					))}
 				</div>

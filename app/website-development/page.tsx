@@ -48,12 +48,16 @@ export default function WebsiteDevelopment() {
 						</p>
 					</div>
 				</div>
-				<div className="container-fluid webdev-page mx-auto md:mx-10 text-center text-white aktiv-grotesk-regular">
+				<div className="container-fluid webdev-page px-10 text-center text-white aktiv-grotesk-regular">
 					<div className="mb-20">
 						<h1 className="text-[32px] mt-5 md:hidden">
 							<b>Create value with</b>
 							<br /> design &amp; technology.
 						</h1>
+						<p className="text-[20px] mt-5 md:hidden">
+							Montanye Creative is a midwest based Design &amp; Technology Studio. We assist individuals and organizations by
+							identifying and executing necessary digital initiatives, producing high-end, conversion driving experiences.
+						</p>
 						<div className="my-20">
 							<h2
 								ref={featuresHeadingRef}
@@ -76,7 +80,7 @@ export default function WebsiteDevelopment() {
 						</div>
 					</div>
 				</div>
-				<div className="container-fluid px-auto md:px-10 text-center text-white aktiv-grotesk-regular bg-[#242424] py-5">
+				<div className="container-fluid px-10 text-center text-white aktiv-grotesk-regular bg-[#242424] py-5">
 					<div className="mb-20">
 						<h2
 							ref={websiteSolutionsHeadingRef}
@@ -88,12 +92,12 @@ export default function WebsiteDevelopment() {
 						<WebsiteSolutions />
 					</div>
 				</div>
-				<div className="container-fluid px-auto md:px-10 text-white aktiv-grotesk-regular py-5">
+				<div className="container-fluid px-10 text-white aktiv-grotesk-regular py-5">
 					<div className="mb-20">
 						<CustomerExperienceTools />
 					</div>
 				</div>
-				<div className="container-fluid px-auto md:px-10 text-white bg-[#242424] aktiv-grotesk-regular py-5">
+				<div className="container-fluid px-10 text-white bg-[#242424] aktiv-grotesk-regular py-5">
 					<div className="mb-20">
 						<PlatformsAndTechnologies />
 					</div>
