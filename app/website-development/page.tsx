@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Salesforce from "@/components/salesforce";
@@ -28,8 +29,11 @@ export default function WebsiteDevelopment() {
 		<main>
 			<Navbar />
 			<div className="bg-transparent">
-				<div className="sm:mx-auto md:mx-auto flex banner-home-copy website-development-banner-gradient">
+				<div className="sm:mx-auto md:mx-auto flex banner-home-copy">
 					<div className="w-full comparison-slider relative">
+						<div style={{ opacity: 0.4 }} className="absolute inset-0">
+							<Image src="/banners/website-development-banner.webp" alt="Website Development Banner" fill className="object-cover" priority />
+						</div>
 						<h1
 							ref={headingRef}
 							style={{ opacity: 0 }}
@@ -108,7 +112,7 @@ export default function WebsiteDevelopment() {
 					<h2
 						ref={projectsHeadingRef}
 						style={projectsStyles.style}
-						className="text-[30px] text-white proxima-nova-semibold mt-10 pt-5"
+						className="text-[30px] text-white proxima-nova-semibold md:mt-10 pt-5"
 					>
 						Projects
 					</h2>
@@ -126,7 +130,9 @@ export default function WebsiteDevelopment() {
 						for details.
 					</p>
 				</div>
-				<div className="container-fluid px-auto md:px-10 text-white aktiv-grotesk-regular">{/* <Projects /> */}</div>
+				<div className="container-fluid px-auto md:px-10 text-white aktiv-grotesk-regular">
+					<Projects />
+				</div>
 			</div>
 			<Salesforce />
 			<Footer />

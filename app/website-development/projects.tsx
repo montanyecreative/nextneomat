@@ -9,6 +9,21 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const useIsMobile = () => {
+	const [isMobile, setIsMobile] = useState(false);
+
+	useEffect(() => {
+		const checkMobile = () => {
+			setIsMobile(window.innerWidth < 768);
+		};
+		checkMobile();
+		window.addEventListener("resize", checkMobile);
+		return () => window.removeEventListener("resize", checkMobile);
+	}, []);
+
+	return isMobile;
+};
+
 interface Project {
 	title: string;
 	description: string;
@@ -73,8 +88,12 @@ export default function Projects() {
 	const listItemRefs = useRef<(HTMLLIElement | null)[]>([]);
 	const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
 	const [activeIndex, setActiveIndex] = useState(0);
+	const isMobile = useIsMobile();
 
 	useEffect(() => {
+		// Skip ScrollTrigger animation on mobile
+		if (isMobile) return;
+
 		if (!sectionRef.current || !listRef.current || !fillRef.current) return;
 
 		const listItems = listItemRefs.current.filter(Boolean) as HTMLLIElement[];
@@ -144,10 +163,46 @@ export default function Projects() {
 		).to({}, {}); // Add a small pause at the end
 
 		return () => {
-			ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+			// IMPORTANT: only clean up what THIS component created
+			tl.scrollTrigger?.kill();
+			tl.kill();
 		};
-	}, []);
+	}, [isMobile]);
 
+	// Mobile layout: show all projects stacked vertically
+	if (isMobile) {
+		return (
+			<section className="w-full py-10 aktiv-grotesk-regular">
+				<div className="content w-full mx-0 px-4">
+					{projects.map((project, index) => (
+						<div key={project.href} className="mb-12 last:mb-0">
+							<div className="flex flex-col items-center">
+								<h3 className="text-white text-2xl mb-4 aktiv-grotesk text-center">{project.title}</h3>
+								<Image
+									src={project.imageSrc}
+									alt={project.imageAlt}
+									width={1000}
+									height={1000}
+									className="w-full rounded-[10px] mb-4"
+								/>
+								<p className="text-white text-sm text-center mb-4 px-4">{project.description}</p>
+								<Link href={project.href} aria-label={project.ariaLabel} target="_blank" rel="noopener">
+									<Button
+										variant="outline"
+										className="rounded-full px-10 text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px] transition-colors duration-300"
+									>
+										See Project
+									</Button>
+								</Link>
+							</div>
+						</div>
+					))}
+				</div>
+			</section>
+		);
+	}
+
+	// Desktop layout: scroll-triggered animation
 	return (
 		<section
 			ref={sectionRef}

@@ -56,7 +56,7 @@ const featureItems: FeatureItem[] = [
 		description:
 			"Over the years we've worked out the best ways to reduce costs for websites using companies that are trusted and reliable. Your online presence should not be hemorrhaging your revenue.",
 		description2:
-			" If you're not planning on making money from your website, hosting and included tools like web forms, analytics, admin portals, and more are free.",
+			"If you're not planning on making money from your website, hosting and included tools like web forms, analytics, admin portals, and more are free.",
 		description3:
 			"If you are making money from your website, hosting costs are only $240/year with web forms costing an additional $15-$35/month.",
 		featuresTitle: "Hosting Compliances",
