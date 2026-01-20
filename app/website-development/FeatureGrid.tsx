@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import AnimatedTextLines from "@/components/AnimatedTextLines";
 import { X } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../../components/ui/button";
 import Link from "next/link";
 
 interface FeatureItem {

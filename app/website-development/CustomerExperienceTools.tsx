@@ -1,4 +1,10 @@
+"use client";
+
+import { useRef } from "react";
+import { useFadeInFromLeftOnScroll } from "@/components/animations";
+
 export default function CustomerExperienceTools() {
+	const contentRef = useRef<HTMLDivElement>(null);
 	const title = "Customer experience, acquisition & retention tools";
 	const description =
 		"The digital user experience is enhanced with tools that provide for site search optimization, personalization, SEO, ADA compliance, and more.";
@@ -9,9 +15,11 @@ export default function CustomerExperienceTools() {
 		{ src: "/placeholder-image.webp", alt: "Image 4" },
 	];
 
+	const contentStyles = useFadeInFromLeftOnScroll(contentRef);
+
 	return (
 		<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-			<div className="text-center md:text-left">
+			<div ref={contentRef} style={contentStyles.style} className="text-center md:text-left">
 				<h3 className="mt-10 mb-5 md:pt-unset text-white text-[32px] proxima-nova-semibold">{title}</h3>
 				<p className="text-white/90 aktiv-grotesk-regular">{description}</p>
 			</div>

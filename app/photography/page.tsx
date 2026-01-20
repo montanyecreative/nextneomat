@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import Navbar from "@/components/navbar";
@@ -8,6 +8,7 @@ import Footer from "@/components/footer";
 import Promotion from "@/components/promotion";
 import Image from "next/image";
 import Link from "next/link";
+import { useSlideInFromLeft } from "@/components/animations";
 
 const itemData = [
 	{
@@ -149,6 +150,8 @@ const itemData = [
 
 export default function Photography() {
 	const [selectedImage, setSelectedImage] = useState<number | null>(null);
+	const headingRef = useRef<HTMLHeadingElement>(null);
+	const headingStyles = useSlideInFromLeft(headingRef);
 
 	return (
 		<main>
@@ -163,7 +166,11 @@ export default function Photography() {
 							className="object-cover"
 							priority
 						/>
-						<h1 className="text-[42px] absolute bottom-0 left-0 p-5 text-white md:block hidden proxima-nova-medium">
+						<h1
+							ref={headingRef}
+							style={headingStyles.style}
+							className="text-[42px] absolute bottom-0 left-0 p-5 text-white md:block hidden proxima-nova-medium"
+						>
 							Infrared Photography
 						</h1>
 					</div>

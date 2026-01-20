@@ -1,19 +1,28 @@
 "use client";
 
+import { useRef } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Promotion from "@/components/promotion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import FeatureGrid from "@/components/FeatureGrid";
+import FeatureGrid from "@/app/website-development/FeatureGrid";
+import { useFadeInFromBottom, useFadeInFromBottomOnScroll } from "@/components/animations";
 
 export default function Home() {
+	const headingRef = useRef<HTMLHeadingElement>(null);
+	const headingStyles = useFadeInFromBottom(headingRef);
+	const whatSetsUsApartRef = useRef<HTMLHeadingElement>(null);
+	const whatSetsUsApartStyles = useFadeInFromBottomOnScroll(whatSetsUsApartRef);
+	const aboutThisSiteRef = useRef<HTMLHeadingElement>(null);
+	const aboutThisSiteStyles = useFadeInFromBottomOnScroll(aboutThisSiteRef);
+
 	return (
 		<main>
 			<Navbar />
 			<div className="banner-home">
 				<div className="container sm:mx-auto md:mx-auto flex banner-home-copy items-center">
-					<h1 className="text-[42px] text-center proxima-nova-semibold">
+					<h1 ref={headingRef} style={headingStyles.style} className="text-[42px] text-center proxima-nova-semibold">
 						Technology simplified
 						<br />
 						<span className="proxima-nova-regular">yet uncompromised</span>
@@ -22,7 +31,13 @@ export default function Home() {
 			</div>
 			<div className="container-fluid bg-transparent py-10 md:py-16">
 				<div className="container sm:mx-auto md:mx-auto text-center">
-					<h2 className="mb-5 pt-10 md:pt-unset text-white text-center">What sets us apart</h2>
+					<h2
+						ref={whatSetsUsApartRef}
+						style={whatSetsUsApartStyles.style}
+						className="mb-5 pt-10 md:pt-unset text-white text-center"
+					>
+						What sets us apart
+					</h2>
 					<p className="mb-5 pb-10 aktiv-grotesk-regular text-center">
 						Whether it's the extreme attention to detail we spend when designing and developing a website, our professional and
 						industry grade level of advice in a consulting conversation, or digitzing your precious family photos, you receieve
@@ -55,7 +70,9 @@ export default function Home() {
 			>
 				<div className="container sm:mx-auto md:mx-auto text-center copy text-white">
 					<div className="glass-card rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
-						<h2 className="mb-5 pt-10 md:pt-unset text-white">About this site</h2>
+						<h2 ref={aboutThisSiteRef} style={aboutThisSiteStyles.style} className="mb-5 pt-10 md:pt-unset text-white">
+							About this site
+						</h2>
 						<p className="mb-5 aktiv-grotesk-regular">
 							This website was developed using NextJS, ReactJS, TypeScript, shadcn/ui, Tailwind CSS, and HTML5. The different
 							looking style is based off design patterns and concepts of Neumorphism and Glassmorphism. The design emphasis

@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Promotion from "@/components/promotion";
@@ -7,12 +8,16 @@ import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slide
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useSlideInFromLeft } from "@/components/animations";
 
 const photo1 = "/restoration/mike-ocean-original-restored.webp";
 const photo2 = "/restoration/mike-ocean-original.webp";
 const usbCost = "+$14";
 
 export default function PhotoVHSDigitization() {
+	const headingRef = useRef<HTMLHeadingElement>(null);
+	const headingStyles = useSlideInFromLeft(headingRef);
+
 	return (
 		<main>
 			<Navbar />
@@ -23,7 +28,11 @@ export default function PhotoVHSDigitization() {
 						itemOne={<ReactCompareSliderImage src={photo1} srcSet={photo1} alt="Image one" className="slider-image-override" />}
 						itemTwo={<ReactCompareSliderImage src={photo2} srcSet={photo2} alt="Image two" className="slider-image-override" />}
 					/>
-					<h1 className="text-[42px] absolute bottom-0 left-0 p-5 text-white md:block hidden proxima-nova-medium">
+					<h1
+						ref={headingRef}
+						style={headingStyles.style}
+						className="text-[42px] absolute bottom-0 left-0 p-5 text-white md:block hidden proxima-nova-medium"
+					>
 						Photo/VHS Digitization &amp; Restoration
 					</h1>
 				</div>

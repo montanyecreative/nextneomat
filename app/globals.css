@@ -969,3 +969,24 @@ h2 {
 		animation: slideInRight 0.3s ease-out;
 	}
 }
+
+/* Animation initial states - prevents flash on page load */
+.anim-slide-in-left-init {
+	opacity: 0;
+	transform: translateX(-100px);
+}
+
+.anim-slide-in-right-init {
+	opacity: 0;
+	transform: translateX(100px);
+}
+
+.anim-fade-in-bottom-init {
+	opacity: 0;
+	transform: translateY(50px);
+}
+
+.anim-fade-in-left-init {
+	opacity: 0;
+	transform: translateX(-100px);
+}

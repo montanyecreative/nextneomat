@@ -1,30 +1,46 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Salesforce from "@/components/salesforce";
 import { Button } from "@/components/ui/button";
 import Projects from "@/app/website-development/Projects";
-import FeatureGrid from "@/components/FeatureGrid";
+import FeatureGrid from "@/app/website-development/FeatureGrid";
 import WebsiteSolutions from "@/app/website-development/WebsiteSolutions";
 import CustomerExperienceTools from "@/app/website-development/CustomerExperienceTools";
 import PlatformsAndTechnologies from "@/app/website-development/PlatformsAndTechnologies";
+import { useSlideInFromLeft, useFadeInFromBottom, useFadeInFromBottomOnScroll } from "@/components/animations";
 
 export default function WebsiteDevelopment() {
+	const headingRef = useRef<HTMLHeadingElement>(null);
+	const featuresHeadingRef = useRef<HTMLHeadingElement>(null);
+	const websiteSolutionsHeadingRef = useRef<HTMLHeadingElement>(null);
+	const projectsHeadingRef = useRef<HTMLHeadingElement>(null);
+
+	const headingStyles = useSlideInFromLeft(headingRef);
+	const featuresStyles = useFadeInFromBottom(featuresHeadingRef, { delay: 0.3 });
+	const websiteSolutionsStyles = useFadeInFromBottomOnScroll(websiteSolutionsHeadingRef);
+	const projectsStyles = useFadeInFromBottomOnScroll(projectsHeadingRef);
+
 	return (
 		<main>
 			<Navbar />
 			<div className="bg-transparent">
 				<div className="sm:mx-auto md:mx-auto flex banner-home-copy website-development-banner-gradient">
 					<div className="w-full comparison-slider relative">
-						<h1 className="text-[42px] absolute top-1/2 -translate-y-1/2 left-0 p-5 text-white md:block hidden md:mx-10 aktiv-grotesk">
+						<h1
+							ref={headingRef}
+							style={{ opacity: 0 }}
+							className="text-[42px] absolute top-1/2 -translate-y-1/2 left-0 p-5 text-white md:block hidden md:mx-10 aktiv-grotesk"
+						>
 							<span className="aktiv-grotesk-semibold">Create value with</span>
 							<br /> design &amp; technology.
 						</h1>
 						<p className="text-[20px] absolute top-1/2 -translate-y-1/2 right-5 p-5 text-white md:block hidden w-[600px] aktiv-grotesk-regular">
 							Montanye Creative is a midwest based Design &amp; Technology Studio. We assist individuals and organizations by
-							identifying and executing necessary digital initiatives, producing high-end and conversion driving experiences.
+							identifying and executing necessary digital initiatives, producing high-end, conversion driving experiences.
 						</p>
 					</div>
 				</div>
@@ -35,7 +51,13 @@ export default function WebsiteDevelopment() {
 							<br /> design &amp; technology.
 						</h1>
 						<div className="my-20">
-							<h2 className="mb-10 pt-10 md:pt-unset text-white text-center">Features</h2>
+							<h2
+								ref={featuresHeadingRef}
+								style={featuresStyles.style}
+								className="mb-10 pt-10 md:pt-unset text-white text-center"
+							>
+								Features
+							</h2>
 							<FeatureGrid />
 						</div>
 						<div className="my-10">
@@ -52,7 +74,13 @@ export default function WebsiteDevelopment() {
 				</div>
 				<div className="container-fluid px-auto md:px-10 text-center text-white aktiv-grotesk-regular bg-[#242424] py-5">
 					<div className="mb-20">
-						<h2 className="my-10 md:pt-unset text-white text-center">Website solutions</h2>
+						<h2
+							ref={websiteSolutionsHeadingRef}
+							style={websiteSolutionsStyles.style}
+							className="my-10 md:pt-unset text-white text-center"
+						>
+							Website solutions
+						</h2>
 						<WebsiteSolutions />
 					</div>
 				</div>
@@ -67,7 +95,23 @@ export default function WebsiteDevelopment() {
 					</div>
 				</div>
 				<div className="container mx-auto text-center text-white text-center aktiv-grotesk-regular">
-					<h2 className="text-[30px] text-white proxima-nova-semibold mt-10 pt-5">Projects</h2>
+					<div className="my-10">
+						<Link href="/contact" aria-label="Go to Contact page">
+							<Button
+								variant="outline"
+								className="rounded-full px-10 mt-5 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
+							>
+								Get in Touch
+							</Button>
+						</Link>
+					</div>
+					<h2
+						ref={projectsHeadingRef}
+						style={projectsStyles.style}
+						className="text-[30px] text-white proxima-nova-semibold mt-10 pt-5"
+					>
+						Projects
+					</h2>
 					<p className="mt-5">
 						I have worked many other projects that are not shown here as I do not have direct permission from clients to share
 						works as per contracted agreements but those brands and sites include:{" "}

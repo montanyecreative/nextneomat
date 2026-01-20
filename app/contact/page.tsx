@@ -1,12 +1,17 @@
 "use client";
 
+import { useRef } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Promotion from "@/components/promotion";
 import Image from "next/image";
 import ContactForm from "../../components/contactForm";
+import { useSlideInFromLeft } from "@/components/animations";
 
 export default function ContactUs() {
+	const headingRef = useRef<HTMLHeadingElement>(null);
+	const headingStyles = useSlideInFromLeft(headingRef);
+
 	return (
 		<main>
 			<Navbar />
@@ -14,7 +19,11 @@ export default function ContactUs() {
 				<div className="sm:mx-auto md:mx-auto flex banner-home-copy">
 					<div className="w-full comparison-slider relative">
 						<Image src="/banners/banner-contact.webp" alt="Contact Banner" fill className="object-cover" priority />
-						<h1 className="text-[42px] absolute bottom-0 left-0 p-5 text-white md:block hidden proxima-nova-medium">
+						<h1
+							ref={headingRef}
+							style={headingStyles.style}
+							className="text-[42px] absolute bottom-0 left-0 p-5 text-white md:block hidden proxima-nova-medium"
+						>
 							Contact Us
 						</h1>
 					</div>

@@ -68,11 +68,11 @@ export default function WebsiteSolutions() {
 
 			{selectedSolution && (
 				<div
-					className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 animate-in fade-in-0"
+					className="fixed inset-0 z-[1000] bg-black/90 flex items-start md:items-center justify-center p-4 animate-in fade-in-0 overflow-y-auto"
 					onClick={() => setSelectedSolution(null)}
 				>
 					<div
-						className="glass-form-deep-blue border-white/15 text-white p-8 max-w-2xl w-full rounded-2xl relative animate-in zoom-in-95 slide-in-from-bottom-2"
+						className="glass-form-deep-blue border-white/15 text-white p-6 md:p-8 max-w-2xl w-full rounded-2xl relative animate-in zoom-in-95 slide-in-from-bottom-2 my-4 md:my-auto"
 						onClick={(e) => e.stopPropagation()}
 					>
 						<button
