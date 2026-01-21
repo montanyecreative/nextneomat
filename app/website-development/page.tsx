@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/navbar";
@@ -25,6 +25,11 @@ export default function WebsiteDevelopment() {
 	const featuresStyles = useFadeInFromBottom(featuresHeadingRef, { delay: 0.3 });
 	const websiteSolutionsStyles = useFadeInFromBottomOnScroll(websiteSolutionsHeadingRef);
 	const projectsStyles = useFadeInFromBottomOnScroll(projectsHeadingRef);
+
+	// Scroll to top when component mounts
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<main>
