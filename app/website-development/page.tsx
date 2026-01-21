@@ -94,14 +94,15 @@ export default function WebsiteDevelopment() {
 				</div>
 				<div className="container-fluid px-10 text-white aktiv-grotesk-regular py-5">
 					<div className="mb-20">
-						<CustomerExperienceTools />
+						<PlatformsAndTechnologies />
 					</div>
 				</div>
 				<div className="container-fluid px-10 text-white bg-[#242424] aktiv-grotesk-regular py-5">
 					<div className="mb-20">
-						<PlatformsAndTechnologies />
+						<CustomerExperienceTools />
 					</div>
 				</div>
+				
 				<div className="container mx-auto text-center text-white text-center aktiv-grotesk-regular">
 					<div className="my-10">
 						<Link href="/contact" aria-label="Go to Contact page">
