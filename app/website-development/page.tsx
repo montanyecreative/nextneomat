@@ -7,7 +7,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Salesforce from "@/components/salesforce";
 import { Button } from "@/components/ui/button";
-import Projects from "@/app/website-development/Projects";
+import Projects from "@/app/website-development/projects";
 import FeatureGrid from "@/app/website-development/FeatureGrid";
 import WebsiteSolutions from "@/app/website-development/WebsiteSolutions";
 import CustomerExperienceTools from "@/app/website-development/CustomerExperienceTools";
