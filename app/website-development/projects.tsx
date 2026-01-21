@@ -200,7 +200,7 @@ export default function Projects() {
 									alt={project.imageAlt}
 									width={1000}
 									height={1000}
-									className="w-full aspect-square object-cover rounded-[10px] mb-4"
+									className="w-full aspect-square object-contain rounded-[10px] mb-4"
 								/>
 								<h3 className="text-white text-[24px] mb-2 proxima-nova-semibold text-center">{project.title}</h3>
 								<p className="text-white text-sm text-center mb-4 px-4">{project.description}</p>

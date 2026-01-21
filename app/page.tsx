@@ -39,9 +39,7 @@ export default function Home() {
 						What sets us apart
 					</h2>
 					<p className="mb-5 pb-10 aktiv-grotesk-regular text-center">
-						Whether it's the extreme attention to detail we spend when designing and developing a website, our professional and
-						industry grade level of advice in a consulting conversation, or digitzing your precious family photos, you receieve
-						the utmost care and attention.
+						We approach every project with a level of care and precision that reflects our commitment to exceptional quality. Whether we&apos;re crafting a thoughtfully designed website, providing strategic guidance in a consulting engagement, or preserving your family&apos;s most meaningful photographs, you can expect a exceptional experience at every step.
 					</p>
 					<FeatureGrid />
 					<div className="flex justify-center mt-10 pt-5">

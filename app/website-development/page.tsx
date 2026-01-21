@@ -13,6 +13,7 @@ import WebsiteSolutions from "@/app/website-development/WebsiteSolutions";
 import CustomerExperienceTools from "@/app/website-development/CustomerExperienceTools";
 import PlatformsAndTechnologies from "@/app/website-development/PlatformsAndTechnologies";
 import { useSlideInFromLeft, useFadeInFromBottom, useFadeInFromBottomOnScroll } from "@/components/animations";
+import OurProcess from "./OurProcess";
 
 export default function WebsiteDevelopment() {
 	const headingRef = useRef<HTMLHeadingElement>(null);
@@ -102,22 +103,27 @@ export default function WebsiteDevelopment() {
 						<CustomerExperienceTools />
 					</div>
 				</div>
-				
-				<div className="container mx-auto text-center text-white text-center aktiv-grotesk-regular">
-					<div className="my-10">
-						<Link href="/contact" aria-label="Go to Contact page">
-							<Button
-								variant="outline"
-								className="rounded-full px-10 mt-5 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
-							>
-								Get in Touch
-							</Button>
-						</Link>
+				<div className="container-fluid px-10 text-white aktiv-grotesk-regular py-5">
+					<div className="mb-20">
+						<h2 className="text-[30px] text-white proxima-nova-semibold md:mt-10 pt-5 text-center">
+							Our Design &amp; Development Process
+						</h2>
+						<OurProcess />
+						<div className="my-10 text-center">
+							<Link href="/contact" aria-label="Go to Contact page">
+								<Button
+									variant="outline"
+									className="rounded-full px-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
+								>
+									Get in Touch
+								</Button>
+							</Link>
+						</div>
 					</div>
+				</div>
+				<div className="container mx-auto text-center text-white text-center aktiv-grotesk-regular">
 					<h2
-						ref={projectsHeadingRef}
-						style={projectsStyles.style}
-						className="text-[30px] text-white proxima-nova-semibold md:mt-10 pt-5"
+						className="text-[30px] text-white proxima-nova-semibold"
 					>
 						Projects
 					</h2>
