@@ -28,7 +28,7 @@ export default function CustomerExperienceTools() {
 				<p className="text-white/90 aktiv-grotesk-regular">{description2}</p>
 			</div>
 			<div className="md:col-span-2 flex items-center justify-center">
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+				<div className="grid grid-cols-2 md:grid-cols-3 gap-8">
 					{images.map((image, index) => (
 						<div key={index} className="flex items-center justify-center">
 							<a

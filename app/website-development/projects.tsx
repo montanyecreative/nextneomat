@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -79,93 +79,74 @@ const projects: Project[] = [
 	},
 ];
 
-const formatProjectCounter = (index: number, total: number) => `${String(index + 1).padStart(2, "0")}/${String(total).padStart(2, "0")}`;
-
 export default function Projects() {
-	const sectionRef = useRef<HTMLElement>(null);
-	const listRef = useRef<HTMLUListElement>(null);
-	const fillRef = useRef<HTMLDivElement>(null);
-	const listItemRefs = useRef<(HTMLLIElement | null)[]>([]);
-	const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
-	const [activeIndex, setActiveIndex] = useState(0);
+	const portfolioRef = useRef<HTMLElement>(null);
+	const galleryWrapperRef = useRef<HTMLDivElement>(null);
+	const galleryStripRef = useRef<HTMLDivElement>(null);
 	const isMobile = useIsMobile();
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		// Skip ScrollTrigger animation on mobile
 		if (isMobile) return;
 
-		if (!sectionRef.current || !listRef.current || !fillRef.current) return;
+		if (!galleryWrapperRef.current || !galleryStripRef.current) return;
 
-		const listItems = listItemRefs.current.filter(Boolean) as HTMLLIElement[];
-		const slides = slideRefs.current.filter(Boolean) as HTMLDivElement[];
+		const pinWrap = galleryStripRef.current;
+		const wrapper = galleryWrapperRef.current;
+		let pinWrapWidth: number;
+		let horizontalScrollLength: number;
+		let scrollTrigger: gsap.core.Tween | null = null;
+		let refreshHandler: () => void;
 
-		if (listItems.length === 0 || slides.length === 0) return;
+		function refresh() {
+			pinWrapWidth = pinWrap.scrollWidth;
+			// Calculate scroll length: total width minus viewport width (which shows 3 slides)
+			horizontalScrollLength = pinWrapWidth - window.innerWidth;
+		}
 
-		const tl = gsap.timeline({
-			scrollTrigger: {
-				trigger: sectionRef.current,
-				start: "top top",
-				end: `+=${listItems.length * 50}%`,
-				pin: true,
-				scrub: true,
-				onUpdate: (self) => {
-					const targetIndex = Math.round(self.progress * (listItems.length - 1));
-					setActiveIndex((prev) => (prev === targetIndex ? prev : targetIndex));
+		// Initialize after a brief delay to ensure DOM and images are ready
+		const initTimeout = setTimeout(() => {
+			refresh();
+			
+			refreshHandler = () => {
+				refresh();
+			};
+
+			// Pinning and horizontal scrolling - trigger and pin the wrapper itself
+			scrollTrigger = gsap.to(pinWrap, {
+				scrollTrigger: {
+					scrub: true,
+					trigger: wrapper,
+					pin: wrapper,
+					start: "top top",
+					end: () => `+=${pinWrapWidth}`,
+					invalidateOnRefresh: true,
 				},
-			},
-		});
-
-		// Set initial state for fill marker
-		gsap.set(fillRef.current, {
-			scaleY: 1 / listItems.length,
-			transformOrigin: "top left",
-		});
-
-		// Set initial state for first item and slide
-		gsap.set(listItems[0], { color: "#c6284a" });
-		gsap.set(slides[0], { autoAlpha: 1 });
-
-		// Animate each item
-		listItems.forEach((item, i) => {
-			const previousItem = listItems[i - 1];
-			if (previousItem) {
-				tl.set(item, { color: "#c6284a" }, 0.5 * i)
-					.to(
-						slides[i],
-						{
-							autoAlpha: 1,
-							duration: 0.2,
-						},
-						"<"
-					)
-					.set(previousItem, { color: "#fffce1" }, "<")
-					.to(
-						slides[i - 1],
-						{
-							autoAlpha: 0,
-							duration: 0.2,
-						},
-						"<"
-					);
-			}
-		});
-
-		// Animate fill marker
-		tl.to(
-			fillRef.current,
-			{
-				scaleY: 1,
-				transformOrigin: "top left",
+				x: () => -horizontalScrollLength,
 				ease: "none",
-				duration: tl.duration(),
-			},
-			0
-		).to({}, {}); // Add a small pause at the end
+			});
+
+			ScrollTrigger.addEventListener("refreshInit", refreshHandler);
+			ScrollTrigger.refresh();
+		}, 150);
+
+		// Handle window resize
+		const handleResize = () => {
+			refresh();
+			ScrollTrigger.refresh();
+		};
+		window.addEventListener("resize", handleResize);
 
 		return () => {
-			// IMPORTANT: only clean up what THIS component created
-			tl.scrollTrigger?.kill();
-			tl.kill();
+			clearTimeout(initTimeout);
+			window.removeEventListener("resize", handleResize);
+			if (scrollTrigger) {
+				scrollTrigger.scrollTrigger?.kill();
+				scrollTrigger.kill();
+			}
+			if (refreshHandler) {
+				ScrollTrigger.removeEventListener("refreshInit", refreshHandler);
+			}
 		};
 	}, [isMobile]);
 
@@ -202,47 +183,26 @@ export default function Projects() {
 		);
 	}
 
-	// Desktop layout: scroll-triggered animation
+	// Desktop layout: horizontal scrolling gallery
 	return (
-		<section
-			ref={sectionRef}
-			className="pin-section w-full min-h-screen flex justify-center items-center -mt-20 pt-0 aktiv-grotesk-regular"
-		>
-			<div className="content w-full mx-10 flex items-start px-[20px] relative">
-				<ul ref={listRef} className="list text-[30px] text-white m-0 p-0 pr-[40px] list-none flex-grow-0 aktiv-grotesk">
-					{projects.map((project, index) => (
-						<li
-							key={project.href}
-							ref={(el) => {
-								listItemRefs.current[index] = el;
-							}}
-							className="text-white"
-						>
-							{project.title}
-						</li>
-					))}
-				</ul>
-				<div className="absolute -top-[30px] left-0 z-20 text-[16px] tracking-[0.3em] uppercase text-white pointer-events-none">
-					{formatProjectCounter(activeIndex, projects.length)}
-				</div>
-				<div ref={fillRef} className="fill absolute top-0 left-0 w-[2px] h-full bg-mcRed" />
-				<div className="right flex-grow relative h-full flex items-start">
-					{projects.map((project, index) => (
-						<div
-							key={project.href}
-							ref={(el) => {
-								slideRefs.current[index] = el;
-							}}
-							className="slide absolute w-8/10 top-0 right-4 opacity-0 invisible rounded-[10px]"
-						>
+		<section id="portfolio" ref={portfolioRef} className="relative text-center aktiv-grotesk-regular">
+			<div className="w-screen pr-0 pl-0 mr-auto ml-auto overflow-hidden min-h-screen" ref={galleryWrapperRef}>
+				<div
+					ref={galleryStripRef}
+					className="horiz-gallery-strip flex flex-nowrap will-change-transform relative"
+					style={{ willChange: "transform" }}
+				>
+					{projects.map((project) => (
+						<div key={project.href} className="project-wrap w-[33.333vw] flex-shrink-0 p-8 box-content">
 							<div className="flex flex-col items-center">
 								<Image
 									src={project.imageSrc}
 									alt={project.imageAlt}
 									width={1000}
 									height={1000}
-									className="w-full rounded-[10px] mb-4"
+									className="w-full aspect-square object-cover rounded-[10px] mb-4"
 								/>
+								<h3 className="text-white text-[24px] mb-2 proxima-nova-semibold text-center">{project.title}</h3>
 								<p className="text-white text-sm text-center mb-4 px-4">{project.description}</p>
 								<Link href={project.href} aria-label={project.ariaLabel} target="_blank" rel="noopener">
 									<Button
