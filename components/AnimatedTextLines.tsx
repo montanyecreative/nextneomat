@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface AnimatedTextLinesProps {
 	children: string;
@@ -9,7 +9,7 @@ interface AnimatedTextLinesProps {
 
 export default function AnimatedTextLines({ children, className = "" }: AnimatedTextLinesProps) {
 	const containerRef = useRef<HTMLDivElement>(null);
-	const [wrappedLines, setWrappedLines] = useState<JSX.Element[]>([]);
+	const [wrappedLines, setWrappedLines] = useState<React.ReactElement[]>([]);
 
 	useEffect(() => {
 		if (!containerRef.current) return;
