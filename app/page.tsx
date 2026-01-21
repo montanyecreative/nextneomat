@@ -46,6 +46,7 @@ export default function Home() {
 						<Link href="/website-development" aria-label="Go to the website development page">
 							<Button
 								variant="outline"
+								aria-label="Go to the website development page"
 								className="rounded-full px-10 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
 							>
 								Learn more

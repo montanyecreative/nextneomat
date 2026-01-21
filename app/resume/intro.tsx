@@ -37,7 +37,7 @@ export default function IntroSection() {
 			<p className="italic my-5 text-[16px]">Leans front-end</p>
 			<div className="flex justify-center">
 				<p className="text-[14px]">Front-end</p>
-				<Slider defaultValue={[40]} max={100} step={10} disabled={true} aria-label="Skill comfort slider" className="mx-10" />
+				<Slider defaultValue={[40]} max={100} step={10} disabled={true} aria-label="Skill comfort slider" name="Skill comfort slider" className="mx-10" />
 				<p className="text-[14px]">Back-end</p>
 			</div>
 			<p className="mt-3 text-[16px]">Fullstack</p>
