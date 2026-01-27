@@ -48,13 +48,13 @@ export default function WebsiteDevelopment() {
 							<span className="aktiv-grotesk-semibold">Create value with</span>
 							<br /> design &amp; technology.
 						</h1>
-						<p className="text-[20px] absolute top-1/2 -translate-y-1/2 right-5 p-5 text-white md:block hidden w-[600px] aktiv-grotesk-regular">
-							Montanye Creative is a midwest based Design &amp; Technology Studio. We assist individuals and organizations by
+						<p className="text-[20px] absolute hidden md:block md:top-[60%] md:left-10 md:right-auto md:w-auto custom1060:top-1/2 custom1060:-translate-y-1/2 custom1060:right-5 custom1060:left-auto custom1060:w-[600px] p-5 text-white aktiv-grotesk-regular">
+							Montanye Creative is a Midwest based Design &amp; Technology Studio. We assist individuals and organizations by
 							identifying and executing necessary digital initiatives, producing high-end, conversion driving experiences.
 						</p>
 					</div>
 				</div>
-				<div className="container-fluid webdev-page px-10 text-center text-white aktiv-grotesk-regular">
+				<div className="container-fluid webdev-page px-5 md:px-10 text-center text-white aktiv-grotesk-regular">
 					<div className="mb-20">
 						<h1 className="text-[32px] mt-5 md:hidden">
 							<b>Create value with</b>
@@ -86,7 +86,7 @@ export default function WebsiteDevelopment() {
 						</div>
 					</div>
 				</div>
-				<div className="container-fluid px-10 text-center text-white aktiv-grotesk-regular bg-[#242424] py-5">
+				<div className="container-fluid px-5 md:px-10 text-center text-white aktiv-grotesk-regular bg-[#242424] py-5">
 					<div className="mb-20">
 						<h2
 							ref={websiteSolutionsHeadingRef}
@@ -98,17 +98,17 @@ export default function WebsiteDevelopment() {
 						<WebsiteSolutions />
 					</div>
 				</div>
-				<div className="container-fluid px-10 text-white aktiv-grotesk-regular py-5">
+				<div className="container-fluid px-5 md:px-10 text-white aktiv-grotesk-regular py-5">
 					<div className="mb-20">
 						<PlatformsAndTechnologies />
 					</div>
 				</div>
-				<div className="container-fluid px-10 text-white bg-[#242424] aktiv-grotesk-regular py-5">
+				<div className="container-fluid px-5 md:px-10 text-white bg-[#242424] aktiv-grotesk-regular py-5">
 					<div className="mb-20">
 						<CustomerExperienceTools />
 					</div>
 				</div>
-				<div className="container-fluid px-10 text-white aktiv-grotesk-regular py-5">
+				<div className="container-fluid px-5 md:px-10 text-white aktiv-grotesk-regular py-5">
 					<div className="mb-20">
 						<h2 className="text-[30px] text-white proxima-nova-semibold md:mt-10 pt-5 text-center">
 							Our Design &amp; Development Process
@@ -146,7 +146,7 @@ export default function WebsiteDevelopment() {
 						for details.
 					</p>
 				</div>
-				<div className="container-fluid px-auto md:px-10 text-white aktiv-grotesk-regular">
+				<div className="container-fluid px-auto md:px-5 md:px-10 text-white aktiv-grotesk-regular">
 					<Projects />
 				</div>
 			</div>
