@@ -23,7 +23,7 @@ export default function WebsiteSolutions() {
 		 },
 		{ 
 			title: "Single Page Landing Page Websites",
-			description: "Sometimes all you need is a single page to showcase your business or product. We can help you create a single page landing page that is easy to navigate and has a clear structure.",
+			description: "Sometimes all you need is a single page to showcase your business or product. We can help you build a site that tells a powerful story that drives conversion rates towards your business's end goal.",
 		 },
 		{ 
 			title: "Portfolio Websites",

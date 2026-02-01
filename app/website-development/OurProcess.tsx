@@ -17,13 +17,13 @@ const processSteps: ProcessStep[] = [
 		number: "02",
 		title: "Design & Development",
 		description:
-            "Once we've started the project, you can expect our design and development phase to progress swiftly. From conversations and workshops, we create beautiful, user-centered designs and bring them to life with clean, performant code. This is done iteratively so that you can see the build in progress as it is built in a test environment before going live. We constantly take feedback in this phase and make any changes necessary to achieve the vision you want for your site.",
+            "Once we've started the project, you can expect our design and development phase to progress swiftly. From conversations and workshops, we create beautiful, user-centered designs and bring them to life with clean, performant code. This is done iteratively so that you can see the build in progress as it is built in realtime in a test environment before going live. We constantly take feedback in this phase and make any changes necessary to achieve the vision you want.",
         },
 	{
 		number: "03",
 		title: "Launch & Optimization",
 		description:
-            "After your site is completely built and we’re getting ready to go live, we step through a final workshop and have you review the complete build. When it is looking good to go, we handle the launch of your website at a time that won’t impact your business. Once it is online we will do performative tests to make sure everything is running as expected. From there we can either teach you how to work the website and hand it off to you or we can continue to support you at an affordable discounted rate. Our number one goal is making sure you are happy with your solution and feel that you could understand the larger picture of how it works without us.",
+            "After your site is completely built and we’re ready to go live, we step through a final workshop and have you review the complete build. When it is good to go, we handle the launch of your website at an agreed time that won’t impact your business. Once it is online we will do performative tests to make sure everything is running perfectly. From there we can either teach you how to work the website and hand it off to you or we can continue to support you at an affordable discounted rate. Our number one goal is making sure you are happy with your solution and feel that you could understand the larger picture of how it works without us.",
 	},
 ];
 

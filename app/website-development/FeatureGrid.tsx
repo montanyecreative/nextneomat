@@ -101,7 +101,7 @@ const featureItems: FeatureItem[] = [
 			"Whether you need a tool for capturing and streamlining form inputs, managing Content in a CMS, or managing email subscribers, we have you covered.",
 		description3: "",
 		featuresTitle: "Tools",
-		features: ["Constant Contact", "Basin Forms", "Mailchimp", "Klaviyo", "Emarsys", "Contentful", "Shopify", "Gelato Printing"],
+		features: ["Constant Contact", "Basin Forms", "Mailchimp", "Klaviyo", "Emarsys", "Contentful", "Shopify", "Gelato Printing", "Google Business"],
 	},
 ];
 
