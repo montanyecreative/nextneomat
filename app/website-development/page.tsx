@@ -32,9 +32,9 @@ export default function WebsiteDevelopment() {
 	}, []);
 
 	return (
-		<main>
+		<main className="overflow-x-hidden">
 			<Navbar />
-			<div className="bg-transparent">
+			<div className="bg-transparent overflow-x-hidden">
 				<div className="sm:mx-auto md:mx-auto flex banner-home-copy">
 					<div className="w-full comparison-slider relative">
 						<div style={{ opacity: 0.4 }} className="absolute inset-0">

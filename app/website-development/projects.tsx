@@ -185,8 +185,8 @@ export default function Projects() {
 
 	// Desktop layout: horizontal scrolling gallery
 	return (
-		<section id="portfolio" ref={portfolioRef} className="relative text-center aktiv-grotesk-regular">
-			<div className="w-screen pr-0 pl-0 mr-auto ml-auto overflow-hidden min-h-screen" ref={galleryWrapperRef}>
+		<section id="portfolio" ref={portfolioRef} className="relative text-center aktiv-grotesk-regular overflow-hidden">
+			<div className="w-full pr-0 pl-0 mr-auto ml-auto overflow-hidden min-h-screen" ref={galleryWrapperRef}>
 				<div
 					ref={galleryStripRef}
 					className="horiz-gallery-strip flex flex-nowrap will-change-transform relative"
