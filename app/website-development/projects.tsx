@@ -107,7 +107,7 @@ export default function Projects() {
 		// Initialize after a brief delay to ensure DOM and images are ready
 		const initTimeout = setTimeout(() => {
 			refresh();
-			
+
 			refreshHandler = () => {
 				refresh();
 			};
@@ -137,9 +137,22 @@ export default function Projects() {
 		};
 		window.addEventListener("resize", handleResize);
 
+		// Recalculate pin distance when page height changes (e.g. calculator toggles above)
+		let resizeObserverTimeout: ReturnType<typeof setTimeout>;
+		const layoutObserver = new ResizeObserver(() => {
+			clearTimeout(resizeObserverTimeout);
+			resizeObserverTimeout = setTimeout(() => {
+				refresh();
+				ScrollTrigger.refresh();
+			}, 200);
+		});
+		layoutObserver.observe(document.documentElement);
+
 		return () => {
 			clearTimeout(initTimeout);
+			clearTimeout(resizeObserverTimeout);
 			window.removeEventListener("resize", handleResize);
+			layoutObserver.disconnect();
 			if (scrollTrigger) {
 				scrollTrigger.scrollTrigger?.kill();
 				scrollTrigger.kill();

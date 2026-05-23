@@ -14,6 +14,7 @@ import CustomerExperienceTools from "@/app/website-development/CustomerExperienc
 import PlatformsAndTechnologies from "@/app/website-development/PlatformsAndTechnologies";
 import { useSlideInFromLeft, useFadeInFromBottom, useFadeInFromBottomOnScroll } from "@/components/animations";
 import OurProcess from "./OurProcess";
+import WhatToExpect from "./WhatToExpect";
 
 export default function WebsiteDevelopment() {
 	const headingRef = useRef<HTMLHeadingElement>(null);
@@ -38,7 +39,13 @@ export default function WebsiteDevelopment() {
 				<div className="sm:mx-auto md:mx-auto flex banner-home-copy">
 					<div className="w-full comparison-slider relative">
 						<div style={{ opacity: 0.4 }} className="absolute inset-0">
-							<Image src="/banners/website-development-banner.webp" alt="Website Development Banner" fill className="object-cover" priority />
+							<Image
+								src="/banners/website-development-banner.webp"
+								alt="Website Development Banner"
+								fill
+								className="object-cover"
+								priority
+							/>
 						</div>
 						<h1
 							ref={headingRef}
@@ -126,28 +133,34 @@ export default function WebsiteDevelopment() {
 						</div>
 					</div>
 				</div>
-				<div className="container mx-auto text-center text-white text-center aktiv-grotesk-regular">
-					<h2
-						className="text-[30px] text-white proxima-nova-semibold"
-					>
-						Projects
-					</h2>
-					<p className="mt-5">
-						I have worked many other projects that are not shown here as I do not have direct permission from clients to share
-						works as per contracted agreements but those brands and sites include:{" "}
-						<i>
-							Citizen, Bulova, Accutron, Frederique Constant, Alpina, New Balance, Johnston &amp; Murphy, Sheet Music Plus,
-							Cherished Memories, ReserveBar, LuxeDecor, SyllogisTeks, PohlmanUSA, and Our Lady&apos;s Inn
-						</i>
-						. See{" "}
-						<Link href="/resume" className="underline" aria-label="Go to Resume page">
-							resume
-						</Link>{" "}
-						for details.
-					</p>
+				<div className="relative z-0 isolate container-fluid px-5 md:px-10 text-white aktiv-grotesk-regular pb-5">
+					<div className="mb-12">
+						<h2 id="what-to-expect-heading" className="text-[30px] text-white proxima-nova-semibold text-center mb-2">
+							Pricing to expect
+						</h2>
+						<WhatToExpect />
+					</div>
 				</div>
-				<div className="container-fluid px-auto md:px-5 md:px-10 text-white aktiv-grotesk-regular">
-					<Projects />
+				<div id="projects" className="relative z-0 isolate">
+					<div className="container mx-auto text-center text-white text-center aktiv-grotesk-regular">
+						<h2 className="text-[30px] text-white proxima-nova-semibold">Projects</h2>
+						<p className="mt-5">
+							I have worked many other projects that are not shown here as I do not have direct permission from clients to
+							share works as per contracted agreements but those brands and sites include:{" "}
+							<i>
+								Citizen, Bulova, Accutron, Frederique Constant, Alpina, New Balance, Johnston &amp; Murphy, Sheet Music
+								Plus, Cherished Memories, ReserveBar, LuxeDecor, SyllogisTeks, PohlmanUSA, and Our Lady&apos;s Inn
+							</i>
+							. See{" "}
+							<Link href="/resume" className="underline" aria-label="Go to Resume page">
+								resume
+							</Link>{" "}
+							for details.
+						</p>
+					</div>
+					<div className="container-fluid px-auto md:px-5 md:px-10 text-white aktiv-grotesk-regular">
+						<Projects />
+					</div>
 				</div>
 			</div>
 			<Salesforce />
