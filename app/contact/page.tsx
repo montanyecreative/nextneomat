@@ -1,12 +1,20 @@
 "use client";
 
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Promotion from "@/components/promotion";
 import Image from "next/image";
 import ContactForm from "../../components/contactForm";
 import { useSlideInFromLeft } from "@/components/animations";
+
+function ContactFormWithPrefill() {
+	const searchParams = useSearchParams();
+	const prefillMessage = searchParams.get("message") ?? "";
+
+	return <ContactForm prefillMessage={prefillMessage} />;
+}
 
 export default function ContactUs() {
 	const headingRef = useRef<HTMLHeadingElement>(null);
@@ -34,7 +42,9 @@ export default function ContactUs() {
 						Please fill out the form below and we will get in touch with you as soon as we can.
 					</p>
 					<p className="my-5 aktiv-grotesk-regular">We look forward to hearing from you.</p>
-					<ContactForm />
+					<Suspense fallback={<ContactForm />}>
+						<ContactFormWithPrefill />
+					</Suspense>
 				</div>
 			</div>
 			<Promotion />

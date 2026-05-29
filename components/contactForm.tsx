@@ -29,7 +29,7 @@ const formSchema = z.object({
 	}),
 });
 
-export default function ContactForm() {
+export default function ContactForm({ prefillMessage = "" }: { prefillMessage?: string }) {
 	// Always call the hook (must be called unconditionally per React rules)
 	// It will be undefined if provider isn't set up, which we handle in onSubmit
 	const recaptcha = useGoogleReCaptcha();
@@ -55,7 +55,7 @@ export default function ContactForm() {
 			name: "",
 			email: "",
 			phone: "",
-			message: "",
+			message: prefillMessage,
 		},
 	});
 
@@ -188,7 +188,7 @@ export default function ContactForm() {
 								<Textarea
 									placeholder="What can we help you with?"
 									{...field}
-									className="text-[16px] min-h-[120px] !shadow-none !bg-black/40 !border-white/10 hover:!bg-black/50 focus:!bg-black/50 focus:!border-white/20"
+									className="text-[16px] min-h-[200px] !shadow-none !bg-black/40 !border-white/10 hover:!bg-black/50 focus:!bg-black/50 focus:!border-white/20"
 								/>
 							</FormControl>
 							<FormDescription></FormDescription>
