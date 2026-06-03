@@ -639,6 +639,12 @@ export default function WhatToExpect() {
 							>
 								{breakdownText || "Includes placeholder for layout stability"}
 							</p>
+							<p className="aktiv-grotesk-regular text-white/60 text-xs uppercase tracking-wide mb-0.5">Developer Rate</p>
+							<p className="text-[20px] text-white proxima-nova-semibold leading-tight min-h-[2rem]">$35/hour</p>
+							<p className="aktiv-grotesk-regular text-white/50 text-sm min-h-[2.5rem] leading-snug select-none">
+								*Excludes consultation call pricing. Consultation calls are $100. Your first hour of project development is
+								free if agree to proposal in consultation.
+							</p>
 						</div>
 
 						<div className="flex flex-col sm:flex-row gap-3 shrink-0 self-center sm:self-auto">
