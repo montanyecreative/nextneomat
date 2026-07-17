@@ -39,6 +39,13 @@ const tools: ToolItem[] = [
 		category: "Vacation",
 		description: "An app for finding things to do in The Lake of the Ozarks, Missouri.",
 	},
+	{
+		id: "the-bransonator",
+		name: "The Bransonator",
+		href: "https://www.thebransonator.app/",
+		category: "Vacation",
+		description: "An app for finding things to do in Branson, Missouri.",
+	},
 ];
 
 const isExternalHref = (href: string) => /^https?:\/\//i.test(href);
@@ -56,7 +63,7 @@ export default function Tools() {
 			(tool) =>
 				tool.name.toLowerCase().includes(query) ||
 				tool.category.toLowerCase().includes(query) ||
-				tool.description.toLowerCase().includes(query)
+				tool.description.toLowerCase().includes(query),
 		);
 	}, [searchQuery]);
 
@@ -114,9 +121,7 @@ export default function Tools() {
 																? `Go to ${tool.name} tool (opens in a new tab)`
 																: `Go to ${tool.name} tool`
 														}
-														{...(external
-															? { target: "_blank", rel: "noopener noreferrer" }
-															: {})}
+														{...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
 													>
 														<Button
 															variant="outline"
