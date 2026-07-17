@@ -87,6 +87,7 @@ function AllCards() {
           body="This website was developed using Next.js, React, TypeScript, shadcn/ui, and Tailwind CSS. The design draws from Neumorphism and Glassmorphism to create a textured, depth-rich feel."
           buttonLabel="View on GitHub"
           showButton
+          align="center"
         />
       </section>
 
@@ -102,6 +103,7 @@ function AllCards() {
               title={title}
               description="Supporting description text explaining what happens during this phase of the project."
               showGlow
+              align="left"
             />
           ))}
         </div>
