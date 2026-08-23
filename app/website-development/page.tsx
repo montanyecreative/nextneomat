@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import Projects from "@/app/website-development/projects";
 import FeatureGrid from "@/app/website-development/FeatureGrid";
 import WebsiteSolutions from "@/app/website-development/WebsiteSolutions";
+import BusinessCaseStudies from "@/app/website-development/BusinessCaseStudies";
 import CustomerExperienceTools from "@/app/website-development/CustomerExperienceTools";
 import PlatformsAndTechnologies from "@/app/website-development/PlatformsAndTechnologies";
 import { useSlideInFromLeft, useFadeInFromBottom, useFadeInFromBottomOnScroll } from "@/components/animations";
@@ -21,11 +22,13 @@ export default function WebsiteDevelopment() {
 	const featuresHeadingRef = useRef<HTMLHeadingElement>(null);
 	const websiteSolutionsHeadingRef = useRef<HTMLHeadingElement>(null);
 	const projectsHeadingRef = useRef<HTMLHeadingElement>(null);
+	const caseStudiesHeadingRef = useRef<HTMLHeadingElement>(null);
 
 	const headingStyles = useSlideInFromLeft(headingRef);
 	const featuresStyles = useFadeInFromBottom(featuresHeadingRef, { delay: 0.3 });
 	const websiteSolutionsStyles = useFadeInFromBottomOnScroll(websiteSolutionsHeadingRef);
 	const projectsStyles = useFadeInFromBottomOnScroll(projectsHeadingRef);
+	const caseStudiesStyles = useFadeInFromBottomOnScroll(caseStudiesHeadingRef);
 
 	// Scroll to top when component mounts
 	useEffect(() => {
@@ -94,6 +97,16 @@ export default function WebsiteDevelopment() {
 					</div>
 				</div>
 				<div className="container-fluid px-5 md:px-10 text-center text-white aktiv-grotesk-regular bg-[#242424] py-5">
+					<div id="case-studies" className="mb-20 scroll-mt-24">
+						<h2
+							ref={caseStudiesHeadingRef}
+							style={caseStudiesStyles.style}
+							className="my-10 md:pt-unset text-white text-center"
+						>
+							Business case studies
+						</h2>
+						<BusinessCaseStudies />
+					</div>
 					<div className="mb-20">
 						<h2
 							ref={websiteSolutionsHeadingRef}

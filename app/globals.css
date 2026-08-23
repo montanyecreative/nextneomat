@@ -994,3 +994,12 @@ h2 {
 	opacity: 0;
 	transform: translateX(-100px);
 }
+
+/* Case study typography (dynamic /website-development/[caseStudyName] pages) */
+.cs-display {
+	font-family: var(--font-space-grotesk), "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.cs-mono {
+	font-family: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
