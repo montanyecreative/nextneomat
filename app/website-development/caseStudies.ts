@@ -20,6 +20,11 @@ export type CaseStudyLink = {
  * root so one set of components can render studies with different identities.
  */
 export type CaseStudyPalette = {
+	/**
+	 * Whether the study's non-dark bands really read as light. A "dark" scheme keeps
+	 * image frames and captions on their dark treatment across every band.
+	 */
+	scheme: "light" | "dark";
 	/** Dark band background (hero, showcase, CTA). */
 	dark: string;
 	/** Backing colour behind an image framed on a dark band. */
@@ -68,6 +73,7 @@ export type CaseStudyPalette = {
 
 /** Warm espresso identity — Compounds Coffee. */
 export const espressoPalette: CaseStudyPalette = {
+	scheme: "light",
 	dark: "#1b1714",
 	darkFrame: "#0d0b09",
 	mist: "#f4efe6",
@@ -97,6 +103,7 @@ export const espressoPalette: CaseStudyPalette = {
 
 /** Cool navy identity — the Client Portal. */
 export const navyPalette: CaseStudyPalette = {
+	scheme: "light",
 	dark: "#0e1f2b",
 	darkFrame: "#0a161e",
 	mist: "#eef1f3",
@@ -124,15 +131,70 @@ export const navyPalette: CaseStudyPalette = {
 	systemCard: "#15303f",
 };
 
+/** Dark gallery identity — Montanye Creative Prints. */
+export const crimsonPalette: CaseStudyPalette = {
+	scheme: "dark",
+	dark: "#08080a",
+	darkFrame: "#000000",
+	mist: "#0d0d10",
+	paper: "#08080a",
+	ink: "#ffffff",
+	onDark: "#f3f1ef",
+	onDarkMuted: "#b3b3bb",
+	mutedDark: "#787c85",
+	mutedLight: "#787c85",
+	bodyStrong: "#d3d3d9",
+	body: "#b3b3bb",
+	bodySoft: "#a9a9b1",
+	accent: "#e64a6c",
+	accentDeep: "#e64a6c",
+	accentSolid: "#c6284a",
+	onAccent: "#ffffff",
+	specLabel: "#e64a6c",
+	glow: "rgba(198,40,74,0.22)",
+	tagDarkBg: "rgba(198,40,74,0.12)",
+	tagDarkBorder: "rgba(198,40,74,0.3)",
+	tagDarkText: "#e64a6c",
+	tagLightBg: "rgba(198,40,74,0.12)",
+	tagLightBorder: "rgba(198,40,74,0.3)",
+	tagLightText: "#e64a6c",
+	systemCard: "#15151a",
+};
+
+/** A stage strip showing where an order sits as it moves through fulfillment. */
+export type CaseStudyPipeline = {
+	stages: Array<{
+		step: string;
+		label: string;
+		description: string;
+		/** "done" dims the step marker, "current" leaves it on the accent. */
+		state: "done" | "current";
+	}>;
+	note?: string;
+};
+
+/** Two images shown side by side under a single shared caption. */
+export type CaseStudyImagePair = {
+	images: [CaseStudyImage, CaseStudyImage];
+	caption?: string;
+};
+
 export type CaseStudyFeature = {
 	kick: string;
 	heading: string;
+	/** Larger opening paragraph, used by full-width features. */
+	lead?: string;
 	body: RichText[];
 	tags?: string[];
 	image?: CaseStudyImage;
+	/** Shown in place of `image` when a feature needs two frames side by side. */
+	imagePair?: CaseStudyImagePair;
+	pipeline?: CaseStudyPipeline;
 	/** "dark" renders the accent band, "mist" a tinted band, "light" the paper background. */
 	theme: "dark" | "mist" | "light";
-	/** Places the image before the copy on desktop. */
+	/** "split" sets the copy beside the image, "full" runs it full width with any image below. */
+	layout?: "split" | "full";
+	/** Places the image before the copy on desktop. Only applies to the split layout. */
 	reverse?: boolean;
 };
 
@@ -162,6 +224,8 @@ export type CaseStudy = {
 		heading: string;
 		lead: string;
 		body: RichText[];
+		/** The band the brief sits on. Defaults to the tinted band. */
+		theme?: "mist" | "light";
 	};
 	spec?: {
 		kick: string;
@@ -171,6 +235,11 @@ export type CaseStudy = {
 	};
 	/** Stack panel, an alternative to the spec sheet. */
 	system?: CaseStudySystem;
+	/**
+	 * Where the system panel sits relative to the feature blocks. Defaults to
+	 * "after-brief", so it reads as an overview before the walkthrough.
+	 */
+	systemPlacement?: "after-brief" | "after-features";
 	features?: CaseStudyFeature[];
 	demonstrates?: {
 		kick: string;
@@ -187,6 +256,293 @@ export type CaseStudy = {
 };
 
 export const caseStudies: CaseStudy[] = [
+	{
+		slug: "montanye-prints",
+		palette: crimsonPalette,
+		eyebrow: "Case Study",
+		titleLines: ["Montanye", "Creative Prints"],
+		summary:
+			"A complete e-commerce store and a custom order-management system, designed, built, and operated end to end. Infrared aluminum art prints, made on demand, tracked from checkout to doorstep.",
+		cardSummary:
+			"A complete e-commerce store plus the custom order-management system behind it — infrared aluminum art prints, made on demand and tracked from checkout to doorstep.",
+		liveUrl: "https://montanyecreative.shop/",
+		metaDescription:
+			"How Montanye Creative designed, built, and operates Montanye Creative Prints: a Next.js storefront on Contentful and Stripe, with a custom order-management system tracking every print from checkout to doorstep.",
+		meta: [
+			{ label: "Role", value: "Design, build & ops (solo)" },
+			{ label: "Type", value: "E-commerce + OMS" },
+			{ label: "Stack", value: "Next.js · React · TS" },
+			{ label: "Status", value: "Live" },
+		],
+		showcase: {
+			src: "/case-studies/montanye-prints/montanye-prints-home.webp",
+			alt: "Montanye Creative Prints homepage with a full-bleed infrared peony photograph",
+			width: 1400,
+			height: 763,
+			caption: "The storefront leads with the work — a dark gallery treatment so the art carries the page.",
+		},
+		brief: {
+			kick: "The brief",
+			heading: "A storefront is only half of it",
+			theme: "light",
+			lead: "Montanye Creative Prints is a live store selling infrared aluminum art prints. But the store is only the front half. Behind it runs a custom order-management system I built and operate myself, tracking every order from checkout through production to shipment.",
+			body: [
+				[
+					"That's the point of this one: it's proof I can deliver an entire e-commerce operation — storefront, checkout, fulfillment, and the back-office that runs it — and hand it off to a client as a working product, not just a website.",
+				],
+			],
+		},
+		features: [
+			{
+				kick: "Browsing the collection",
+				heading: "The grid is the gallery",
+				theme: "mist",
+				reverse: true,
+				body: [
+					[
+						"The prints listing puts the art first. A chromium, content-aware layout lets each image's own colors bleed through the interface, so the browsing experience takes on the palette of the work itself. Nothing competes with the photography — the grid becomes the gallery wall.",
+					],
+				],
+				tags: ["content-aware UI", "color bleed", "art-first grid"],
+				image: {
+					src: "/case-studies/montanye-prints/montanye-prints-plp.webp",
+					alt: "Prints listing page with a full-bleed grid where each image's colors bleed through the interface",
+					width: 1200,
+					height: 657,
+					caption: "The prints grid — a content-aware layout that takes on the palette of the work.",
+				},
+			},
+			{
+				kick: "The product page",
+				heading: "Heavy contrast, simple decision",
+				theme: "light",
+				body: [
+					[
+						"Each product page uses deep black contrast to make the art the entire focus, then keeps the commerce dead simple: price, a clear size selector, quantity, one button. The aluminum-print details (high-gloss surface, float-mount hangers, print-on-demand) are there for the curious without ever crowding the decision.",
+					],
+					[
+						"The same template carries the store's two infrared themes, the vivid reds and the cooler whites, each page reshaping around the image it holds.",
+					],
+				],
+				tags: ["black-contrast focus", "easy size select", "print-on-demand"],
+				imagePair: {
+					images: [
+						{
+							src: "/case-studies/montanye-prints/montanye-prints-pdp-red.webp",
+							alt: "Product page for a red infrared print, Yellow Orchid Bunch",
+							width: 1200,
+							height: 1781,
+						},
+						{
+							src: "/case-studies/montanye-prints/montanye-prints-pdp-white.webp",
+							alt: "Product page for a white infrared print, Lone Elk Park Lake",
+							width: 1200,
+							height: 1781,
+						},
+					],
+					caption: "One product template, two infrared themes — the page reshapes around the art.",
+				},
+			},
+			{
+				kick: "The cart",
+				heading: "Never interrupt the browse",
+				theme: "mist",
+				reverse: true,
+				body: [
+					[
+						"The cart is a simple slide-in drawer, content-aware and styled to match, that keeps shoppers exactly where they are. Adding a print, adjusting size or quantity, and heading to checkout all happen without a full-page detour, so momentum never breaks.",
+					],
+				],
+				tags: ["drawer cart", "stay-on-page"],
+				image: {
+					src: "/case-studies/montanye-prints/montanye-prints-cart.webp",
+					alt: "Slide-in cart drawer showing a print, size, quantity, and subtotal",
+					width: 1400,
+					height: 762,
+					caption: "A slide-in cart that keeps shoppers on the page.",
+				},
+			},
+			{
+				kick: "Checkout",
+				heading: "One page, no drop-off",
+				theme: "light",
+				body: [
+					[
+						"Checkout is a single Stripe-hosted page, deliberately kept to one step to protect conversion. Card, Apple Pay, Link, Klarna, Cash App, and bank pay are all available, with shipping and tax handled inline. The momentum from “add to cart” carries straight through to purchase instead of leaking out across a multi-step funnel.",
+					],
+				],
+				tags: ["Stripe Checkout", "one-step", "conversion-first"],
+				image: {
+					src: "/case-studies/montanye-prints/montanye-prints-checkout.webp",
+					alt: "Single-page Stripe checkout for Montanye Creative LLC with multiple payment methods",
+					width: 1400,
+					height: 779,
+					caption: "A single-page Stripe checkout — every payment method, one screen.",
+				},
+			},
+			{
+				kick: "Transactional email",
+				heading: "The customer is never in the dark",
+				theme: "mist",
+				reverse: true,
+				body: [
+					[
+						"Every order triggers transactional emails through Postmark: a confirmation the moment they buy, and a shipping notice with a live tracking link when the print goes out. The customer always knows exactly where their order stands, without ever having to ask.",
+					],
+				],
+				tags: ["Postmark", "order confirmation", "tracking notice"],
+				imagePair: {
+					images: [
+						{
+							src: "/case-studies/montanye-prints/montanye-prints-email-confirm.webp",
+							alt: "Order confirmation email reading 'Thanks for your order'",
+							width: 1330,
+							height: 602,
+						},
+						{
+							src: "/case-studies/montanye-prints/montanye-prints-email-track.webp",
+							alt: "Shipping confirmation email with a UPS tracking number",
+							width: 1244,
+							height: 732,
+						},
+					],
+					caption: "Order confirmation on purchase, shipping notice with tracking when it ships.",
+				},
+			},
+			{
+				kick: "The part most stores don't have",
+				heading: "A custom order-management system",
+				theme: "light",
+				layout: "full",
+				lead: "This is what turns a storefront into a business. Behind the store, I built and operate a custom OMS where every order flows through a tracked pipeline that I manage by hand, from placing the print-lab order to marking it shipped.",
+				body: [],
+				pipeline: {
+					stages: [
+						{ step: "01", label: "Received", description: "Order lands, payment captured", state: "done" },
+						{
+							step: "02",
+							label: "In Production",
+							description: "Sent to the print lab, made on demand",
+							state: "done",
+						},
+						{
+							step: "03",
+							label: "Shipped",
+							description: "Carrier + tracking, customer notified",
+							state: "current",
+						},
+					],
+					note: "// each order tracked through the pipeline, operated by me end to end",
+				},
+				image: {
+					src: "/case-studies/montanye-prints/montanye-prints-oms.webp",
+					alt: "Order-management system order detail: fulfillment pipeline, carrier and tracking, customer, ship-to, and Stripe payment record",
+					width: 1400,
+					height: 1128,
+					caption:
+						"The OMS order view — fulfillment status, carrier and tracking, customer and ship-to, and the Stripe payment record, all in one place.",
+				},
+			},
+			{
+				kick: "Content & resilience",
+				heading: "Managed content that stays up",
+				theme: "mist",
+				layout: "full",
+				lead: "All of the site's content — products, copy, and imagery — lives in Contentful, so the catalog and messaging can be managed without touching code.",
+				body: [
+					[
+						"And because a store can't go dark when a third party does, every piece of copy has a ",
+						{ bold: "built-in fallback" },
+						" that renders if Contentful's API is ever unavailable. The store keeps selling either way. The site runs Google Analytics for traffic insight and is built responsive from the ground up.",
+					],
+				],
+				tags: ["Contentful CMS", "API-failure fallbacks", "Google Analytics", "responsive"],
+			},
+		],
+		systemPlacement: "after-features",
+		system: {
+			kick: "Under the hood",
+			heading: "The system",
+			groups: [
+				{
+					title: "Platform",
+					items: [
+						[{ bold: "Next.js 13" }, " · App Router"],
+						[{ bold: "React 18" }, " · TypeScript"],
+						[{ bold: "Tailwind + Radix" }, " primitives"],
+						[{ bold: "Vercel Analytics" }, " + Google Analytics"],
+					],
+				},
+				{
+					title: "Commerce & ops",
+					items: [
+						[{ bold: "Stripe" }, " · single-page checkout"],
+						[{ bold: "Custom OMS" }, " · order pipeline"],
+						[{ bold: "Postmark" }, " · transactional email"],
+					],
+				},
+				{
+					title: "Content",
+					items: [
+						[{ bold: "Contentful" }, " · products + copy"],
+						[{ bold: "Fallback copy" }, " · API-outage safe"],
+						[{ bold: "Embla" }, " · related-print carousels"],
+					],
+				},
+				{
+					title: "UI & forms",
+					items: [
+						[{ bold: "react-hook-form + Zod" }, " · validation"],
+						[{ bold: "CVA + tailwind-merge" }, " · design system"],
+						[{ bold: "react-scroll-parallax" }, " · motion"],
+					],
+				},
+			],
+		},
+		demonstrates: {
+			kick: "What it demonstrates",
+			heading: "An entire store, ready to hand off",
+			items: [
+				{
+					title: "End-to-end e-commerce",
+					description: "Storefront, cart, checkout, fulfillment, and back-office — the whole operation, built solo.",
+				},
+				{
+					title: "A custom OMS, not just a store",
+					description:
+						"An order pipeline I operate from print-lab order through to shipment. This is the part most storefronts lack.",
+				},
+				{
+					title: "Resilient architecture",
+					description: "Headless content with built-in fallbacks, so a third-party outage never takes the store down.",
+				},
+				{
+					title: "Conversion-focused",
+					description:
+						"A stay-on-page drawer cart and a single-step Stripe checkout, built to carry buyers through without drop-off.",
+				},
+				{
+					title: "Art-forward & accessible",
+					description: "A dark, content-aware design that showcases the work, responsive and accessible throughout.",
+				},
+				{
+					title: "A product in itself",
+					description:
+						"Proof I can build and hand a client an entire e-commerce store and the order system that runs it.",
+				},
+			],
+		},
+		cta: {
+			kick: "Montanye Creative",
+			heading: "Need a store — or a store plus the operation behind it?",
+			body: "I build complete e-commerce systems, storefront to back office, and hand them off as working products.",
+			links: [
+				{ label: "Visit the store", href: "https://montanyecreative.shop/", external: true },
+				{ label: "Work with me", href: "/contact" },
+			],
+			footNote: "Montanye Creative — montanyecreative@outlook.com",
+		},
+	},
 	{
 		slug: "compounds-coffee",
 		palette: espressoPalette,

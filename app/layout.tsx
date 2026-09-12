@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import RecaptchaProvider from "@/components/RecaptchaProvider";
-// import GoogleAnalytics from "./components/ga4";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body className={inter.className}>
 				<RecaptchaProvider>
 					{children}
-					{/* <GoogleAnalytics /> */}
+					<GoogleAnalytics />
 					<Analytics />
 					<SpeedInsights />
 				</RecaptchaProvider>

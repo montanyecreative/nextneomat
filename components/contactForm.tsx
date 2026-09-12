@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import { useFormAnalytics } from "@/components/analytics/useFormAnalytics";
 
 const formSchema = z.object({
 	date: z.string().max(100, {
@@ -61,16 +62,30 @@ export default function ContactForm({ prefillMessage = "" }: { prefillMessage?: 
 
 	const FORM_URL = process.env.NEXT_PUBLIC_USEBASIN_FORM_URL || "";
 
+	const analytics = useFormAnalytics({
+		id: "contact-form",
+		name: "Contact",
+		destination: FORM_URL,
+		submitText: "Submit",
+	});
+
+	// Zod rejected the input before it ever reached the network.
+	function onInvalid(errors: Record<string, unknown>) {
+		analytics.onError("validation", Object.keys(errors));
+	}
+
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		if (isSubmitting) return;
 
 		if (!FORM_URL) {
 			console.error("USEBASIN_FORM_URL is not set. Please add NEXT_PUBLIC_USEBASIN_FORM_URL to your environment variables.");
+			analytics.onError("missing_form_url");
 			alert("Form configuration error. Please contact support.");
 			return;
 		}
 
 		setIsSubmitting(true);
+		analytics.onSubmit();
 
 		try {
 			// Only verify reCAPTCHA if it's enabled and available
@@ -90,6 +105,7 @@ export default function ContactForm({ prefillMessage = "" }: { prefillMessage?: 
 				const verifyData = await verifyResponse.json();
 
 				if (!verifyData.success) {
+					analytics.onError("recaptcha_failed");
 					alert("reCAPTCHA verification failed. Please try again.");
 					setIsSubmitting(false);
 					return;
@@ -107,13 +123,16 @@ export default function ContactForm({ prefillMessage = "" }: { prefillMessage?: 
 			});
 
 			if (submitResponse.status === 200) {
+				analytics.onSuccess();
 				form.reset();
 				alert("Thank you for your submission! We'll be in contact soon!");
 			} else {
+				analytics.onError(`http_${submitResponse.status}`);
 				alert("There was an error submitting your form. Please try again.");
 			}
 		} catch (error) {
 			console.error("Form submission error:", error);
+			analytics.onError("network_error");
 			alert("There was an error submitting your form. Please try again.");
 		} finally {
 			setIsSubmitting(false);
@@ -123,7 +142,9 @@ export default function ContactForm({ prefillMessage = "" }: { prefillMessage?: 
 	return (
 		<Form {...form}>
 			<form
-				onSubmit={form.handleSubmit(onSubmit)}
+				onSubmit={form.handleSubmit(onSubmit, onInvalid)}
+				onFocus={analytics.onFirstInteraction}
+				onChange={analytics.onFirstInteraction}
 				method="POST"
 				action={FORM_URL}
 				className="space-y-8 aktiv-grotesk-regular glass-form-deep-blue p-8 rounded-2xl relative"
