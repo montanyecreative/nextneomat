@@ -1,14 +1,20 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight, RotateCcw } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { caseStudies, caseStudyPath, type CaseStudy } from "./caseStudies";
+import { useIsMobile } from "./projects";
+import { useFadeInFromBottomOnScroll } from "@/components/animations";
+
+gsap.registerPlugin(ScrollTrigger);
 
 /** Each slide fills 5/7 of the track so exactly 2/5 of the next slide peeks in. */
 const SLIDE_WIDTH_CLASS = "w-[71.4286%]";
 
-function SlideCard({ study }: { study: CaseStudy }) {
+function SlideCard({ study, className }: { study: CaseStudy; className: string }) {
 	/** Each card carries its own identity, so colours come from the study, not the slider. */
 	const cardVars = {
 		"--card-dark": study.palette.dark,
@@ -19,7 +25,7 @@ function SlideCard({ study }: { study: CaseStudy }) {
 	} as React.CSSProperties;
 
 	return (
-		<li data-slide style={cardVars} className={`${SLIDE_WIDTH_CLASS} shrink-0 snap-start pr-4`}>
+		<li style={cardVars} className={className}>
 			<Link
 				href={caseStudyPath(study)}
 				aria-label={`Read the ${study.titleLines.join(" ")} case study`}
@@ -59,94 +65,124 @@ function SlideCard({ study }: { study: CaseStudy }) {
 }
 
 export default function BusinessCaseStudies() {
-	const trackRef = useRef<HTMLUListElement>(null);
-	const [canScrollLeft, setCanScrollLeft] = useState(false);
-	const [canScrollRight, setCanScrollRight] = useState(false);
+	const galleryWrapperRef = useRef<HTMLDivElement>(null);
+	const galleryStripRef = useRef<HTMLUListElement>(null);
+	const headingRef = useRef<HTMLHeadingElement>(null);
+	const isMobile = useIsMobile();
+	const headingStyles = useFadeInFromBottomOnScroll(headingRef);
 
-	const syncArrows = useCallback(() => {
-		const track = trackRef.current;
-		if (!track) return;
-		const maxScroll = track.scrollWidth - track.clientWidth;
-		setCanScrollLeft(track.scrollLeft > 8);
-		setCanScrollRight(track.scrollLeft < maxScroll - 8);
-	}, []);
+	/**
+	 * Same pinned horizontal scroll as the Projects gallery: vertical scroll drives the strip sideways.
+	 * The heading is pinned with the cards, so the effect starts as soon as it reaches the top.
+	 */
+	useLayoutEffect(() => {
+		if (isMobile) return;
 
-	useEffect(() => {
-		const track = trackRef.current;
-		if (!track) return;
+		if (!galleryWrapperRef.current || !galleryStripRef.current) return;
 
-		syncArrows();
-		track.addEventListener("scroll", syncArrows, { passive: true });
-		window.addEventListener("resize", syncArrows);
+		const pinWrap = galleryStripRef.current;
+		const wrapper = galleryWrapperRef.current;
+		let pinWrapWidth: number;
+		let horizontalScrollLength: number;
+		let scrollTrigger: gsap.core.Tween | null = null;
+		let refreshHandler: () => void;
 
-		return () => {
-			track.removeEventListener("scroll", syncArrows);
-			window.removeEventListener("resize", syncArrows);
-		};
-	}, [syncArrows]);
-
-	const scrollBehavior = (): ScrollBehavior =>
-		window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
-
-	const scrollBySlide = (direction: 1 | -1) => {
-		const track = trackRef.current;
-		if (!track) return;
-		const slide = track.querySelector<HTMLElement>("[data-slide]");
-		const distance = slide ? slide.offsetWidth : track.clientWidth * 0.714286;
-		track.scrollBy({ left: direction * distance, behavior: scrollBehavior() });
-	};
-
-	/** At the end of the track the right arrow rewinds to the first slide. */
-	const handleNext = () => {
-		const track = trackRef.current;
-		if (!track) return;
-
-		if (!canScrollRight) {
-			track.scrollTo({ left: 0, behavior: scrollBehavior() });
-			return;
+		function refresh() {
+			pinWrapWidth = pinWrap.scrollWidth;
+			// The section sits inside a padded container, so scroll against the wrapper rather than the viewport
+			horizontalScrollLength = pinWrapWidth - wrapper.clientWidth;
 		}
 
-		scrollBySlide(1);
-	};
+		const initTimeout = setTimeout(() => {
+			refresh();
 
+			refreshHandler = () => {
+				refresh();
+			};
+
+			scrollTrigger = gsap.to(pinWrap, {
+				scrollTrigger: {
+					scrub: true,
+					trigger: wrapper,
+					pin: wrapper,
+					start: "top top",
+					end: () => `+=${pinWrapWidth}`,
+					invalidateOnRefresh: true,
+					// This pin sits above the Projects pin, so it must be measured first
+					refreshPriority: 1,
+				},
+				x: () => -horizontalScrollLength,
+				ease: "none",
+			});
+
+			ScrollTrigger.addEventListener("refreshInit", refreshHandler);
+			ScrollTrigger.refresh();
+		}, 150);
+
+		const handleResize = () => {
+			refresh();
+			ScrollTrigger.refresh();
+		};
+		window.addEventListener("resize", handleResize);
+
+		let resizeObserverTimeout: ReturnType<typeof setTimeout>;
+		const layoutObserver = new ResizeObserver(() => {
+			clearTimeout(resizeObserverTimeout);
+			resizeObserverTimeout = setTimeout(() => {
+				refresh();
+				ScrollTrigger.refresh();
+			}, 200);
+		});
+		layoutObserver.observe(document.documentElement);
+
+		return () => {
+			clearTimeout(initTimeout);
+			clearTimeout(resizeObserverTimeout);
+			window.removeEventListener("resize", handleResize);
+			layoutObserver.disconnect();
+			if (scrollTrigger) {
+				scrollTrigger.scrollTrigger?.kill();
+				scrollTrigger.kill();
+			}
+			if (refreshHandler) {
+				ScrollTrigger.removeEventListener("refreshInit", refreshHandler);
+			}
+		};
+	}, [isMobile]);
+
+	const heading = (
+		<h2 ref={headingRef} style={headingStyles.style} className="my-10 text-center text-white">
+			Business case studies
+		</h2>
+	);
+
+	// Mobile layout: case studies stacked vertically
+	if (isMobile) {
+		return (
+			<section>
+				{heading}
+				<ul className="flex list-none flex-col gap-6" aria-label="Business case studies">
+					{caseStudies.map((study) => (
+						<SlideCard key={study.slug} study={study} className="w-full" />
+					))}
+				</ul>
+			</section>
+		);
+	}
+
+	// Desktop layout: pinned horizontal scrolling gallery
 	return (
-		<div className="relative">
+		<div ref={galleryWrapperRef} className="w-full overflow-hidden">
+			{heading}
 			<ul
-				ref={trackRef}
-				className="custom-scrollbar flex snap-x snap-mandatory list-none overflow-x-auto pb-4"
-				role="region"
+				ref={galleryStripRef}
+				className="flex list-none flex-nowrap will-change-transform"
 				aria-label="Business case studies"
-				tabIndex={0}
 			>
 				{caseStudies.map((study) => (
-					<SlideCard key={study.slug} study={study} />
+					<SlideCard key={study.slug} study={study} className={`${SLIDE_WIDTH_CLASS} shrink-0 pr-4`} />
 				))}
 			</ul>
-
-			<button
-				type="button"
-				onClick={() => scrollBySlide(-1)}
-				aria-label="Show previous case study"
-				disabled={!canScrollLeft}
-				className={`absolute left-2 top-[200px] z-10 flex h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/70 text-white backdrop-blur transition-all duration-300 hover:border-red hover:bg-red hover:text-white md:top-1/2 ${
-					canScrollLeft ? "opacity-100" : "pointer-events-none opacity-0"
-				}`}
-			>
-				<ChevronLeft aria-hidden="true" className="h-8 w-8" />
-			</button>
-
-			<button
-				type="button"
-				onClick={handleNext}
-				aria-label={canScrollRight ? "Show next case study" : "Back to the first case study"}
-				className="absolute right-2 top-[200px] z-10 flex h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/70 text-white backdrop-blur transition-all duration-300 hover:border-red hover:bg-red hover:text-white md:top-1/2"
-			>
-				{canScrollRight ? (
-					<ChevronRight aria-hidden="true" className="h-8 w-8" />
-				) : (
-					<RotateCcw aria-hidden="true" className="h-7 w-7" />
-				)}
-			</button>
 		</div>
 	);
 }

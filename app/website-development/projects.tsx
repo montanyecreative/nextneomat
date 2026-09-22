@@ -9,7 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const useIsMobile = () => {
+export const useIsMobile = () => {
 	const [isMobile, setIsMobile] = useState(false);
 
 	useEffect(() => {

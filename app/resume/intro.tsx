@@ -24,14 +24,18 @@ export default function IntroSection() {
 			</Avatar>
 			<h5 className="my-5 text-[24px] proxima-nova-semibold">John Montanye</h5>
 			<p className="my-5 mx-auto sm:mx-5 md:mx-unset">
-				Ambitious Salesforce B2C Commerce Cloud Developer with {beganStartYears ? beganStartYears + "+" : ""} years of hands-on
-				industry experience, including experience with Salesforce Commerce Cloud, SFRA, Page Designer, JavaScript, ISML/SASS,
-				Bootstrap, React, Nodejs, and a variety of other web platforms. Passionate about learning new technologies with an eagerness
-				to go above and beyond both individually and with a team to get the job done. Seeking new challenges and growth
-				opportunities within a growing organization.
+				Senior front-end engineer with {beganStartYears ? beganStartYears + "+" : ""} years of industry experience and deep
+				specialization in Salesforce B2C Commerce (SFCC/SFRA), built on 6+ years of SFRA, ISML, SCSS, and JavaScript, with strong
+				focus on Page Designer and accessibility (ADA/WCAG). Delivered multi-brand, multi-region storefronts for global brands
+				including Citizen, Bulova, and New Balance. Recently extended into the modern composable stack (React, Next.js, TypeScript)
+				as the platform and industry have shifted. Operates at a lead level on the experience layer: owning front-end architecture
+				and standards, raising the bar on accessibility and maintainability, and mentoring the engineers around them.
 			</p>
-			<p className="my-5 lg:mt-10 mx-auto sm:mx-5 md:mx-unset italic">
+			{/* <p className="my-5 lg:mt-10 mx-auto sm:mx-5 md:mx-unset italic">
 				Currently only looking for small freelance projects outside of 8am-6pm schedule.
+			</p> */}
+			<p className="my-5 lg:mt-10 mx-auto sm:mx-5 md:mx-unset italic">
+				Seeking new opportunities &mdash; open to full time, contract, and part time work.
 			</p>
 
 			<p className="italic my-5 text-[16px]">Leans front-end</p>

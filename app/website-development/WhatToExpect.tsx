@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 type MonetizationChoice = "personal" | "commercial" | null;
 type FormPlan = "free" | "starter" | "growth";
 type EmailMarketingPlan = "free" | "starter";
+type TransactionalEmailPlan = "free" | "basic";
 
 function selectionCardClass(isSelected: boolean) {
 	return cn(
@@ -115,6 +116,31 @@ const emailMarketingPlans: Record<
 	},
 };
 
+const transactionalEmailPlanOrder: TransactionalEmailPlan[] = ["free", "basic"];
+
+const transactionalEmailPlans: Record<
+	TransactionalEmailPlan,
+	{
+		name: string;
+		monthly: number;
+		yearly: number;
+		features: string[];
+	}
+> = {
+	free: {
+		name: "Free",
+		monthly: 0,
+		yearly: 0,
+		features: ["100 transactional emails a month", "Password resets, receipts, and other user-specific messages"],
+	},
+	basic: {
+		name: "Basic",
+		monthly: 15,
+		yearly: 180,
+		features: ["10,000 transactional emails a month", "Password resets, receipts, and other user-specific messages"],
+	},
+};
+
 function formatCurrency(amount: number, decimals = 0) {
 	return amount.toLocaleString("en-US", {
 		style: "currency",
@@ -139,6 +165,8 @@ function buildQuoteRequestMessage({
 	selectedFormPlan: FormPlan | null;
 	needsEmailMarketing: boolean;
 	selectedEmailMarketingPlan: EmailMarketingPlan | null;
+	needsTransactionalEmail: boolean;
+	selectedTransactionalEmailPlan: TransactionalEmailPlan | null;
 	needsDomain: boolean;
 	estimatedYearlyTotal: number;
 	breakdownText: string;
@@ -168,6 +196,9 @@ export default function WhatToExpect() {
 	const [needsEmailMarketing, setNeedsEmailMarketing] = useState(false);
 	const [isEmailMarketingPanelOpen, setIsEmailMarketingPanelOpen] = useState(false);
 	const [selectedEmailMarketingPlan, setSelectedEmailMarketingPlan] = useState<EmailMarketingPlan | null>(null);
+	const [needsTransactionalEmail, setNeedsTransactionalEmail] = useState(false);
+	const [isTransactionalEmailPanelOpen, setIsTransactionalEmailPanelOpen] = useState(false);
+	const [selectedTransactionalEmailPlan, setSelectedTransactionalEmailPlan] = useState<TransactionalEmailPlan | null>(null);
 	const [needsDomain, setNeedsDomain] = useState(false);
 
 	const hostingYearly = monetization === "commercial" ? HOSTING_COMMERCIAL_YEARLY : 0;
@@ -175,8 +206,12 @@ export default function WhatToExpect() {
 	const formsYearly = needsContactForms && selectedFormPlan ? formPlans[selectedFormPlan].yearly : 0;
 	const emailMarketingYearly =
 		needsEmailMarketing && selectedEmailMarketingPlan ? emailMarketingPlans[selectedEmailMarketingPlan].yearly : 0;
+	const transactionalEmailYearly =
+		needsTransactionalEmail && selectedTransactionalEmailPlan
+			? transactionalEmailPlans[selectedTransactionalEmailPlan].yearly
+			: 0;
 	const domainYearly = needsDomain ? DOMAIN_YEARLY : 0;
-	const estimatedYearlyTotal = hostingYearly + formsYearly + emailMarketingYearly + domainYearly;
+	const estimatedYearlyTotal = hostingYearly + formsYearly + emailMarketingYearly + transactionalEmailYearly + domainYearly;
 
 	const breakdownParts: string[] = [];
 	if (monetization !== null) {
@@ -186,6 +221,9 @@ export default function WhatToExpect() {
 		}
 		if (needsEmailMarketing && selectedEmailMarketingPlan) {
 			breakdownParts.push(formatBreakdownItem(emailMarketingYearly, "email marketing"));
+		}
+		if (needsTransactionalEmail && selectedTransactionalEmailPlan) {
+			breakdownParts.push(formatBreakdownItem(transactionalEmailYearly, "transactional email"));
 		}
 		if (needsDomain) {
 			breakdownParts.push(formatBreakdownItem(domainYearly, "domain"));
@@ -200,6 +238,8 @@ export default function WhatToExpect() {
 			selectedFormPlan,
 			needsEmailMarketing,
 			selectedEmailMarketingPlan,
+			needsTransactionalEmail,
+			selectedTransactionalEmailPlan,
 			needsDomain,
 			estimatedYearlyTotal,
 			breakdownText,
@@ -260,6 +300,33 @@ export default function WhatToExpect() {
 		setIsEmailMarketingPanelOpen(false);
 	};
 
+	const handleTransactionalEmailRowClick = () => {
+		if (!needsTransactionalEmail) {
+			setNeedsTransactionalEmail(true);
+			setIsTransactionalEmailPanelOpen(true);
+			return;
+		}
+		if (selectedTransactionalEmailPlan && !isTransactionalEmailPanelOpen) {
+			setIsTransactionalEmailPanelOpen(true);
+			return;
+		}
+		if (isTransactionalEmailPanelOpen) {
+			setIsTransactionalEmailPanelOpen(false);
+			if (!selectedTransactionalEmailPlan) {
+				setNeedsTransactionalEmail(false);
+			}
+			return;
+		}
+		setNeedsTransactionalEmail(false);
+		setSelectedTransactionalEmailPlan(null);
+	};
+
+	const handleTransactionalEmailPlanSelect = (planId: TransactionalEmailPlan) => {
+		setSelectedTransactionalEmailPlan(planId);
+		setNeedsTransactionalEmail(true);
+		setIsTransactionalEmailPanelOpen(false);
+	};
+
 	const handleResetOptions = () => {
 		setMonetization("personal");
 		setNeedsContactForms(false);
@@ -268,6 +335,9 @@ export default function WhatToExpect() {
 		setNeedsEmailMarketing(false);
 		setIsEmailMarketingPanelOpen(false);
 		setSelectedEmailMarketingPlan(null);
+		setNeedsTransactionalEmail(false);
+		setIsTransactionalEmailPanelOpen(false);
+		setSelectedTransactionalEmailPlan(null);
 		setNeedsDomain(false);
 	};
 
@@ -469,6 +539,103 @@ export default function WhatToExpect() {
 												key={planId}
 												type="button"
 												onClick={() => handleEmailMarketingPlanSelect(planId)}
+												className={selectionCardClass(isSelected)}
+												aria-pressed={isSelected}
+											>
+												<SelectionIndicator isSelected={isSelected} />
+												<div className="flex items-baseline justify-between gap-2 mb-1">
+													<span className="text-white proxima-nova-semibold text-[15px]">{plan.name}</span>
+												</div>
+												<p className="text-white proxima-nova-semibold text-[13px] mb-1.5">
+													{planId === "free" ? (
+														"Free"
+													) : (
+														<>
+															{formatCurrency(plan.yearly)}
+															<span className="aktiv-grotesk-regular text-white/60 text-xs font-normal">
+																{" "}
+																/ year
+															</span>
+															<span className="aktiv-grotesk-regular text-white/50 text-xs font-normal mx-1.5">
+																or
+															</span>
+															{formatCurrency(plan.monthly)}
+															<span className="aktiv-grotesk-regular text-white/60 text-xs font-normal">
+																{" "}
+																/ mo
+															</span>
+														</>
+													)}
+												</p>
+												<p className="aktiv-grotesk-regular text-white/70 text-xs leading-relaxed">
+													{plan.features.join(" · ")}
+												</p>
+											</button>
+										);
+									})}
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<button
+						type="button"
+						onClick={handleTransactionalEmailRowClick}
+						aria-expanded={isTransactionalEmailPanelOpen}
+						aria-controls="transactional-email-panel"
+						className="flex w-full items-center justify-between gap-3 rounded-xl border border-white/15 px-3 py-2 text-left cursor-pointer transition-colors hover:border-white/30 hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mcRed focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+					>
+						<span className="text-white proxima-nova-semibold text-[15px] md:text-[16px] leading-snug pr-2">
+							Do you need transactional emails for user specific interactions?
+						</span>
+						<div className="flex items-center gap-2 shrink-0">
+							<span
+								className={cn(
+									"text-xs uppercase tracking-wide proxima-nova-semibold text-right whitespace-nowrap",
+									needsTransactionalEmail ? "text-mcRed" : "text-white/60",
+								)}
+							>
+								{needsTransactionalEmail
+									? selectedTransactionalEmailPlan
+										? `Yes — ${transactionalEmailPlans[selectedTransactionalEmailPlan].name}`
+										: "Yes"
+									: "No"}
+							</span>
+							<span
+								aria-hidden="true"
+								className={cn(
+									"relative inline-flex h-7 w-12 shrink-0 rounded-full border-2 border-transparent transition-colors",
+									needsTransactionalEmail ? "bg-mcRed" : "bg-white/20",
+								)}
+							>
+								<span
+									className={cn(
+										"inline-block h-6 w-6 rounded-full bg-white shadow transition-transform",
+										needsTransactionalEmail ? "translate-x-5" : "translate-x-0",
+									)}
+								/>
+							</span>
+						</div>
+					</button>
+
+					<div
+						id="transactional-email-panel"
+						className={cn(
+							"grid transition-all duration-300 ease-in-out",
+							isTransactionalEmailPanelOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+						)}
+					>
+						<div className="overflow-hidden min-h-0">
+							<div className="rounded-xl border border-white/15 p-3">
+								<div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+									{transactionalEmailPlanOrder.map((planId) => {
+										const plan = transactionalEmailPlans[planId];
+										const isSelected = selectedTransactionalEmailPlan === planId;
+										return (
+											<button
+												key={planId}
+												type="button"
+												onClick={() => handleTransactionalEmailPlanSelect(planId)}
 												className={selectionCardClass(isSelected)}
 												aria-pressed={isSelected}
 											>
