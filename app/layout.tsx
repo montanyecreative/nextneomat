@@ -3,7 +3,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import RecaptchaProvider from "@/components/RecaptchaProvider";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -28,12 +27,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<link rel="stylesheet" href="https://use.typekit.net/xhs0tix.css" />
 			</head>
 			<body className={inter.className}>
-				<RecaptchaProvider>
-					{children}
-					<GoogleAnalytics />
-					<Analytics />
-					<SpeedInsights />
-				</RecaptchaProvider>
+				{children}
+				<GoogleAnalytics />
+				<Analytics />
+				<SpeedInsights />
 			</body>
 		</html>
 	);

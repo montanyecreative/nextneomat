@@ -7,6 +7,7 @@ import Footer from "@/components/footer";
 import Promotion from "@/components/promotion";
 import Image from "next/image";
 import ContactForm from "../../components/contactForm";
+import RecaptchaProvider from "@/components/RecaptchaProvider";
 import { useSlideInFromLeft } from "@/components/animations";
 
 function ContactFormWithPrefill() {
@@ -42,9 +43,12 @@ export default function ContactUs() {
 						Please fill out the form below and we will get in touch with you as soon as we can.
 					</p>
 					<p className="my-5 aktiv-grotesk-regular">We look forward to hearing from you.</p>
-					<Suspense fallback={<ContactForm />}>
-						<ContactFormWithPrefill />
-					</Suspense>
+					{/* The provider lives here, not in the root layout, so the reCAPTCHA script loads on this page only */}
+					<RecaptchaProvider>
+						<Suspense fallback={<ContactForm />}>
+							<ContactFormWithPrefill />
+						</Suspense>
+					</RecaptchaProvider>
 				</div>
 			</div>
 			<Promotion />
