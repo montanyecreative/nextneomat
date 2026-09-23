@@ -19,7 +19,11 @@ export default function IntroSection() {
 	return (
 		<div className="resume-intro" id="highlights">
 			<Avatar className="avatar avatar-shadow mx-auto my-10">
-				<AvatarImage src={johnImage} alt="John Montanye" />
+				{/*
+					The photo is a 4:5 portrait, so the round avatar crops it. object-top keeps the top of the
+					frame, which sits John lower in the circle; nudge with e.g. object-[50%_15%] to raise him.
+				*/}
+				<AvatarImage src={johnImage} alt="John Montanye" className="object-cover object-top" />
 				<AvatarFallback>John Montanye</AvatarFallback>
 			</Avatar>
 			<h5 className="my-5 text-[24px] proxima-nova-semibold">John Montanye</h5>

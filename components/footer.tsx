@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { navLinks } from "@/lib/navLinks";
+import { flatNavLinks } from "@/lib/navLinks";
 
 const logo = "/logo.webp";
 
@@ -24,7 +24,7 @@ export default function Footer() {
 				</Link>{" "}
 			</div>
 			<div className="grid md:flex justify-center">
-				{navLinks.map((nav) => (
+				{flatNavLinks.map((nav) => (
 					<Link
 						key={nav.id}
 						href={`/${nav.link}`}
