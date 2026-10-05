@@ -1,173 +1,42 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
+// The shared nav and footer rely on their importing page being a client component, as every
+// other page in the app is.
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import Salesforce from "@/components/salesforce";
-import { Button } from "@/components/ui/button";
-import Projects from "@/app/website-development/projects";
-import FeatureGrid from "@/app/website-development/FeatureGrid";
-import WebsiteSolutions from "@/app/website-development/WebsiteSolutions";
 import BusinessCaseStudies from "@/app/website-development/BusinessCaseStudies";
-import CustomerExperienceTools from "@/app/website-development/CustomerExperienceTools";
-import PlatformsAndTechnologies from "@/app/website-development/PlatformsAndTechnologies";
-import { useSlideInFromLeft, useFadeInFromBottom, useFadeInFromBottomOnScroll } from "@/components/animations";
-import OurProcess from "./OurProcess";
-import WhatToExpect from "./WhatToExpect";
+import DevHero from "./sections/DevHero";
+import WhatIBuild from "./sections/WhatIBuild";
+import BuiltIntoEverySite from "./sections/BuiltIntoEverySite";
+import HowAProjectWorks from "./sections/HowAProjectWorks";
+import PricingCalculator from "./sections/PricingCalculator";
+import ToolsIBuildWith from "./sections/ToolsIBuildWith";
+import DevClosingCta from "./sections/DevClosingCta";
+import { CONTAINER, SECTION_HEADING } from "@/components/site/tokens";
 
 export default function WebsiteDevelopment() {
-	const headingRef = useRef<HTMLHeadingElement>(null);
-	const featuresHeadingRef = useRef<HTMLHeadingElement>(null);
-	const websiteSolutionsHeadingRef = useRef<HTMLHeadingElement>(null);
-	const projectsHeadingRef = useRef<HTMLHeadingElement>(null);
-
-	const headingStyles = useSlideInFromLeft(headingRef);
-	const featuresStyles = useFadeInFromBottom(featuresHeadingRef, { delay: 0.3 });
-	const websiteSolutionsStyles = useFadeInFromBottomOnScroll(websiteSolutionsHeadingRef);
-	const projectsStyles = useFadeInFromBottomOnScroll(projectsHeadingRef);
-
-	// Scroll to top when component mounts
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
-
 	return (
 		<main className="overflow-x-hidden">
 			<Navbar />
-			<div className="bg-transparent overflow-x-hidden">
-				<div className="sm:mx-auto md:mx-auto flex banner-home-copy">
-					<div className="w-full comparison-slider relative">
-						<div style={{ opacity: 0.4 }} className="absolute inset-0">
-							<Image
-								src="/banners/website-development-banner.webp"
-								alt="Website Development Banner"
-								fill
-								className="object-cover"
-								priority
-							/>
-						</div>
-						<h1
-							ref={headingRef}
-							style={{ opacity: 0 }}
-							className="text-[42px] absolute top-1/2 -translate-y-1/2 left-0 p-5 text-white md:block hidden md:mx-10 aktiv-grotesk"
-						>
-							<span className="aktiv-grotesk-semibold">Create value with</span>
-							<br /> design &amp; technology.
-						</h1>
-						<p className="text-[20px] absolute hidden md:block md:top-[60%] md:left-10 md:right-auto md:w-auto custom1060:top-1/2 custom1060:-translate-y-1/2 custom1060:right-5 custom1060:left-auto custom1060:w-[600px] p-5 text-white aktiv-grotesk-regular">
-							Montanye Creative is a Midwest based Design &amp; Technology Studio. We assist individuals and organizations by
-							identifying and executing necessary digital initiatives, producing high-end, conversion driving experiences.
-						</p>
+			<div className="w-full bg-[#000000] text-white aktiv-grotesk-regular text-[18px] leading-[1.6]">
+				<DevHero />
+				<WhatIBuild />
+				{/*
+					The case study slider, untouched and only moved into its new place in the order. Lighter
+					padding than the other bands, since the pinned slider already holds the viewport on its own.
+				*/}
+				<section id="work" className="bg-[#000000] scroll-mt-24 py-[clamp(40px,5vw,64px)]">
+					<div className={CONTAINER}>
+						{/* The component is untouched: only its heading class is passed, to match the other sections */}
+						<BusinessCaseStudies headingClassName={`${SECTION_HEADING} mb-10`} />
 					</div>
-				</div>
-				<div className="container-fluid webdev-page px-5 md:px-10 text-center text-white aktiv-grotesk-regular">
-					<div className="mb-20">
-						<h1 className="text-[32px] mt-5 md:hidden">
-							<b>Create value with</b>
-							<br /> design &amp; technology.
-						</h1>
-						<p className="text-[20px] mt-5 md:hidden">
-							Montanye Creative is a Midwest based Design &amp; Technology Studio. We assist individuals and organizations by
-							identifying and executing necessary digital initiatives, producing high-end, conversion driving experiences.
-						</p>
-						<div className="my-20">
-							<h2
-								ref={featuresHeadingRef}
-								style={featuresStyles.style}
-								className="mb-10 pt-10 md:pt-unset text-white text-center"
-							>
-								Features
-							</h2>
-							<FeatureGrid />
-						</div>
-						<div className="my-10">
-							<Link href="/start-a-project" aria-label="Go to the Start a project page">
-								<Button
-									variant="outline"
-									className="rounded-full px-10 mt-5 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
-								>
-									Get in Touch
-								</Button>
-							</Link>
-						</div>
-					</div>
-				</div>
-				<div className="container-fluid px-5 md:px-10 text-center text-white aktiv-grotesk-regular bg-[#242424] py-5">
-					<div id="case-studies" className="mb-20 scroll-mt-24">
-						<BusinessCaseStudies />
-					</div>
-					<div className="mb-20">
-						<h2
-							ref={websiteSolutionsHeadingRef}
-							style={websiteSolutionsStyles.style}
-							className="my-10 md:pt-unset text-white text-center"
-						>
-							Website solutions
-						</h2>
-						<WebsiteSolutions />
-					</div>
-				</div>
-				<div className="container-fluid px-5 md:px-10 text-white aktiv-grotesk-regular py-5">
-					<div className="mb-20">
-						<PlatformsAndTechnologies />
-					</div>
-				</div>
-				<div className="container-fluid px-5 md:px-10 text-white bg-[#242424] aktiv-grotesk-regular py-5">
-					<div className="mb-20">
-						<CustomerExperienceTools />
-					</div>
-				</div>
-				<div className="container-fluid px-5 md:px-10 text-white aktiv-grotesk-regular py-5">
-					<div className="mb-20">
-						<h2 className="text-[30px] text-white proxima-nova-semibold md:mt-10 pt-5 text-center">
-							Our Design &amp; Development Process
-						</h2>
-						<OurProcess />
-						<div className="my-10 text-center">
-							<Link href="/start-a-project" aria-label="Go to the Start a project page">
-								<Button
-									variant="outline"
-									className="rounded-full px-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
-								>
-									Get in Touch
-								</Button>
-							</Link>
-						</div>
-					</div>
-				</div>
-				<div className="relative z-0 isolate container-fluid px-5 md:px-10 text-white aktiv-grotesk-regular pb-5">
-					<div className="mb-12">
-						<h2 id="what-to-expect-heading" className="text-[30px] text-white proxima-nova-semibold text-center mb-2">
-							Pricing to expect
-						</h2>
-						<WhatToExpect />
-					</div>
-				</div>
-				<div id="projects" className="relative z-0 isolate">
-					<div className="container mx-auto text-center text-white text-center aktiv-grotesk-regular">
-						<h2 className="text-[30px] text-white proxima-nova-semibold">Projects</h2>
-						<p className="mt-5">
-							I have worked many other projects that are not shown here as I do not have direct permission from clients to
-							share works as per contracted agreements but those brands and sites include:{" "}
-							<i>
-								Citizen, Bulova, Accutron, Frederique Constant, Alpina, New Balance, Johnston &amp; Murphy, Sheet Music
-								Plus, Cherished Memories, ReserveBar, LuxeDecor, SyllogisTeks, PohlmanUSA, and Our Lady&apos;s Inn
-							</i>
-							. See{" "}
-							<Link href="/resume" className="underline" aria-label="Go to Resume page">
-								resume
-							</Link>{" "}
-							for details.
-						</p>
-					</div>
-					<div className="container-fluid px-auto md:px-5 md:px-10 text-white aktiv-grotesk-regular">
-						<Projects />
-					</div>
-				</div>
+				</section>
+				<BuiltIntoEverySite />
+				<HowAProjectWorks />
+				<PricingCalculator />
+				<ToolsIBuildWith />
+				<DevClosingCta />
 			</div>
-			<Salesforce />
 			<Footer />
 		</main>
 	);

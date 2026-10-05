@@ -1,28 +1,20 @@
 "use client";
 
 import { Suspense, useRef } from "react";
-import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Promotion from "@/components/promotion";
 import Image from "next/image";
-import ContactForm from "../../components/contactForm";
 import RecaptchaProvider from "@/components/RecaptchaProvider";
 import { useSlideInFromLeft } from "@/components/animations";
-
-function ContactFormWithPrefill() {
-	const searchParams = useSearchParams();
-	const prefillMessage = searchParams.get("message") ?? "";
-
-	return <ContactForm prefillMessage={prefillMessage} />;
-}
+import ProjectIntakeForm from "./intake/ProjectIntakeForm";
 
 export default function ContactUs() {
 	const headingRef = useRef<HTMLHeadingElement>(null);
 	const headingStyles = useSlideInFromLeft(headingRef);
 
 	return (
-		<main>
+		<main className="overflow-x-hidden">
 			<Navbar />
 			<div className="bg-transparent">
 				<div className="sm:mx-auto md:mx-auto flex banner-home-copy">
@@ -37,19 +29,15 @@ export default function ContactUs() {
 						</h1>
 					</div>
 				</div>
-				<div className="container resume-page mx-auto text-white text-center">
-					<h1 className="text-[32px] mt-5 md:hidden proxima-nova-semibold">Contact Us</h1>
-					<p className="my-5 aktiv-grotesk-regular">
-						Please fill out the form below and we will get in touch with you as soon as we can.
-					</p>
-					<p className="my-5 aktiv-grotesk-regular">We look forward to hearing from you.</p>
-					{/* The provider lives here, not in the root layout, so the reCAPTCHA script loads on this page only */}
-					<RecaptchaProvider>
-						<Suspense fallback={<ContactForm />}>
-							<ContactFormWithPrefill />
-						</Suspense>
-					</RecaptchaProvider>
+				<div className="bg-[#151515] text-center">
+					<h1 className="text-[32px] pt-5 mb-0 text-white md:hidden proxima-nova-semibold">Contact Us</h1>
 				</div>
+				{/* The provider lives here, not in the root layout, so the reCAPTCHA script loads on this page only */}
+				<RecaptchaProvider>
+					<Suspense fallback={<div className="bg-[#151515] py-[clamp(56px,7vw,96px)]" />}>
+						<ProjectIntakeForm />
+					</Suspense>
+				</RecaptchaProvider>
 			</div>
 			<Promotion />
 			<Footer />
