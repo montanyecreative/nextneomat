@@ -596,10 +596,12 @@ body:has(#resume-view-corner) #bmc-close-btn {
 		height: 100px;
 	}
 
+	/*
+		Holds the homepage banner's height only. The photograph itself is a next/image inside
+		components/home/Hero.tsx, not a background here, so that it can be preloaded from the
+		document head and served at the viewport's size — see the comment on that component.
+	*/
 	.banner-home {
-		background-image: url("../public/banners/banner-home.webp");
-		background-size: cover;
-		background-position: top;
 		height: 720px;
 		z-index: 1;
 	}

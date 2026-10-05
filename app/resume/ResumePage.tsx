@@ -28,7 +28,15 @@ export default function ResumePage({ initialView }: { initialView: ResumeView })
 				<div className="bg-transparent">
 					<div className="sm:mx-auto md:mx-auto flex banner-home-copy">
 						<div className="w-full comparison-slider relative">
-							<Image src="/banners/resume-banner.webp" alt="Resume Banner" fill className="object-cover" priority />
+							<Image
+								src="/banners/resume-banner.webp"
+								alt="Resume Banner"
+								fill
+								priority
+								fetchPriority="high"
+								sizes="100vw"
+								className="object-cover"
+							/>
 							{/*
 								The banner photo is almost white where this sits, so the shadow is what keeps the
 								white heading readable, the same way the other banners on the site carry theirs.

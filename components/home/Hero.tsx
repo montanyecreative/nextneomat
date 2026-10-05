@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useFadeInFromBottom } from "@/components/animations";
 import { CONTAINER, PILL_PRIMARY, PILL_SECONDARY } from "./tokens";
@@ -18,7 +19,26 @@ export default function Hero() {
 	const headingStyles = useFadeInFromBottom(headingRef);
 
 	return (
-		<div className="banner-home">
+		<section className="banner-home relative isolate">
+			{/*
+				Decorative, and the page's largest paint. It is an <Image> rather than the CSS
+				background it used to be so that Next emits a high-priority preload for it in the
+				document head: a background-image is only discovered once the stylesheet has been
+				fetched and parsed, which puts the hero photograph a whole round trip behind the
+				HTML. Going through the optimiser also means a phone is served an 828px variant of
+				the 1.1MB original instead of the whole file.
+			*/}
+			<div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden">
+				<Image
+					src="/banners/banner-home.webp"
+					alt=""
+					fill
+					priority
+					fetchPriority="high"
+					sizes="100vw"
+					className="object-cover object-top"
+				/>
+			</div>
 			{/*
 				Under 415px the heading wraps to a fourth line, and centring that taller block in the
 				fixed height banner lifts its first line behind the floating nav. The padding pushes the
@@ -52,6 +72,6 @@ export default function Hero() {
 					</Link>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 }

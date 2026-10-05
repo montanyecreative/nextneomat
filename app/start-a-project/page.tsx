@@ -19,7 +19,15 @@ export default function ContactUs() {
 			<div className="bg-transparent">
 				<div className="sm:mx-auto md:mx-auto flex banner-home-copy">
 					<div className="w-full comparison-slider relative">
-						<Image src="/banners/banner-contact.webp" alt="Contact Banner" fill className="object-cover" priority />
+						<Image
+							src="/banners/banner-contact.webp"
+							alt="Contact Banner"
+							fill
+							priority
+							fetchPriority="high"
+							sizes="100vw"
+							className="object-cover"
+						/>
 						<h1
 							ref={headingRef}
 							style={headingStyles.style}

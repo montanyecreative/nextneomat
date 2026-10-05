@@ -163,8 +163,10 @@ export default function Photography() {
 							src="/banners/joshua-tree-ocean-red.webp"
 							alt="Joshua Tree Ocean Red"
 							fill
-							className="object-cover"
 							priority
+							fetchPriority="high"
+							sizes="100vw"
+							className="object-cover"
 						/>
 						<h1
 							ref={headingRef}

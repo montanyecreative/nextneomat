@@ -23,9 +23,23 @@ export default function PhotoVHSDigitization() {
 			<Navbar />
 			<div className="digitization-page bg-transparent">
 				<div className="sm:mx-auto md:mx-auto flex banner-home-copy relative">
+					{/*
+						itemOne is the unclipped half of the slider and so the page's largest paint.
+						React hoists a preload for both <img>s during SSR, but only a fetchPriority
+						carries over to it, so this one is marked high to pull it ahead of the
+						clipped half and everything else the page requests on load.
+					*/}
 					<ReactCompareSlider
 						className="w-full comparison-slider"
-						itemOne={<ReactCompareSliderImage src={photo1} srcSet={photo1} alt="Image one" className="slider-image-override" />}
+						itemOne={
+							<ReactCompareSliderImage
+								src={photo1}
+								srcSet={photo1}
+								alt="Image one"
+								fetchPriority="high"
+								className="slider-image-override"
+							/>
+						}
 						itemTwo={<ReactCompareSliderImage src={photo2} srcSet={photo2} alt="Image two" className="slider-image-override" />}
 					/>
 					<h1
