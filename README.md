@@ -27,6 +27,86 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## Linting
+
+```bash
+npm run lint       # eslint .
+npm run lint:fix   # eslint . --fix
+```
+
+Config lives in `eslint.config.mjs`. It calls ESLint directly rather than going through `next lint`,
+which Next 16 removed, and it is a flat config because that is the only format ESLint 9 reads.
+`next build` no longer runs ESLint of its own accord, so this is the only place lint runs.
+
+## Project intake (`/start-a-project`)
+
+The form is a three-step stepper that writes to Neon twice.
+
+1. **End of step 1** — `POST /api/intake` inserts a `partial` row holding the name, email and
+   topic, and hands the browser a one-time edit token. Somebody who abandons on step 2 is still
+   reachable; that is the whole point of saving this early.
+2. **End of step 2** — `PATCH /api/intake/[id]` merges the branch answers onto the row. Best
+   effort and silent, because the final submit sends them again.
+3. **Submit** — the same `PATCH` with `complete: true` flips the row to `complete`, nulls the edit
+   token so it can never be edited again, and **this is the only call that sends email**.
+
+Two Postmark emails go out on completion: a notification to `INTAKE_NOTIFY_EMAILS` (reply-to set
+to the visitor) and a copy of their answers to the visitor, which is what the done screen promises
+them. Partial rows never email anybody.
+
+Spam is handled in four cheap layers: an off-screen honeypot, an hourly rate limit on a hashed IP,
+completion gating, and a reCAPTCHA v3 score taken on the final submit. The score decides whether
+the emails go out, never whether the row is saved — a false negative is a real person, so a low
+score still stores the submission (with its `recaptcha_score`) and simply does not notify.
+
+### Migrations
+
+Applied by hand; there is no ledger.
+
+```bash
+node --env-file=.env.local scripts/migrate.mjs migrations/001_create_intake_submissions.sql
+```
+
+### Environment
+
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `DATABASE_URL` | yes | Neon connection string. Without it the form cannot save. |
+| `POSTMARK_SERVER_TOKEN` | for email | Postmark server token. |
+| `POSTMARK_FROM` | for email | A **verified** Postmark sender signature. Nothing sends without this. |
+| `INTAKE_NOTIFY_EMAILS` | for the notification | Comma-separated recipients. Unset means only the visitor's copy sends. |
+| `POSTMARK_MESSAGE_STREAM` | no | Defaults to `outbound`. |
+| `POSTMARK_REPLY_TO` | no | Reply-to on the visitor's copy. |
+| `INTAKE_IP_HASH_SALT` | recommended | Salts the IP hash used for rate limiting. Unset falls back to a per-process random salt, so the limit only holds within one instance. |
+| `RECAPTCHA_SECRET_KEY` | no | Enables scoring. Unset means no verdict, and everything notifies. |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | no | Loads the reCAPTCHA script on the intake page. |
+
+Postmark and reCAPTCHA are both optional: with neither configured the form still saves every
+submission, which is the part that cannot be lost.
+
+## Analytics
+
+Every GA4 event goes through `lib/gtag.ts`; nothing calls `window.gtag` directly. Site-wide events
+(page views, scroll depth, outbound clicks, file downloads, mailto/tel taps) come from the
+delegated listeners in `components/analytics/AnalyticsListeners.tsx`.
+
+Buttons and toggles report themselves, because the delegated listener deliberately ignores
+same-page and internal links. Two custom events carry them:
+
+-   `button_click` — `button_name`, `button_location`, `button_text`, `button_value`
+-   `toggle` — `toggle_name`, `toggle_location`, `toggle_text`, `toggle_value`, `toggle_state`
+
+The intake form adds `form_step` and `form_option_select` on top of the standard
+`form_start` / `form_submit` / `generate_lead` / `form_error` set, so each step's drop-off and each
+chosen option are visible.
+
+**Custom event parameters need registering before they appear anywhere outside DebugView and the
+realtime report:** Admin → Custom definitions → Create custom dimension, event-scoped, one per
+parameter name above.
+
+To verify locally, set `NEXT_PUBLIC_GA_DEBUG=true` and watch the console for `[ga4] <name>` lines,
+or GA → Admin → DebugView.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

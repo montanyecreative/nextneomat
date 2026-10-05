@@ -318,6 +318,26 @@ h2 {
 	padding-bottom: 4em;
 }
 
+/*
+	The resume page's recruiter control is fixed to the bottom right corner, so the page carries the
+	height of the collapsed pill plus the 24px it is inset by, and the last content clears it.
+*/
+.resume-page {
+	padding-bottom: calc(4em + 80px);
+}
+
+/*
+	The recruiter control takes the corner the coffee widget uses elsewhere. The widget's script
+	appends its button to the body and leaves it there through every page change, so it is hidden
+	for as long as that control is on the page. Keyed off the control itself rather than the route,
+	since .resume-page is shared with the prints page, which keeps its widget.
+*/
+body:has(#resume-view-corner) #bmc-wbtn,
+body:has(#resume-view-corner) #bmc-iframe,
+body:has(#resume-view-corner) #bmc-close-btn {
+	display: none !important;
+}
+
 /* Container & Page Fixes End */
 
 /* Tablet & Up */

@@ -77,6 +77,43 @@ export const errorCopy = {
 };
 
 /**
+ * What the visitor is told when the save itself fails, rather than their
+ * answers. The API returns code-shaped errors; the human copy belongs here.
+ */
+export const serverErrorCopy = {
+	rateLimited:
+		"You've started this form a few times in the last hour. Give it a little while, or email me directly at montanyecreative@outlook.com.",
+	lost: "I lost track of this submission. Start again and it'll only take a minute.",
+	invalid: "Something in that last step didn't come through. Check your answers and try again.",
+	offline: "I couldn't reach the server. Check your connection and try again.",
+	unknown: "I couldn't save that just now. Try again in a moment.",
+};
+
+/** Maps an API error code onto the copy above. */
+export function serverErrorFor(code: string): string {
+	switch (code) {
+		case "rate_limited":
+			return serverErrorCopy.rateLimited;
+		case "forbidden":
+		case "not_found":
+			return serverErrorCopy.lost;
+		case "invalid_body":
+		case "invalid_answers":
+		case "phone_required":
+			return serverErrorCopy.invalid;
+		case "offline":
+			return serverErrorCopy.offline;
+		default:
+			return serverErrorCopy.unknown;
+	}
+}
+
+/** The label a visitor actually read for a stored value, for analytics. */
+export function labelOf(options: Option[], value: string): string | undefined {
+	return options.find((option) => option.value === value)?.label;
+}
+
+/**
  * What each calculator toggle checks under "What does the site need to do?". Anything the
  * calculator sends that is not listed here is ignored.
  */

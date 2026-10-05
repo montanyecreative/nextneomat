@@ -3,6 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { useFormAnalytics } from "@/components/analytics/useFormAnalytics";
+import { trackButtonClick } from "@/lib/gtag";
 import {
 	BODY_TEXT,
 	CARD,
@@ -20,13 +23,16 @@ import {
 	digitizeOptions,
 	errorCopy,
 	isEmail,
+	labelOf,
 	needsOptions,
 	platformOptions,
 	printsTopicOptions,
 	reachOptions,
 	routeHeading,
+	serverErrorFor,
 	timelineOptions,
 	topicOptions,
+	type Option,
 	type Topic,
 } from "./data";
 import { CheckboxCardGroup, RadioCardGroup, RadioChipGroup, RadioRowGroup, TextField } from "./fields";
@@ -39,8 +45,22 @@ import { CheckboxCardGroup, RadioCardGroup, RadioChipGroup, RadioRowGroup, TextF
  */
 const NAV_PILL = "min-w-[168px]";
 
+/** Reported with every event from this form. */
+const FORM = { id: "project-intake", name: "Project intake", destination: "/api/intake" };
+const LOCATION = "project_intake";
+
+/**
+ * Per-tab, so a refresh picks up where the visitor left off instead of starting a second partial
+ * row for the same person. It holds their answers, so it is deliberately sessionStorage rather
+ * than localStorage: closing the tab clears it.
+ */
+const STORAGE_KEY = "mc-project-intake-v1";
+
 type Step = "basics" | "branch" | "final" | "done";
 type Errors = Partial<Record<"name" | "email" | "topic" | "buildType" | "printsTopic" | "phone", string>>;
+
+/** The row the API created, and the one-time token that authorises updating it. */
+type Submission = { id: string; token: string };
 
 const EMPTY_ANSWERS = {
 	name: "",
@@ -62,13 +82,57 @@ const EMPTY_ANSWERS = {
 
 type Answers = typeof EMPTY_ANSWERS;
 
+/** The radio groups, which report a single chosen value rather than a list. */
+type RadioKey = "topic" | "buildType" | "platform" | "timeline" | "printsTopic" | "reach";
+
+type StoredSession = { id: string; token: string; answers: Answers; step: Step };
+
 /**
- * Where the submission will be saved once the database work lands. Both calls are no-ops for
- * now: this pass is the front end only, so continuing and submitting move the form along
- * without storing anything.
+ * The branch answers for one topic, with blanks left out so absent beats empty in the database.
+ * The API validates this against the topic already stored on the row and rejects any field the
+ * branch did not ask for, which is why platform only goes along with a migration.
  */
-async function savePartialSubmission(_answers: Answers) {}
-async function saveCompleteSubmission(_answers: Answers, _calculator: { toggles: string[]; estimate: string | null }) {}
+function branchAnswersFor(topic: Topic, answers: Answers): Record<string, unknown> {
+	if (topic === "website") {
+		const out: Record<string, unknown> = { buildType: answers.buildType };
+		if (answers.buildType === "migration" && answers.platform) out.platform = answers.platform;
+		if (answers.needs.length > 0) out.needs = answers.needs;
+		if (answers.timeline) out.timeline = answers.timeline;
+		if (answers.currentSite.trim()) out.currentSite = answers.currentSite.trim();
+		return out;
+	}
+
+	if (topic === "prints") {
+		const out: Record<string, unknown> = { printsTopic: answers.printsTopic };
+		if (answers.orderNumber.trim()) out.orderNumber = answers.orderNumber.trim();
+		return out;
+	}
+
+	if (topic === "digitization") {
+		const out: Record<string, unknown> = {};
+		if (answers.digitize.length > 0) out.digitize = answers.digitize;
+		if (answers.itemCount.trim()) out.itemCount = answers.itemCount.trim();
+		return out;
+	}
+
+	// "Something else" has no questions of its own.
+	return {};
+}
+
+/** The last step's fields. Only the contact preference is required. */
+function finalAnswersFor(answers: Answers) {
+	const out: { details?: string; phone?: string; reach: string } = { reach: answers.reach };
+	if (answers.details.trim()) out.details = answers.details.trim();
+	if (answers.phone.trim()) out.phone = answers.phone.trim();
+	return out;
+}
+
+/** The 1-based position of a step in the flow this visitor is actually walking. */
+function positionOf(which: Step, skippedBasics: boolean, total: number): number {
+	if (which === "basics") return 1;
+	if (which === "branch") return skippedBasics ? 1 : 2;
+	return skippedBasics ? 2 : total;
+}
 
 /** The progress text is the accessible indicator. The bar beside it is decorative. */
 function Progress({ current, total }: { current: number; total: number }) {
@@ -108,12 +172,35 @@ function Honeypot({ value, onChange }: { value: string; onChange: (value: string
 	);
 }
 
+/**
+ * Where a save failure is reported, as opposed to a problem with the answers. The container stays
+ * mounted so the message is announced when it arrives: a live region added at the same time as its
+ * text is not reliably read out.
+ */
+function SaveError({ message }: { message: string | null }) {
+	return (
+		<div aria-live="assertive">
+			{message ? (
+				<p className="mt-6 mb-0 rounded-[8px] border border-[#ff8da1] bg-[#2a0d14] px-4 py-3 text-[15px] leading-[1.5] text-[#ff8da1] aktiv-grotesk-semibold">
+					{message}
+				</p>
+			) : null}
+		</div>
+	);
+}
+
 export default function ProjectIntakeForm() {
 	const searchParams = useSearchParams();
+	const { executeRecaptcha } = useGoogleReCaptcha();
+	const analytics = useFormAnalytics(FORM);
 	const [step, setStep] = useState<Step>("basics");
 	const [answers, setAnswers] = useState<Answers>(EMPTY_ANSWERS);
 	const [errors, setErrors] = useState<Errors>({});
 	const [honeypot, setHoneypot] = useState("");
+	/** The row the API holds, from the end of step 1 onward. */
+	const [submission, setSubmission] = useState<Submission | null>(null);
+	const [pending, setPending] = useState(false);
+	const [saveError, setSaveError] = useState<string | null>(null);
 	/** True while the visitor came straight from the calculator and has not filled in step 1. */
 	const [skippedBasics, setSkippedBasics] = useState(false);
 	const [calculator, setCalculator] = useState<{ toggles: string[]; estimate: string | null }>({
@@ -133,14 +220,23 @@ export default function ProjectIntakeForm() {
 	const printsTopicRef = useRef<HTMLInputElement>(null);
 	/** Nothing is focused on first paint, only when the step changes under the visitor. */
 	const hasRendered = useRef(false);
+	/** A restored session lands on a later step during mount, which is not a step the visitor moved to. */
+	const restoring = useRef(false);
 
-	/** Read the calculator handoff once, ignoring anything unrecognised. */
+	/**
+	 * Read the calculator handoff once, ignoring anything unrecognised.
+	 *
+	 * This page is prerendered, so the query string is not readable until the browser has it. The
+	 * handoff seeds answers the visitor then edits, so it has to land in state rather than be
+	 * derived — which is what the set-state-in-effect rule is waived for here and below.
+	 */
 	useEffect(() => {
 		if (searchParams.get("from") !== "calculator") return;
 		const toggles = (searchParams.get("calc") ?? "")
 			.split(",")
 			.map((entry) => entry.trim())
 			.filter((entry) => entry in calculatorNeedsMap);
+		// eslint-disable-next-line react-hooks/set-state-in-effect
 		setCalculator({ toggles, estimate: searchParams.get("estimate") });
 		setAnswers((current) => ({
 			...current,
@@ -151,10 +247,53 @@ export default function ProjectIntakeForm() {
 		setStep("branch");
 	}, [searchParams]);
 
+	/**
+	 * Pick a refreshed session back up. A calculator handoff starts fresh, because the link carries
+	 * its own answers and re-runs the effect above.
+	 *
+	 * sessionStorage does not exist when this page is prerendered, so restoring during render would
+	 * hand the browser different markup than the server sent. It has to happen after mount.
+	 */
+	useEffect(() => {
+		if (searchParams.get("from") === "calculator") return;
+		try {
+			const raw = sessionStorage.getItem(STORAGE_KEY);
+			if (!raw) return;
+
+			const saved = JSON.parse(raw) as StoredSession;
+			// Without a server side row there is nothing to resume.
+			if (!saved?.id || !saved?.token || !saved?.answers?.topic) return;
+
+			// eslint-disable-next-line react-hooks/set-state-in-effect
+			setSubmission({ id: saved.id, token: saved.token });
+			setAnswers({ ...EMPTY_ANSWERS, ...saved.answers });
+			restoring.current = true;
+			setStep(saved.step === "branch" || saved.step === "final" ? saved.step : "basics");
+		} catch {
+			// A corrupt or unavailable session just means starting fresh.
+		}
+	}, [searchParams]);
+
+	/** Keep the session in step with the form, so a refresh loses nothing. */
+	useEffect(() => {
+		// The done screen has already cleared the session and must not write it back.
+		if (!submission || step === "done") return;
+		try {
+			const payload: StoredSession = { id: submission.id, token: submission.token, answers, step };
+			sessionStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+		} catch {
+			// Storage can be unavailable in private mode; the form still works without it.
+		}
+	}, [submission, answers, step]);
+
 	/** On every step change the new heading takes focus, which also scrolls it into view. */
 	useEffect(() => {
 		if (!hasRendered.current) {
 			hasRendered.current = true;
+			return;
+		}
+		if (restoring.current) {
+			restoring.current = false;
 			return;
 		}
 		const target =
@@ -169,20 +308,38 @@ export default function ProjectIntakeForm() {
 	}, [step]);
 
 	const topic = (answers.topic || "website") as Topic;
+	const isWebsite = topic === "website";
+	const firstName = answers.name.trim().split(/\s+/)[0] || "there";
 	/** "Something else" has no questions of its own, so that path is two steps, not three. */
 	const totalSteps = skippedBasics || answers.topic === "other" ? 2 : 3;
-	const currentStep = step === "basics" ? 1 : step === "branch" ? (skippedBasics ? 1 : 2) : skippedBasics ? 2 : totalSteps;
+	const currentStep = positionOf(step, skippedBasics, totalSteps);
+
+	function clearSession() {
+		try {
+			sessionStorage.removeItem(STORAGE_KEY);
+		} catch {
+			// Nothing to do: the submission already succeeded.
+		}
+	}
 
 	function update<K extends keyof Answers>(key: K, value: Answers[K]) {
 		setAnswers((current) => ({ ...current, [key]: value }));
 		setErrors((current) => ({ ...current, [key]: undefined }));
 	}
 
-	function toggleInList(key: "needs" | "digitize", value: string) {
+	/** A radio choice, reported with the label the visitor actually read. */
+	function choose(key: RadioKey, options: Option[], value: string) {
+		update(key, value);
+		analytics.onOptionSelect({ field: key, value, label: labelOf(options, value) });
+	}
+
+	function toggleInList(key: "needs" | "digitize", options: Option[], value: string) {
+		const selected = !answers[key].includes(value);
 		setAnswers((current) => {
 			const list = current[key];
 			return { ...current, [key]: list.includes(value) ? list.filter((entry) => entry !== value) : [...list, value] };
 		});
+		analytics.onOptionSelect({ field: key, value, label: labelOf(options, value), selected });
 	}
 
 	/** Validates a step, shows any errors and puts focus on the first field that failed. */
@@ -213,7 +370,10 @@ export default function ProjectIntakeForm() {
 		}
 
 		setErrors(found);
-		if (Object.keys(found).length === 0) return true;
+		const failed = Object.keys(found);
+		if (failed.length === 0) return true;
+
+		analytics.onError("validation", failed);
 		for (const [key, ref] of focusOrder) {
 			if (found[key]) {
 				ref.current?.focus();
@@ -223,32 +383,216 @@ export default function ProjectIntakeForm() {
 		return false;
 	}
 
+	/* ------------------------------------------------------------------ network */
+
+	/** Only sent when the visitor actually came through the calculator. */
+	function calculatorPayload() {
+		if (calculator.toggles.length === 0 && !calculator.estimate) return undefined;
+		return { toggles: calculator.toggles, estimate: calculator.estimate };
+	}
+
+	/**
+	 * A token the API can score. Undefined whenever reCAPTCHA is unavailable or refuses, which the
+	 * API reads as no verdict rather than as spam — a challenge that fails must not cost a lead.
+	 */
+	async function recaptchaToken(): Promise<string | undefined> {
+		if (!executeRecaptcha) return undefined;
+		try {
+			return await executeRecaptcha("project_intake");
+		} catch {
+			return undefined;
+		}
+	}
+
+	/**
+	 * Runs a save and turns a failure into copy. `okCodes` are the error codes that mean the work was
+	 * already done, so the form should move on rather than complain.
+	 */
+	async function request(url: string, init: RequestInit, okCodes: string[] = []): Promise<Response | null> {
+		try {
+			const response = await fetch(url, init);
+			if (response.ok) return response;
+
+			const body = (await response.json().catch(() => ({}))) as { error?: string };
+			const code = body.error ?? "server_error";
+			if (okCodes.includes(code)) return response;
+
+			// A row we can no longer prove we own is not worth holding on to. Dropping it lets the
+			// retry start a clean one instead of failing the same way forever.
+			if (code === "forbidden" || code === "not_found") {
+				setSubmission(null);
+				clearSession();
+			}
+
+			analytics.onError(code);
+			setSaveError(serverErrorFor(code));
+			return null;
+		} catch {
+			analytics.onError("offline");
+			setSaveError(serverErrorFor("offline"));
+			return null;
+		}
+	}
+
+	/** Creates the row, which is what makes the visitor reachable from here on. */
+	async function createSubmission(): Promise<Submission | null> {
+		const response = await request("/api/intake", {
+			method: "POST",
+			headers: { "content-type": "application/json" },
+			body: JSON.stringify({
+				topic,
+				name: answers.name.trim(),
+				email: answers.email.trim(),
+				calculator: calculatorPayload(),
+				company: honeypot,
+			}),
+		});
+		if (!response) return null;
+
+		const created = (await response.json()) as Submission;
+		setSubmission(created);
+		return created;
+	}
+
+	/**
+	 * Step 1. Name, email and topic are saved before any branch question is shown, so somebody who
+	 * abandons on step 2 is still somebody I can follow up with.
+	 *
+	 * Coming back to fix a typo corrects the row that already exists rather than leaving a duplicate
+	 * partial behind.
+	 */
+	async function savePartial(): Promise<boolean> {
+		if (!submission) return Boolean(await createSubmission());
+
+		const response = await request(`/api/intake/${submission.id}`, {
+			method: "PATCH",
+			headers: { "content-type": "application/json", "x-intake-token": submission.token },
+			body: JSON.stringify({ topic, contact: { name: answers.name.trim(), email: answers.email.trim() } }),
+		});
+		return Boolean(response);
+	}
+
+	/**
+	 * Step 2, best effort and silent. The final submit sends the whole branch again, so a failure
+	 * here only costs the answers of somebody who abandons the form after this point — never a
+	 * reason to stop them moving on. keepalive so it survives them navigating away.
+	 */
+	function saveBranchAnswers(saved: Submission) {
+		void fetch(`/api/intake/${saved.id}`, {
+			method: "PATCH",
+			headers: { "content-type": "application/json", "x-intake-token": saved.token },
+			body: JSON.stringify({ answers: branchAnswersFor(topic, answers) }),
+			keepalive: true,
+		}).catch(() => {
+			// Nothing to tell the visitor: the answers are re-sent on submit.
+		});
+	}
+
+	/** The last step, and the only call that sends any email. */
+	async function saveComplete(): Promise<boolean> {
+		// The calculator path skips step 1, so this may be the first the server hears of them.
+		const saved = submission ?? (await createSubmission());
+		if (!saved) return false;
+
+		const response = await request(
+			`/api/intake/${saved.id}`,
+			{
+				method: "PATCH",
+				headers: { "content-type": "application/json", "x-intake-token": saved.token },
+				body: JSON.stringify({
+					answers: branchAnswersFor(topic, answers),
+					final: finalAnswersFor(answers),
+					calculator: calculatorPayload(),
+					complete: true,
+					recaptchaToken: await recaptchaToken(),
+				}),
+			},
+			// A double submit lands here on the second request. It already worked.
+			["already_complete"],
+		);
+
+		return Boolean(response);
+	}
+
+	/* ----------------------------------------------------------------- handlers */
+
+	function goTo(next: Step, direction: "forward" | "back") {
+		analytics.onStep({
+			id: next,
+			number: positionOf(next, skippedBasics, totalSteps),
+			total: totalSteps,
+			direction,
+		});
+		setStep(next);
+	}
+
 	async function handleBasicsContinue() {
+		trackButtonClick({ name: "intake_continue", location: LOCATION, text: "Continue", value: "basics" });
 		if (!validate("basics")) return;
-		await savePartialSubmission(answers);
+
+		setSaveError(null);
+		setPending(true);
+		const ok = await savePartial();
+		setPending(false);
+		if (!ok) return;
+
 		// "Something else" has nothing to ask on step 2, so it goes straight to the last step
-		setStep(answers.topic === "other" ? "final" : "branch");
+		goTo(answers.topic === "other" ? "final" : "branch", "forward");
 	}
 
 	function handleBranchContinue() {
+		trackButtonClick({ name: "intake_continue", location: LOCATION, text: "Continue", value: "branch" });
 		if (!validate("branch")) return;
-		setStep("final");
+
+		if (submission) saveBranchAnswers(submission);
+		goTo("final", "forward");
 	}
 
 	async function handleSubmit(event: React.FormEvent) {
 		event.preventDefault();
 		if (honeypot) return;
+
+		const submitText = isWebsite ? "Send project details" : "Send message";
+		trackButtonClick({ name: "intake_submit", location: LOCATION, text: submitText, value: topic });
+
 		if (!validate("final")) return;
-		await saveCompleteSubmission(answers, calculator);
-		setStep("done");
+
+		// After validation, so form_submit counts attempts that actually reached the server.
+		analytics.onSubmit();
+		setSaveError(null);
+		setPending(true);
+		const ok = await saveComplete();
+		setPending(false);
+		if (!ok) return;
+
+		analytics.onSuccess();
+		clearSession();
+		goTo("done", "forward");
 	}
 
-	const firstName = answers.name.trim().split(/\s+/)[0] || "there";
-	const isWebsite = topic === "website";
+	function handleBack(target: Step) {
+		trackButtonClick({ name: "intake_back", location: LOCATION, text: "Back", value: target });
+		setSaveError(null);
+		goTo(target, "back");
+	}
 
-	const backButton = (onClick: () => void) => (
-		<button type="button" onClick={onClick} className={`${PILL_SECONDARY} ${NAV_PILL}`}>
+	const backButton = (target: Step, onClick?: () => void) => (
+		<button
+			type="button"
+			disabled={pending}
+			onClick={() => {
+				onClick?.();
+				handleBack(target);
+			}}
+			className={`${PILL_SECONDARY} ${NAV_PILL} disabled:opacity-60`}
+		>
 			Back
+		</button>
+	);
+
+	const continueButton = (
+		<button type="submit" disabled={pending} className={`${PILL_PRIMARY} ${NAV_PILL} disabled:opacity-60`}>
+			{pending ? "Saving…" : "Continue"}
 		</button>
 	);
 
@@ -288,6 +632,8 @@ export default function ProjectIntakeForm() {
 					<form
 						aria-labelledby="step-title"
 						noValidate
+						onFocus={analytics.onFirstInteraction}
+						onChange={analytics.onFirstInteraction}
 						onSubmit={(event) => {
 							event.preventDefault();
 							void handleBasicsContinue();
@@ -328,7 +674,7 @@ export default function ProjectIntakeForm() {
 								legend="What are you reaching out about?"
 								options={topicOptions}
 								value={answers.topic}
-								onChange={(value) => update("topic", value as Topic)}
+								onChange={(value) => choose("topic", topicOptions, value)}
 								error={errors.topic}
 								firstInputRef={topicRef}
 							/>
@@ -339,12 +685,9 @@ export default function ProjectIntakeForm() {
 						</p>
 
 						<Honeypot value={honeypot} onChange={setHoneypot} />
+						<SaveError message={saveError} />
 
-						<div className="mt-7 flex flex-wrap justify-end gap-3">
-							<button type="submit" className={`${PILL_PRIMARY} ${NAV_PILL}`}>
-								Continue
-							</button>
-						</div>
+						<div className="mt-7 flex flex-wrap justify-end gap-3">{continueButton}</div>
 					</form>
 				</div>
 			</section>
@@ -369,6 +712,8 @@ export default function ProjectIntakeForm() {
 						<form
 							aria-labelledby="step-title"
 							noValidate
+							onFocus={analytics.onFirstInteraction}
+							onChange={analytics.onFirstInteraction}
 							onSubmit={(event) => {
 								event.preventDefault();
 								handleBranchContinue();
@@ -391,7 +736,7 @@ export default function ProjectIntakeForm() {
 											legend="Is this a new site or a migration?"
 											options={buildTypeOptions}
 											value={answers.buildType}
-											onChange={(value) => update("buildType", value)}
+											onChange={(value) => choose("buildType", buildTypeOptions, value)}
 											error={errors.buildType}
 											firstInputRef={buildTypeRef}
 										/>
@@ -404,7 +749,7 @@ export default function ProjectIntakeForm() {
 												legend="What platform is your current site on?"
 												options={platformOptions}
 												value={answers.platform}
-												onChange={(value) => update("platform", value)}
+												onChange={(value) => choose("platform", platformOptions, value)}
 											/>
 										</div>
 									) : null}
@@ -415,7 +760,7 @@ export default function ProjectIntakeForm() {
 											help="Choose all that apply."
 											options={needsOptions}
 											values={answers.needs}
-											onToggle={(value) => toggleInList("needs", value)}
+											onToggle={(value) => toggleInList("needs", needsOptions, value)}
 										/>
 									</div>
 									<div className="mt-8">
@@ -424,7 +769,7 @@ export default function ProjectIntakeForm() {
 											legend="When would you like to launch?"
 											options={timelineOptions}
 											value={answers.timeline}
-											onChange={(value) => update("timeline", value)}
+											onChange={(value) => choose("timeline", timelineOptions, value)}
 										/>
 									</div>
 									<div className="mt-8">
@@ -449,7 +794,7 @@ export default function ProjectIntakeForm() {
 											legend="What can I help with?"
 											options={printsTopicOptions}
 											value={answers.printsTopic}
-											onChange={(value) => update("printsTopic", value)}
+											onChange={(value) => choose("printsTopic", printsTopicOptions, value)}
 											error={errors.printsTopic}
 											firstInputRef={printsTopicRef}
 										/>
@@ -475,7 +820,7 @@ export default function ProjectIntakeForm() {
 											help="Choose all that apply."
 											options={digitizeOptions}
 											values={answers.digitize}
-											onToggle={(value) => toggleInList("digitize", value)}
+											onToggle={(value) => toggleInList("digitize", digitizeOptions, value)}
 										/>
 									</div>
 									<div className="mt-8">
@@ -491,16 +836,12 @@ export default function ProjectIntakeForm() {
 							) : null}
 
 							<Honeypot value={honeypot} onChange={setHoneypot} />
+							<SaveError message={saveError} />
 
 							<div className="mt-8 flex flex-wrap justify-between gap-3">
-								{backButton(() => {
-									// Coming back from the calculator turns this into the ordinary three step flow
-									setSkippedBasics(false);
-									setStep("basics");
-								})}
-								<button type="submit" className={`${PILL_PRIMARY} ${NAV_PILL}`}>
-									Continue
-								</button>
+								{/* Coming back from the calculator turns this into the ordinary three step flow */}
+								{backButton("basics", () => setSkippedBasics(false))}
+								{continueButton}
 							</div>
 						</form>
 					) : null}
@@ -509,6 +850,8 @@ export default function ProjectIntakeForm() {
 						<form
 							aria-labelledby="step-title"
 							noValidate
+							onFocus={analytics.onFirstInteraction}
+							onChange={analytics.onFirstInteraction}
 							onSubmit={(event) => void handleSubmit(event)}
 							className={`${CARD} relative mt-8 bg-[#000000] p-[clamp(24px,4vw,48px)] [color-scheme:dark]`}
 						>
@@ -581,23 +924,24 @@ export default function ProjectIntakeForm() {
 									legend="How should I reach you?"
 									options={reachOptions}
 									value={answers.reach}
-									onChange={(value) => update("reach", value)}
+									onChange={(value) => choose("reach", reachOptions, value)}
 								/>
 							</div>
 
 							<Honeypot value={honeypot} onChange={setHoneypot} />
+							<SaveError message={saveError} />
 
 							<div className="mt-8 flex flex-wrap justify-between gap-3">
-								{backButton(() => setStep(answers.topic === "other" ? "basics" : "branch"))}
-								<button type="submit" className={`${PILL_PRIMARY} ${NAV_PILL}`}>
-									{isWebsite ? "Send project details" : "Send message"}
+								{backButton(answers.topic === "other" ? "basics" : "branch")}
+								<button type="submit" disabled={pending} className={`${PILL_PRIMARY} ${NAV_PILL} disabled:opacity-60`}>
+									{pending ? "Sending…" : isWebsite ? "Send project details" : "Send message"}
 								</button>
 							</div>
 						</form>
 					) : null}
 
 					{step === "done" ? (
-						<div className={`${CARD} bg-[#000000] p-[clamp(24px,4vw,48px)]`}>
+						<FormCard>
 							<div aria-hidden="true" className="flex h-12 w-12 items-center justify-center rounded-full bg-mcRed">
 								<svg
 									width="24"
@@ -624,17 +968,36 @@ export default function ProjectIntakeForm() {
 								way to your inbox.
 							</p>
 							<div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-								<Link href="/" className={PILL_SECONDARY}>
+								<Link
+									href="/"
+									onClick={() =>
+										trackButtonClick({
+											name: "intake_done_link",
+											location: LOCATION,
+											text: "Back to the homepage",
+											value: "/",
+										})
+									}
+									className={PILL_SECONDARY}
+								>
 									Back to the homepage
 								</Link>
 								<Link
 									href="/#work"
+									onClick={() =>
+										trackButtonClick({
+											name: "intake_done_link",
+											location: LOCATION,
+											text: "See the work",
+											value: "/#work",
+										})
+									}
 									className={`inline-flex items-center min-h-[44px] text-[17px] text-white aktiv-grotesk-semibold underline underline-offset-4 ${FOCUS_RING}`}
 								>
 									See the work
 								</Link>
 							</div>
-						</div>
+						</FormCard>
 					) : null}
 				</div>
 			</div>

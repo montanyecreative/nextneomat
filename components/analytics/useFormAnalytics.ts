@@ -1,7 +1,15 @@
 "use client";
 
 import { useCallback, useRef } from "react";
-import { trackFormError, trackFormStart, trackFormSubmit, trackFormSuccess, type FormContext } from "@/lib/gtag";
+import {
+	trackFormError,
+	trackFormOptionSelect,
+	trackFormStart,
+	trackFormStep,
+	trackFormSubmit,
+	trackFormSuccess,
+	type FormContext,
+} from "@/lib/gtag";
 
 /**
  * Form interaction tracking.
@@ -12,6 +20,9 @@ import { trackFormError, trackFormStart, trackFormSubmit, trackFormSuccess, type
  *
  * Wire it up with:
  *   <form onSubmit={...} onFocus={onFirstInteraction} onChange={onFirstInteraction}>
+ *
+ * Multi-step forms also call `onStep` as the visitor moves between steps and
+ * `onOptionSelect` as they answer, which together make the drop-off readable.
  */
 export function useFormAnalytics(form: FormContext) {
 	// form_start is a once-per-mount event: the first sign of engagement.
@@ -42,5 +53,21 @@ export function useFormAnalytics(form: FormContext) {
 		[form.id, form.name, form.destination, form.submitText]
 	);
 
-	return { onFirstInteraction, onSubmit, onSuccess, onError };
+	const onStep = useCallback(
+		(step: { id: string; number: number; total: number; direction: "forward" | "back" }) => {
+			trackFormStep(form, step);
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[form.id, form.name, form.destination, form.submitText]
+	);
+
+	const onOptionSelect = useCallback(
+		(option: { field: string; value: string; label?: string; selected?: boolean }) => {
+			trackFormOptionSelect(form, option);
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[form.id, form.name, form.destination, form.submitText]
+	);
+
+	return { onFirstInteraction, onSubmit, onSuccess, onError, onStep, onOptionSelect };
 }

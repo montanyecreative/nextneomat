@@ -60,7 +60,6 @@ export function gaEvent(name: string, params: GtagParams = {}): void {
 	if (typeof window === "undefined") return;
 
 	if (GA_VERBOSE) {
-		// eslint-disable-next-line no-console
 		console.debug("[ga4]", name, params);
 	}
 
@@ -233,4 +232,77 @@ export function trackFormSuccess(form: FormContext): void {
 
 export function trackFormError(form: FormContext, reason: string, fields?: string[]): void {
 	gaEvent("form_error", formParams(form, { error_reason: reason, error_fields: fields ? fields.join(",") : undefined }));
+}
+
+/** Fires when a multi-step form moves between steps, so the funnel is readable. */
+export function trackFormStep(
+	form: FormContext,
+	step: { id: string; number: number; total: number; direction: "forward" | "back" }
+): void {
+	gaEvent("form_step", formParams(form, {
+		step_id: step.id,
+		step_number: step.number,
+		step_total: step.total,
+		step_direction: step.direction,
+	}));
+}
+
+/**
+ * A radio chosen or a checkbox toggled inside a tracked form. `selected` is
+ * only meaningful for checkboxes; a radio is always a selection.
+ */
+export function trackFormOptionSelect(
+	form: FormContext,
+	option: { field: string; value: string; label?: string; selected?: boolean }
+): void {
+	gaEvent("form_option_select", formParams(form, {
+		field_name: option.field,
+		option_value: option.value,
+		option_label: option.label,
+		option_selected: option.selected,
+	}));
+}
+
+/* -------------------------------------------------------------------------- */
+/* Buttons and toggles                                                         */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * GA4 has no recommended event for a button or a switch, so these two are
+ * custom. Their parameters need registering as custom dimensions before they
+ * show up anywhere outside DebugView and the realtime report:
+ *
+ *   Admin → Custom definitions → Create custom dimension, event-scoped, one
+ *   each for button_name, button_location, button_text, button_value,
+ *   toggle_name, toggle_location, toggle_state and toggle_value.
+ */
+export interface ControlContext {
+	/** Stable snake_case identifier, so rewording the label keeps the history. */
+	name: string;
+	/** The page or component it belongs to, e.g. "resume" or "project_intake". */
+	location: string;
+	/** The visible label, so a report reads without a lookup table. */
+	text?: string;
+	/** Whatever the control carries: a destination, a file name, a value. */
+	value?: string;
+}
+
+export function trackButtonClick(control: ControlContext): void {
+	gaEvent("button_click", {
+		button_name: control.name,
+		button_location: control.location,
+		button_text: control.text,
+		button_value: control.value,
+	});
+}
+
+/** `state` is the state the control is moving into, not the one it left. */
+export function trackToggle(control: ControlContext, state: "on" | "off"): void {
+	gaEvent("toggle", {
+		toggle_name: control.name,
+		toggle_location: control.location,
+		toggle_text: control.text,
+		toggle_value: control.value,
+		toggle_state: state,
+	});
 }

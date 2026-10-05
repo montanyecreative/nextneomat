@@ -81,6 +81,12 @@ export default function Footer() {
 					Privacy Policy
 				</Link>
 			</div>
+			{/*
+				The coffee widget. Its script builds the button on DOMContentLoaded and appends it to the
+				body, where it then outlives any page change, so the resume page hides it in CSS rather
+				than skipping this tag: a visitor who arrives on the resume page would otherwise never
+				get the widget back on the pages that do want it.
+			*/}
 			<script
 				data-name="BMC-Widget"
 				data-cfasync="false"

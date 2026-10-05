@@ -15,7 +15,7 @@ const steps = [
 	{
 		number: "03",
 		title: "Launch & Optimization",
-		copy: "Once your site is built, we step through a final workshop where you review everything. Then I launch at an agreed time that won't impact your business and run performance tests once it's live. From there, I can hand it off and teach you how to run it, or keep supporting you at an affordable discounted rate. Either way, you'll understand how it all works.",
+		copy: "Once your site is built, we step through a final workshop where you review everything. Then I launch at an agreed time that won't impact your business and run performance tests once it's live. From there, I can hand it off and teach you how to run it, or keep supporting you at an affordable rate. Either way, you'll understand how it all works.",
 	},
 ];
 
