@@ -11,6 +11,7 @@ import ExperienceSection from "./experience";
 import EducationSection from "./education";
 import SkillsSection from "./skills";
 import { useSlideInFromLeft } from "@/components/animations";
+import Salesforce from "@/components/salesforce";
 
 export default function Resume() {
 	const headingRef = useRef<HTMLHeadingElement>(null);
@@ -41,6 +42,7 @@ export default function Resume() {
 					<SkillsSection />
 				</div>
 			</div>
+			<Salesforce />
 			<Promotion />
 			<Footer />
 		</main>

@@ -25,12 +25,9 @@ export default function ContactUs() {
 							style={headingStyles.style}
 							className="text-[42px] absolute bottom-0 left-0 p-5 text-white md:block hidden proxima-nova-medium"
 						>
-							Contact Us
+							Get in touch
 						</h1>
 					</div>
-				</div>
-				<div className="bg-[#151515] text-center">
-					<h1 className="text-[32px] pt-5 mb-0 text-white md:hidden proxima-nova-semibold">Contact Us</h1>
 				</div>
 				{/* The provider lives here, not in the root layout, so the reCAPTCHA script loads on this page only */}
 				<RecaptchaProvider>

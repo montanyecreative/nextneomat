@@ -30,15 +30,15 @@ type MarketingPlan = "free" | "starter";
 type TransactionalPlan = "free" | "basic";
 
 /**
- * Starting state. The questions that existed before keep the defaults they had: the personal
- * path, with every service switched off. The three new questions start the way the design shows
- * them, and a question that carries plan choices opens on its free tier.
+ * Starting state. The personal path, with every service switched off, so the estimate begins at
+ * nothing and only counts what the visitor turns on. A question that carries plan choices still
+ * opens on its free tier for when it is switched on.
  */
 const DEFAULTS = {
 	monetization: "personal" as Monetization,
 	needsForms: false,
-	sellsOnline: true,
-	editsContent: true,
+	sellsOnline: false,
+	editsContent: false,
 	cmsPlan: "free" as CmsPlan,
 	multiLanguage: false,
 	needsMarketing: false,
@@ -72,9 +72,7 @@ function SwitchVisual({ on }: { on: boolean }) {
 		>
 			<span>{on ? "Yes" : "No"}</span>
 			<span
-				className={`relative inline-block h-7 w-12 rounded-full transition-colors duration-200 ${
-					on ? "bg-mcRed" : "bg-[#6e6e6e]"
-				}`}
+				className={`relative inline-block h-7 w-12 rounded-full transition-colors duration-200 ${on ? "bg-mcRed" : "bg-[#6e6e6e]"}`}
 			>
 				<span
 					className={`absolute top-[3px] h-[22px] w-[22px] rounded-full bg-white transition-all duration-200 ${
@@ -149,7 +147,10 @@ function Chip({
 }) {
 	return (
 		<label
-			className={optionCardClass(checked, `flex-[0_1_auto] inline-flex items-center gap-2.5 min-h-[48px] text-[16px] ${chipPadding(checked)}`)}
+			className={optionCardClass(
+				checked,
+				`flex-[0_1_auto] inline-flex items-center gap-2.5 min-h-[48px] text-[16px] ${chipPadding(checked)}`,
+			)}
 		>
 			<input type="radio" name={name} value={value} checked={checked} onChange={onChange} className={NATIVE_CONTROL} />
 			<span className="text-white aktiv-grotesk-regular">{children}</span>
@@ -196,8 +197,7 @@ export default function PricingCalculator() {
 	const hostingYearly = monetization === "commercial" ? HOSTING_COMMERCIAL_YEARLY : 0;
 	const cmsYearly = editsContent && cmsPlan === "lite" ? CMS_LITE_YEARLY : 0;
 	const marketingYearly = needsMarketing && marketingPlan === "starter" ? MARKETING_STARTER_YEARLY : 0;
-	const transactionalYearly =
-		needsTransactional && transactionalPlan === "basic" ? TRANSACTIONAL_BASIC_YEARLY : 0;
+	const transactionalYearly = needsTransactional && transactionalPlan === "basic" ? TRANSACTIONAL_BASIC_YEARLY : 0;
 	const domainYearly = needsDomain ? DOMAIN_YEARLY : 0;
 	const estimatedYearlyTotal = hostingYearly + cmsYearly + marketingYearly + transactionalYearly + domainYearly;
 
@@ -271,7 +271,9 @@ export default function PricingCalculator() {
 										className={`${NATIVE_CONTROL} mt-1`}
 									/>
 									<span>
-										<span className="block text-[17px] aktiv-grotesk-semibold text-white">No: personal or nonprofit</span>
+										<span className="block text-[17px] aktiv-grotesk-semibold text-white">
+											No: personal or nonprofit
+										</span>
 										<span className={`block mt-0.5 ${NOTE_TEXT}`}>
 											Portfolio, resume, wedding site, hobby blog, or any site where you are not generating revenue.
 										</span>
@@ -292,7 +294,9 @@ export default function PricingCalculator() {
 										className={`${NATIVE_CONTROL} mt-1`}
 									/>
 									<span>
-										<span className="block text-[17px] aktiv-grotesk-semibold text-white">Yes: business or commerce</span>
+										<span className="block text-[17px] aktiv-grotesk-semibold text-white">
+											Yes: business or commerce
+										</span>
 										<span className={`block mt-0.5 ${NOTE_TEXT}`}>
 											Selling products, services, ads, memberships, or any other way of earning from the site.
 										</span>
@@ -375,7 +379,7 @@ export default function PricingCalculator() {
 							}}
 							note={
 								multiLanguage
-									? "Sites in more than 3 languages need a custom content plan, which I'll quote with you."
+									? "Sites in more than 2 languages need a custom content plan, which I'll quote with you."
 									: undefined
 							}
 						/>
@@ -499,8 +503,8 @@ export default function PricingCalculator() {
 				<div className={`${CARD} mt-5 bg-[#000000] p-8`}>
 					<h3 className="m-0 aktiv-grotesk-semibold text-white text-[24px] leading-[1.25]">How billing works</h3>
 					<p className={`mt-3 mb-0 max-w-[46em] text-[17px] ${BODY_TEXT}`}>
-						Before any work begins, you get an hour-by-hour estimate. The work is billed hourly with itemized invoices, with
-						no retainers and no charge for coordination time. Changes beyond the agreed scope are billed the same way, so you
+						Before any work begins, you get an hour-by-hour estimate. The work is billed hourly with itemized invoices, with no
+						retainers and no charge for coordination time. Changes beyond the agreed scope are billed the same way, so you
 						always see what you&apos;re paying for.
 					</p>
 				</div>

@@ -36,15 +36,29 @@ const lighthouseScores: { site: string; scores: number[] }[] = [
 type LighthouseEntry = (typeof lighthouseScores)[number];
 
 /**
- * One site and its four numbers. Below lg the wrapper keeps the pair together on a wrapping
- * row, breaking between the name and the numbers when the panel is too narrow to hold both,
- * which on a phone it is. At lg it drops to display:contents so the name and the numbers
- * become cells of the grid above and line up with the other row.
+ * One site and its four numbers, kept together as a unit. The pair breaks between the name and
+ * the numbers only when the panel is too narrow to hold both, which on a phone it is.
+ *
+ * `wrapperClass` lets the two line layout drop the wrapper to display:contents, so the name and
+ * the numbers become cells of the grid above and line up with the row below them. `namePad`
+ * opens the second pair on a grid row clear of the first.
+ *
+ * There is deliberately no justify on the wrapper: when the pair wraps on a narrow screen, the
+ * name and the numbers have to stay flush with the lines above them. The wide layout centres the
+ * pairs from its own container, where a pair is never narrow enough to wrap.
  */
-function ScoreEntry({ entry }: { entry: LighthouseEntry }) {
+function ScoreEntry({
+	entry,
+	wrapperClass = "",
+	namePad = "",
+}: {
+	entry: LighthouseEntry;
+	wrapperClass?: string;
+	namePad?: string;
+}) {
 	return (
-		<span className="inline-flex flex-wrap items-baseline gap-x-4 gap-y-1 lg:contents">
-			<span className="whitespace-nowrap">{entry.site}</span>
+		<span className={`inline-flex flex-wrap items-baseline gap-x-4 gap-y-1 ${wrapperClass}`}>
+			<span className={`whitespace-nowrap ${namePad}`}>{entry.site}</span>
 			<b className="whitespace-nowrap text-[#4ade80] aktiv-grotesk-semibold">{entry.scores.join(", ")}</b>
 		</span>
 	);
@@ -97,19 +111,42 @@ export default function FasterLeaner() {
 						))}
 					</ul>
 					{/*
-						From lg this is a four column grid, two sites to a row, so names line up under names
-						and numbers under numbers rather than landing wherever the line above them ended. The
-						label takes the first pair of cells, which also holds the block to two lines on the
-						narrower desktops. The gap is even across all four columns, since the green numbers
-						already read as belonging to the name beside them. Below lg the grid would be wider
-						than the panel, so the pairs simply wrap instead.
+						Two arrangements, swapped at the width where all three sites fit across the panel.
+						Only one of them is ever in the page, so neither is read out twice.
 					*/}
 					<div className="mt-7 pt-6 border-t border-[#2e2e2e] text-[16px] text-[#b5b5b5] aktiv-grotesk-regular">
-						<div className="flex flex-wrap items-baseline gap-x-8 gap-y-2.5 lg:grid lg:w-max lg:max-w-full lg:grid-cols-[auto_auto_auto_auto] lg:gap-x-5">
-							<span className="lg:col-span-2">Live Lighthouse scores</span>
-							{lighthouseScores.map((entry) => (
-								<ScoreEntry key={entry.site} entry={entry} />
-							))}
+						{/* Wide: the label centred on its own line, the three sites centred on the line below */}
+						<div className="hidden min-[1366px]:block">
+							<p className="m-0 text-center">Live Lighthouse scores</p>
+							<div className="mt-3 flex flex-wrap items-baseline justify-center gap-x-12 gap-y-2.5">
+								{lighthouseScores.map((entry) => (
+									<ScoreEntry key={entry.site} entry={entry} />
+								))}
+							</div>
+						</div>
+						{/*
+							Narrower: two lines, left aligned. From lg it is a four column grid, so names line
+							up under names and numbers under numbers, with the label taking the first pair of
+							cells. Between 791px and lg the grid is wider than the panel, so the pairs pack
+							into two wrapped lines instead.
+
+							At 790px even that no longer holds and the last site would drop to a line of its
+							own, so from there down it goes straight to one item per line rather than sitting
+							in a lopsided three line state.
+						*/}
+						<div className="min-[1366px]:hidden">
+							<div className="flex flex-wrap items-baseline gap-x-8 gap-y-2.5 max-[790px]:flex-col max-[790px]:items-start lg:grid lg:w-max lg:max-w-full lg:grid-cols-[auto_auto_auto_auto] lg:gap-x-4">
+								<span className="lg:col-span-2">Live Lighthouse scores</span>
+								{lighthouseScores.map((entry, index) => (
+									<ScoreEntry
+										key={entry.site}
+										entry={entry}
+										wrapperClass="lg:contents"
+										// Entries 0 and 2 open the right hand pair on their row
+										namePad={index % 2 === 0 ? "lg:pl-6 custom1060:pl-12" : ""}
+									/>
+								))}
+							</div>
 						</div>
 					</div>
 				</div>

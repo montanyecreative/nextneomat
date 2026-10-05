@@ -1,9 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BODY_TEXT, CONTAINER, PILL_PRIMARY, PILL_SECONDARY, SECTION_HEADING } from "@/components/site/tokens";
+import { CONTAINER, PILL_PRIMARY, PILL_SECONDARY, SECTION_HEADING } from "@/components/site/tokens";
 
 /** Lifts the copy off the photograph, the way the homepage banner heading is treated. */
 const TEXT_SHADOW = "[text-shadow:0_2px_10px_rgba(0,0,0,0.5)]";
+
+/**
+ * The intro sits on the photograph rather than on a flat band, so it runs lighter than the
+ * BODY_TEXT token used in the sections below. Only this one paragraph deviates; the token
+ * stays as it is for the rest of the site.
+ */
+const BANNER_BODY_TEXT = "aktiv-grotesk-regular text-[#ededed]";
 
 /**
  * The page banner: the photograph behind the heading, intro and both calls to action.
@@ -17,8 +24,9 @@ export default function DevHero() {
 	return (
 		<section className="relative isolate flex min-h-[720px] bg-[#000000]">
 			{/*
-				Decorative. The photograph is held at 40% over black, then a scrim darkens the side the
-				copy sits on, since the bright areas of the photo would otherwise wash the body text out.
+				Decorative. The photograph is held at 65% over black, then a light scrim shades the side
+				the copy sits on. The scrim only takes the edge off the bright areas of the photo; the
+				text-shadow on the heading and intro is what carries their readability.
 			*/}
 			<div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden">
 				<Image
@@ -27,16 +35,16 @@ export default function DevHero() {
 					fill
 					priority
 					sizes="100vw"
-					className="object-cover opacity-40"
+					className="object-cover opacity-65"
 				/>
-				<div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/25" />
+				<div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/30 to-black/10" />
 			</div>
 			{/* Centred in the banner the way the homepage centres its own, but left aligned per the design */}
 			<div className={`${CONTAINER} flex flex-col justify-center py-[clamp(56px,7vw,112px)]`}>
 				<h1 className={`${SECTION_HEADING} max-w-[15em] ${TEXT_SHADOW}`}>
 					Websites and online stores, built as one connected system.
 				</h1>
-				<p className={`mt-8 mb-0 max-w-[34em] text-[clamp(19px,1.6vw,22px)] leading-[1.55] ${BODY_TEXT} ${TEXT_SHADOW}`}>
+				<p className={`mt-8 mb-0 max-w-[34em] text-[clamp(19px,1.6vw,22px)] leading-[1.55] ${BANNER_BODY_TEXT} ${TEXT_SHADOW}`}>
 					New builds and migrations made to enterprise standards, planned and built start to finish by the engineer
 					accountable for the result.
 				</p>

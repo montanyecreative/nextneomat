@@ -19,7 +19,14 @@ export default function Hero() {
 
 	return (
 		<div className="banner-home">
-			<div className={`${CONTAINER} h-full flex flex-col items-center justify-center text-center`}>
+			{/*
+				Under 415px the heading wraps to a fourth line, and centring that taller block in the
+				fixed height banner lifts its first line behind the floating nav. The padding pushes the
+				block back down so the heading clears the nav, the way it already does above that width.
+			*/}
+			<div
+				className={`${CONTAINER} h-full flex flex-col items-center justify-center text-center max-[415px]:pt-16`}
+			>
 				<h1
 					ref={headingRef}
 					style={headingStyles.style}

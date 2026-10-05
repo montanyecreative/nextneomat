@@ -12,6 +12,7 @@ import {
 	PILL_PRIMARY,
 	PILL_SECONDARY,
 	SECTION_HEADING,
+	SECTION_X,
 } from "@/components/site/tokens";
 import {
 	buildTypeOptions,
@@ -29,6 +30,14 @@ import {
 	type Topic,
 } from "./data";
 import { CheckboxCardGroup, RadioCardGroup, RadioChipGroup, RadioRowGroup, TextField } from "./fields";
+
+/**
+ * Back and Continue sit at the two ends of each step's footer, so neither can be sized off the
+ * other in CSS. Both take the same floor instead: 168px clears "Continue" at its widest, which
+ * leaves the pair matched and keeps Back the same width on every step. The longer send labels on
+ * the last step run past it and are unaffected.
+ */
+const NAV_PILL = "min-w-[168px]";
 
 type Step = "basics" | "branch" | "final" | "done";
 type Errors = Partial<Record<"name" | "email" | "topic" | "buildType" | "printsTopic" | "phone", string>>;
@@ -70,10 +79,7 @@ function Progress({ current, total }: { current: number; total: number }) {
 			</p>
 			<div aria-hidden="true" className="mt-2.5 flex gap-1.5">
 				{Array.from({ length: total }, (_, index) => (
-					<div
-						key={index}
-						className={`flex-[1_1_0] h-1 rounded-full ${index < current ? "bg-mcRed" : "bg-[#333333]"}`}
-					/>
+					<div key={index} className={`flex-[1_1_0] h-1 rounded-full ${index < current ? "bg-mcRed" : "bg-[#333333]"}`} />
 				))}
 			</div>
 		</>
@@ -81,9 +87,7 @@ function Progress({ current, total }: { current: number; total: number }) {
 }
 
 function FormCard({ children }: { children: React.ReactNode }) {
-	return (
-		<div className={`${CARD} bg-[#000000] p-[clamp(24px,4vw,48px)] [color-scheme:dark]`}>{children}</div>
-	);
+	return <div className={`${CARD} bg-[#000000] p-[clamp(24px,4vw,48px)] [color-scheme:dark]`}>{children}</div>;
 }
 
 /** A field bots fill in and people never see. */
@@ -167,8 +171,7 @@ export default function ProjectIntakeForm() {
 	const topic = (answers.topic || "website") as Topic;
 	/** "Something else" has no questions of its own, so that path is two steps, not three. */
 	const totalSteps = skippedBasics || answers.topic === "other" ? 2 : 3;
-	const currentStep =
-		step === "basics" ? 1 : step === "branch" ? (skippedBasics ? 1 : 2) : skippedBasics ? 2 : totalSteps;
+	const currentStep = step === "basics" ? 1 : step === "branch" ? (skippedBasics ? 1 : 2) : skippedBasics ? 2 : totalSteps;
 
 	function update<K extends keyof Answers>(key: K, value: Answers[K]) {
 		setAnswers((current) => ({ ...current, [key]: value }));
@@ -244,7 +247,7 @@ export default function ProjectIntakeForm() {
 	const isWebsite = topic === "website";
 
 	const backButton = (onClick: () => void) => (
-		<button type="button" onClick={onClick} className={PILL_SECONDARY}>
+		<button type="button" onClick={onClick} className={`${PILL_SECONDARY} ${NAV_PILL}`}>
 			Back
 		</button>
 	);
@@ -253,16 +256,14 @@ export default function ProjectIntakeForm() {
 	if (step === "basics") {
 		return (
 			<section className="bg-[#151515]">
-				<div
-					className={`${CONTAINER} py-[clamp(56px,7vw,96px)] flex flex-wrap items-start gap-x-[72px] gap-y-12`}
-				>
+				<div className={`${CONTAINER} py-[clamp(56px,7vw,96px)] flex flex-wrap items-start gap-x-[72px] gap-y-12`}>
 					<div className="flex-[1_1_300px] max-w-[420px] min-w-0">
 						<h2 ref={basicsHeadingRef} tabIndex={-1} className={`${SECTION_HEADING} outline-none`}>
 							Tell me about your project
 						</h2>
 						<p className={`mt-5 mb-0 ${BODY_TEXT}`}>
-							A few short questions about your business and what you need. Your answers come straight to me, and I follow
-							up personally.
+							A few short questions about your business and what you need. Your answers come straight to me, and I follow up
+							personally.
 						</p>
 						<h3 className="mt-10 mb-0 text-[18px] leading-[1.4] aktiv-grotesk-semibold text-white">What happens next</h3>
 						<ol className="mt-4 mb-0 p-0 list-none flex flex-col gap-3.5">
@@ -340,7 +341,7 @@ export default function ProjectIntakeForm() {
 						<Honeypot value={honeypot} onChange={setHoneypot} />
 
 						<div className="mt-7 flex flex-wrap justify-end gap-3">
-							<button type="submit" className={PILL_PRIMARY}>
+							<button type="submit" className={`${PILL_PRIMARY} ${NAV_PILL}`}>
 								Continue
 							</button>
 						</div>
@@ -497,7 +498,7 @@ export default function ProjectIntakeForm() {
 									setSkippedBasics(false);
 									setStep("basics");
 								})}
-								<button type="submit" className={PILL_PRIMARY}>
+								<button type="submit" className={`${PILL_PRIMARY} ${NAV_PILL}`}>
 									Continue
 								</button>
 							</div>
@@ -588,7 +589,7 @@ export default function ProjectIntakeForm() {
 
 							<div className="mt-8 flex flex-wrap justify-between gap-3">
 								{backButton(() => setStep(answers.topic === "other" ? "basics" : "branch"))}
-								<button type="submit" className={PILL_PRIMARY}>
+								<button type="submit" className={`${PILL_PRIMARY} ${NAV_PILL}`}>
 									{isWebsite ? "Send project details" : "Send message"}
 								</button>
 							</div>
@@ -597,10 +598,7 @@ export default function ProjectIntakeForm() {
 
 					{step === "done" ? (
 						<div className={`${CARD} bg-[#000000] p-[clamp(24px,4vw,48px)]`}>
-							<div
-								aria-hidden="true"
-								className="flex h-12 w-12 items-center justify-center rounded-full bg-mcRed"
-							>
+							<div aria-hidden="true" className="flex h-12 w-12 items-center justify-center rounded-full bg-mcRed">
 								<svg
 									width="24"
 									height="24"

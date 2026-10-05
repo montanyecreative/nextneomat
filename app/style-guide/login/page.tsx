@@ -55,7 +55,7 @@ export default function StyleGuideLogin() {
             placeholder="Password"
             required
             autoFocus
-            className="glass-input w-full rounded-md px-4 py-3 text-sm outline-none transition-all"
+            className="glass-input w-full rounded-md px-4 py-3 text-base lg:text-sm outline-none transition-all"
           />
 
           {error && (
