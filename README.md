@@ -54,10 +54,9 @@ Two Postmark emails go out on completion: a notification to `INTAKE_NOTIFY_EMAIL
 to the visitor) and a copy of their answers to the visitor, which is what the done screen promises
 them. Partial rows never email anybody.
 
-Spam is handled in four cheap layers: an off-screen honeypot, an hourly rate limit on a hashed IP,
-completion gating, and a reCAPTCHA v3 score taken on the final submit. The score decides whether
-the emails go out, never whether the row is saved — a false negative is a real person, so a low
-score still stores the submission (with its `recaptcha_score`) and simply does not notify.
+Spam is handled in several cheap layers, scored on the final submit. The guiding rule is that no
+check is ever allowed to discard a submission: a false positive is a real person, so anything
+uncertain is stored and triaged rather than dropped. See `lib/intake/` for the specifics.
 
 ### Migrations
 

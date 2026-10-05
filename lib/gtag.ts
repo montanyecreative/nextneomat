@@ -34,7 +34,13 @@
  * 3. Every event is also logged to the console as `[ga4] <name> {params}`.
  */
 
-export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-BW0S6W4YJ4";
+/**
+ * No hardcoded fallback. A measurement id is not a secret — it ships in every
+ * page — but this repo is public, and a baked-in default means anybody who
+ * forks and runs the site reports into the real property. Unset simply means
+ * no analytics: GA_ENABLED below is false and the scripts never load.
+ */
+export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "";
 
 /**
  * Events are sent in production. In development they are only sent when

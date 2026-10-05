@@ -28,7 +28,7 @@ const standards = [
  * Live Lighthouse numbers in report order: performance, accessibility, best practices, SEO.
  */
 const lighthouseScores: { site: string; scores: number[] }[] = [
-	{ site: "Montanye Creative (this site)", scores: [90, 95, 96, 100] },
+	{ site: "Montanye Creative (this site)", scores: [90, 100, 100, 100] },
 	{ site: "Montanye Creative Prints Store", scores: [96, 98, 100, 100] },
 	{ site: "Palladium Point", scores: [100, 96, 100, 100] },
 ];
@@ -47,15 +47,7 @@ type LighthouseEntry = (typeof lighthouseScores)[number];
  * name and the numbers have to stay flush with the lines above them. The wide layout centres the
  * pairs from its own container, where a pair is never narrow enough to wrap.
  */
-function ScoreEntry({
-	entry,
-	wrapperClass = "",
-	namePad = "",
-}: {
-	entry: LighthouseEntry;
-	wrapperClass?: string;
-	namePad?: string;
-}) {
+function ScoreEntry({ entry, wrapperClass = "", namePad = "" }: { entry: LighthouseEntry; wrapperClass?: string; namePad?: string }) {
 	return (
 		<span className={`inline-flex flex-wrap items-baseline gap-x-4 gap-y-1 ${wrapperClass}`}>
 			<span className={`whitespace-nowrap ${namePad}`}>{entry.site}</span>
@@ -67,14 +59,7 @@ function ScoreEntry({
 function CheckMark() {
 	return (
 		<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" className="flex-none mt-1">
-			<path
-				d="M4 10.5 L8.5 15 L16 6"
-				fill="none"
-				stroke="#c6284a"
-				strokeWidth="2.25"
-				strokeLinecap="round"
-				strokeLinejoin="round"
-			/>
+			<path d="M4 10.5 L8.5 15 L16 6" fill="none" stroke="#c6284a" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" />
 		</svg>
 	);
 }
@@ -86,8 +71,8 @@ export default function FasterLeaner() {
 			<div className={`${CONTAINER} py-[clamp(80px,10vw,144px)]`}>
 				<h2 className={SECTION_HEADING}>Faster and leaner, without lowering the bar</h2>
 				<p className={`mt-5 mb-0 max-w-[36em] ${BODY_TEXT}`}>
-					Projects come in at a fraction of the cost and timeline of a traditional enterprise build. The difference is in how
-					the work is structured.
+					Projects come in at a fraction of the cost and timeline of a traditional enterprise build. The difference is in how the
+					work is structured.
 				</p>
 				<div className="mt-12 flex flex-wrap gap-x-12 gap-y-10">
 					{pillars.map((pillar) => (
