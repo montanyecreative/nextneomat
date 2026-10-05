@@ -231,7 +231,7 @@ export default function WhatToExpect() {
 	}
 	const breakdownText = breakdownParts.length > 0 ? `Includes ${breakdownParts.join(" + ")}` : "";
 
-	const contactQuoteHref = `/contact?message=${encodeURIComponent(
+	const contactQuoteHref = `/start-a-project?message=${encodeURIComponent(
 		buildQuoteRequestMessage({
 			monetization,
 			needsContactForms,

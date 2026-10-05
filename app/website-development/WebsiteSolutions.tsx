@@ -168,7 +168,7 @@ export default function WebsiteSolutions() {
 							>
 								Close
 							</Button>
-							<Link href="/contact" aria-label="Go to the contact page" className="w-full">
+							<Link href="/start-a-project" aria-label="Go to the Start a project page" className="w-full">
 								<Button
 									variant="outline"
 									className="rounded-full px-5 md:px-10 w-full text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"

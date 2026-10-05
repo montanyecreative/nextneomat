@@ -83,7 +83,7 @@ export default function WebsiteDevelopment() {
 							<FeatureGrid />
 						</div>
 						<div className="my-10">
-							<Link href="/contact" aria-label="Go to Contact page">
+							<Link href="/start-a-project" aria-label="Go to the Start a project page">
 								<Button
 									variant="outline"
 									className="rounded-full px-10 mt-5 mb-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"
@@ -126,7 +126,7 @@ export default function WebsiteDevelopment() {
 						</h2>
 						<OurProcess />
 						<div className="my-10 text-center">
-							<Link href="/contact" aria-label="Go to Contact page">
+							<Link href="/start-a-project" aria-label="Go to the Start a project page">
 								<Button
 									variant="outline"
 									className="rounded-full px-10 md:mb-unset text-white hover:bg-red hover:border-red hover:text-white cursor-pointer uppercase text-[12px]"

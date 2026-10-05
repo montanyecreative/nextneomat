@@ -538,7 +538,7 @@ export const caseStudies: CaseStudy[] = [
 			body: "I build complete e-commerce systems, storefront to back office, and hand them off as working products.",
 			links: [
 				{ label: "Visit the store", href: "https://montanyecreative.shop/", external: true },
-				{ label: "Work with me", href: "/contact" },
+				{ label: "Work with me", href: "/start-a-project" },
 			],
 			footNote: "Montanye Creative — montanyecreative@outlook.com",
 		},
@@ -678,7 +678,7 @@ export const caseStudies: CaseStudy[] = [
 			body: "This is the same composable approach I bring to client work — from architecture to a shipped, maintainable product.",
 			links: [
 				{ label: "View the live site", href: "https://www.compoundscoffee.com", external: true },
-				{ label: "Work with me", href: "/contact" },
+				{ label: "Work with me", href: "/start-a-project" },
 			],
 			footNote: "Montanye Creative — montanyecreative@outlook.com",
 		},
@@ -913,7 +913,7 @@ export const caseStudies: CaseStudy[] = [
 			body: "This is a real production application, not a template: the same engineering I bring to client work, from architecture to a shipped, maintainable product.",
 			links: [
 				{ label: "View the live product", href: "https://www.montanyecreative.support", external: true },
-				{ label: "Work with me", href: "/contact" },
+				{ label: "Work with me", href: "/start-a-project" },
 			],
 			footNote: "Montanye Creative — montanyecreative@outlook.com",
 		},

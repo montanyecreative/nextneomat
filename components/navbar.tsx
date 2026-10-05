@@ -7,6 +7,10 @@ import { navLinks } from "@/lib/navLinks";
 
 const logo = "/logo.webp";
 
+/** Filled crimson pill, the inverse of the Get in Touch outline buttons used elsewhere. */
+const NAV_CTA_CLASS =
+	"inline-flex items-center justify-center min-h-[44px] px-6 rounded-full border border-mcRed bg-mcRed text-white text-[12px] uppercase tracking-[1.5px] proxima-nova-semibold no-underline transition-colors duration-300 hover:bg-[#8f1b35] hover:border-[#8f1b35] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black";
+
 export default function Navbar() {
 	const [active, setActive] = useState("Home");
 	const [toggle, setToggle] = useState(false);
@@ -87,8 +91,8 @@ export default function Navbar() {
 			<div className="w-full px-4 md:px-6 lg:px-8">
 				<div className="flex justify-between items-center">
 					<div className="logo">
-						<Link href="/" className="flex">
-							<Image src={logo} alt="logo" width="40" height="25" />
+						<Link href="/" className="flex items-center">
+							<Image src={logo} alt="logo" width="40" height="25" className="h-auto w-10" />
 							<span
 								className={`text-white ml-2 text-[20px] proxima-nova-regular ${
 									currentRoute === "/" ? "custom-underline" : ""
@@ -164,6 +168,12 @@ export default function Navbar() {
 										</ul>
 									</div>
 								</li>
+							) : nav.ctaLabel ? (
+								<li key={nav.id} className="mr-3 md:mr-5 lg:mr-8" onClick={() => setActive(nav.title)}>
+									<a href={`/${nav.link}`} className={NAV_CTA_CLASS}>
+										{nav.ctaLabel}
+									</a>
+								</li>
 							) : (
 								<li
 									key={nav.id}
@@ -221,6 +231,17 @@ export default function Navbar() {
 										))}
 									</ul>
 								</>
+							) : nav.ctaLabel ? (
+								<a
+									href={`/${nav.link}`}
+									className={NAV_CTA_CLASS}
+									onClick={() => {
+										setActive(nav.title);
+										setToggle(false);
+									}}
+								>
+									{nav.ctaLabel}
+								</a>
 							) : (
 								<a
 									href={`/${nav.link}`}

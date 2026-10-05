@@ -18,8 +18,8 @@ export default function Footer() {
 			id="footer"
 		>
 			<div className="logo mb-10">
-				<Link href="/" className="flex justify-center" aria-label="Go to Home page">
-					<Image src={logo} alt="logo" width="40" height="25" />
+				<Link href="/" className="flex items-center justify-center" aria-label="Go to Home page">
+					<Image src={logo} alt="logo" width="40" height="25" className="h-auto w-10" />
 					<span className="text-white ml-2 text-[20px]">Montanye Creative</span>
 				</Link>{" "}
 			</div>

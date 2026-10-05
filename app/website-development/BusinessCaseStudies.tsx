@@ -6,7 +6,6 @@ import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { caseStudies, caseStudyPath, type CaseStudy } from "./caseStudies";
-import { useIsMobile } from "./projects";
 import { useFadeInFromBottomOnScroll } from "@/components/animations";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -64,20 +63,26 @@ function SlideCard({ study, className }: { study: CaseStudy; className: string }
 	);
 }
 
-export default function BusinessCaseStudies() {
+type BusinessCaseStudiesProps = {
+	/** The pinned heading. It travels with the cards, so the effect starts as soon as it reaches the top. */
+	heading?: string;
+	headingClassName?: string;
+};
+
+export default function BusinessCaseStudies({
+	heading = "Business case studies",
+	headingClassName = "my-10 text-center text-white",
+}: BusinessCaseStudiesProps = {}) {
 	const galleryWrapperRef = useRef<HTMLDivElement>(null);
 	const galleryStripRef = useRef<HTMLUListElement>(null);
 	const headingRef = useRef<HTMLHeadingElement>(null);
-	const isMobile = useIsMobile();
 	const headingStyles = useFadeInFromBottomOnScroll(headingRef);
 
 	/**
-	 * Same pinned horizontal scroll as the Projects gallery: vertical scroll drives the strip sideways.
-	 * The heading is pinned with the cards, so the effect starts as soon as it reaches the top.
+	 * Vertical scroll drives the strip sideways, at every screen size. Phones get the same pinned
+	 * gallery as desktop rather than a stacked list.
 	 */
 	useLayoutEffect(() => {
-		if (isMobile) return;
-
 		if (!galleryWrapperRef.current || !galleryStripRef.current) return;
 
 		const pinWrap = galleryStripRef.current;
@@ -106,10 +111,15 @@ export default function BusinessCaseStudies() {
 					trigger: wrapper,
 					pin: wrapper,
 					start: "top top",
-					end: () => `+=${pinWrapWidth}`,
+					// The pin lasts exactly as long as the strip's sideways travel, so a pixel of
+					// scrolling moves the cards a pixel. Using the full strip width instead holds the
+					// section for roughly twice the distance the cards actually move.
+					end: () => `+=${Math.max(horizontalScrollLength, 1)}`,
 					invalidateOnRefresh: true,
 					// This pin sits above the Projects pin, so it must be measured first
 					refreshPriority: 1,
+					// Touch-only devices pin more reliably with a transform than with position: fixed
+					pinType: ScrollTrigger.isTouch === 1 ? "transform" : "fixed",
 				},
 				x: () => -horizontalScrollLength,
 				ease: "none",
@@ -148,37 +158,16 @@ export default function BusinessCaseStudies() {
 				ScrollTrigger.removeEventListener("refreshInit", refreshHandler);
 			}
 		};
-	}, [isMobile]);
+	}, []);
 
-	const heading = (
-		<h2 ref={headingRef} style={headingStyles.style} className="my-10 text-center text-white">
-			Business case studies
-		</h2>
-	);
-
-	// Mobile layout: case studies stacked vertically
-	if (isMobile) {
-		return (
-			<section>
-				{heading}
-				<ul className="flex list-none flex-col gap-6" aria-label="Business case studies">
-					{caseStudies.map((study) => (
-						<SlideCard key={study.slug} study={study} className="w-full" />
-					))}
-				</ul>
-			</section>
-		);
-	}
-
-	// Desktop layout: pinned horizontal scrolling gallery
+	// The wrapper fills the viewport and centres its contents, the way the Projects gallery does.
+	// Pinning a short block instead leaves the heading jammed under the nav with dead space below it.
 	return (
-		<div ref={galleryWrapperRef} className="w-full overflow-hidden">
-			{heading}
-			<ul
-				ref={galleryStripRef}
-				className="flex list-none flex-nowrap will-change-transform"
-				aria-label="Business case studies"
-			>
+		<div ref={galleryWrapperRef} className="flex min-h-screen w-full flex-col justify-center overflow-hidden">
+			<h2 ref={headingRef} style={headingStyles.style} className={headingClassName}>
+				{heading}
+			</h2>
+			<ul ref={galleryStripRef} className="flex list-none flex-nowrap will-change-transform" aria-label={heading}>
 				{caseStudies.map((study) => (
 					<SlideCard key={study.slug} study={study} className={`${SLIDE_WIDTH_CLASS} shrink-0 pr-4`} />
 				))}

@@ -81,7 +81,7 @@ export default function PrivacyPolicy() {
 						may be of interest to you.{" "}
 						<span className="font-bold">
 							To opt out of targeted advertising please contact us{" "}
-							<Link href="/contact" aria-label="Contact us here">
+							<Link href="/start-a-project" aria-label="Go to the Start a project page">
 								here.
 							</Link>
 						</span>
@@ -90,7 +90,7 @@ export default function PrivacyPolicy() {
 					<p className="my-1 aktiv-grotesk-regular">
 						If you are a European resident, you have the right to access the personal information we hold about you and to ask
 						that your personal information is corrected, updated, or deleted. If you would like to exercise this right, please{" "}
-						<Link href="/contact" aria-label="Contact us here">
+						<Link href="/start-a-project" aria-label="Go to the Start a project page">
 							contact us
 						</Link>
 						.
@@ -117,7 +117,7 @@ export default function PrivacyPolicy() {
 					</p>
 					<p className="font-bold my-1 aktiv-grotesk-regular">
 						If you have questions and/or require more information, do not hesitate to{" "}
-						<Link href="/contact" aria-label="Contact us here">
+						<Link href="/start-a-project" aria-label="Go to the Start a project page">
 							contact us here.
 						</Link>
 					</p>

@@ -8,6 +8,12 @@ const nextConfig = {
 				destination: "/prints",
 				permanent: true,
 			},
+			// The contact form moved to /start-a-project
+			{
+				source: "/contact",
+				destination: "/start-a-project",
+				permanent: true,
+			},
 		];
 	},
 };

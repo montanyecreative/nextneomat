@@ -4,6 +4,11 @@ export type NavLink = {
 	/** Parent items that only open a submenu have no link of their own. */
 	link?: string;
 	children?: NavLink[];
+	/**
+	 * Rendered as a filled button at the end of the nav rather than a plain link, under this label.
+	 * The footer still lists it by its ordinary title.
+	 */
+	ctaLabel?: string;
 };
 
 export const navLinks: NavLink[] = [
@@ -35,8 +40,9 @@ export const navLinks: NavLink[] = [
 	},
 	{
 		id: 5,
-		title: "Contact",
-		link: "contact",
+		title: "Start a Project",
+		link: "start-a-project",
+		ctaLabel: "Start a project",
 	},
 ];
 
