@@ -11,9 +11,9 @@ import { caseStudies } from "@/app/website-development/caseStudies";
 import { BODY_TEXT, CONTAINER, FOCUS_RING, PILL_PRIMARY, PILL_SECONDARY, SECTION_HEADING } from "@/components/site/tokens";
 
 /**
- * Back to the resume, rendered twice: at the end of the hero's facts line and again in the closing
- * band. Never on a row of its own above the headline, which made a way back the page's opening
- * move.
+ * Back to the resume. It sits at the end of the hero's facts line and nowhere else: not on a row of
+ * its own above the headline, which made a way back the page's opening move, and not in the closing
+ * band, where it pulled against the two calls to action that band exists for.
  *
  * Shorter and thinner than PILL_SECONDARY on purpose: it is a way back rather than a call to
  * action, and it should not carry the same weight as Start a project. The border is held at 45%
@@ -32,11 +32,7 @@ function BackToResume() {
 
 /** The facts under the heading. Short enough to read as one line of type rather than a list. */
 function MetaRow() {
-	const items = [
-		`${String(caseStudies.length).padStart(2, "0")} case studies`,
-		"design and build",
-		"solo, start to finish",
-	];
+	const items = [`${String(caseStudies.length).padStart(2, "0")} case studies`, "design and build", "solo, start to finish"];
 
 	return (
 		<ul className="m-0 flex list-none flex-wrap items-center gap-x-4 gap-y-2 p-0 text-[12px] uppercase tracking-[0.2em] text-[#8f8f8f] aktiv-grotesk-semibold">
@@ -68,19 +64,9 @@ export default function PortfolioPage() {
 						<span className="block">Portfolio</span>
 					</h1>
 					<p className={`mb-0 mt-8 max-w-[34em] text-[clamp(18px,1.6vw,22px)] leading-[1.55] ${BODY_TEXT}`}>
-						Stores, platforms and products built end to end &mdash; designed, engineered and operated by the person
-						accountable for the result. Every screen below is the real thing in production.
+						Stores, platforms and products built end to end &mdash; designed, engineered and operated by the person accountable
+						for the result. Every screen below is the real thing in production.
 					</p>
-					{/*
-						The way back shares the facts line rather than taking a row above the headline. The
-						eyebrow and the headline stay the first things the page says, and the control sits in
-						the utility corner at the end of the hero, opposite the facts.
-
-						It is not paired with the eyebrow instead because "Back to resume" runs about 195px at
-						this size and the eyebrow row leaves roughly 350px on a phone: the two would wrap, and
-						the control would be back on a row of its own. This row already wraps by design, so on
-						a phone it settles under the facts rather than above the headline.
-					*/}
 					<div className="mt-10 flex flex-wrap items-center justify-between gap-x-6 gap-y-5">
 						<MetaRow />
 						<BackToResume />
@@ -89,7 +75,6 @@ export default function PortfolioPage() {
 				<section className={`${CONTAINER} pb-[clamp(72px,9vw,144px)]`}>
 					<PortfolioMosaic />
 				</section>
-				{/* Closing band: the two calls to action, then the way back to the resume under them. */}
 				<section className={`${CONTAINER} border-t border-[#262626] py-[clamp(56px,7vw,112px)]`}>
 					<h2 className={`${SECTION_HEADING} max-w-[20em]`}>Want this kind of build for your own business?</h2>
 					<p className={`mb-0 mt-6 max-w-[36em] text-[clamp(17px,1.4vw,20px)] leading-[1.55] ${BODY_TEXT}`}>
@@ -102,9 +87,6 @@ export default function PortfolioPage() {
 						<Link href="/website-development" className={PILL_SECONDARY}>
 							How I build
 						</Link>
-					</div>
-					<div className="mt-10">
-						<BackToResume />
 					</div>
 				</section>
 			</div>
