@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import Footer from "@/components/footer";
-import { caseStudies, caseStudyParam, getCaseStudyByParam } from "../caseStudies";
+import { caseStudies, caseStudyParam, getCaseStudyByParam } from "@/app/website-development/caseStudies";
 import CaseStudyView from "./CaseStudyView";
 
 const spaceGrotesk = Space_Grotesk({

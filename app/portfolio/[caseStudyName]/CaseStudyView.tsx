@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,9 +15,17 @@ import {
 	type CaseStudyPalette,
 	type CaseStudyPipeline,
 	type RichText,
-} from "../caseStudies";
+} from "@/app/website-development/caseStudies";
 
 const WRAP = "mx-auto w-full max-w-[1080px] px-7";
+
+/**
+ * The live site pill. It carries the study's own accent as both its outline and its copy, then
+ * fills with that accent on hover the way the Back control beside it does. Every palette's accent
+ * clears 4.5:1 against its dark band, so the accent is safe to use for copy at this size.
+ */
+const LIVE_SITE_BUTTON =
+	"cs-display gap-2 rounded-full border-[var(--cs-accent)] bg-transparent px-6 text-[12px] uppercase tracking-[0.02em] text-[var(--cs-accent)] hover:border-[var(--cs-accent)] hover:bg-[var(--cs-accent)] hover:text-[var(--cs-dark)]";
 
 /** Turns a palette into the CSS variables every section below reads from. */
 function paletteVars(palette: CaseStudyPalette): React.CSSProperties {
@@ -58,7 +66,7 @@ function BackToCaseStudies() {
 			router.back();
 			return;
 		}
-		router.push("/website-development#case-studies");
+		router.push("/portfolio");
 	};
 
 	return (
@@ -345,15 +353,22 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
 				<div className={`${WRAP} flex flex-wrap items-center justify-between gap-4 py-4`}>
 					<BackToCaseStudies />
 					{study.liveUrl ? (
-						<Link
-							href={study.liveUrl}
-							target="_blank"
-							rel="noopener"
-							aria-label={`Open the live ${study.titleLines.join(" ")} site in a new tab`}
-							className="cs-display text-[12px] font-semibold uppercase tracking-[0.06em] text-[var(--cs-accent)] transition-colors hover:text-[var(--cs-on-dark)]"
-						>
-							Live site →
-						</Link>
+						/*
+							The pair in this bar: Back is the neutral outline, Live site the accented one. Same
+							geometry as BackToCaseStudies so the two read as one set of controls, and `asChild`
+							keeps it a single anchor rather than a button nested inside a link.
+						*/
+						<Button asChild variant="outline" className={LIVE_SITE_BUTTON}>
+							<Link
+								href={study.liveUrl}
+								target="_blank"
+								rel="noopener"
+								aria-label={`Open the live ${study.titleLines.join(" ")} site in a new tab`}
+							>
+								Live site
+								<ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+							</Link>
+						</Button>
 					) : null}
 				</div>
 			</div>

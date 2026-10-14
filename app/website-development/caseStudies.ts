@@ -920,7 +920,7 @@ export const caseStudies: CaseStudy[] = [
 	},
 ];
 
-/** Every case study URL ends with this, e.g. /website-development/compounds-coffee-case-study */
+/** Every case study URL ends with this, e.g. /portfolio/compounds-coffee-case-study */
 export const CASE_STUDY_URL_SUFFIX = "-case-study";
 
 /** The route segment for a case study, i.e. the slug plus the shared URL suffix. */
@@ -929,7 +929,7 @@ export function caseStudyParam(study: CaseStudy): string {
 }
 
 export function caseStudyPath(study: CaseStudy): string {
-	return `/website-development/${caseStudyParam(study)}`;
+	return `/portfolio/${caseStudyParam(study)}`;
 }
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {

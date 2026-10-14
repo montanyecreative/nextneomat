@@ -13,14 +13,22 @@ import { trackButtonClick } from "@/lib/gtag";
 const johnImage = "/john.webp";
 
 /**
- * The jump buttons under the summary. They are same-page links, which the
+ * Every pill in the row, Portfolio included. A filled pill reads larger than an outlined one at
+ * the same width, so Portfolio is styled identically to the three jumps and is set apart only by
+ * where it goes: its label, its accessible name and its analytics event all say "page".
+ */
+const SECTION_LINK_CLASS = "rounded-full w-28 hover:bg-[#c6284a] hover:border-[#c6284a] proxima-nova-semibold";
+
+/**
+ * The jump buttons under the summary. The first three are same-page links, which the
  * delegated listener in AnalyticsListeners deliberately ignores, so each one
- * reports itself.
+ * reports itself. Portfolio is the one that leaves the page, which `leavesPage` marks.
  */
 const SECTION_LINKS = [
 	{ href: "/resume#experience", label: "Experience" },
 	{ href: "/resume#education", label: "Education" },
 	{ href: "/resume#skills", label: "Skills" },
+	{ href: "/portfolio", label: "Portfolio", leavesPage: true },
 ];
 
 /**
@@ -94,14 +102,14 @@ export default function IntroSection() {
 						key={section.href}
 						asChild
 						variant="outline"
-						className="rounded-full w-28 hover:bg-[#c6284a] hover:border-[#c6284a] proxima-nova-semibold"
+						className={SECTION_LINK_CLASS}
 					>
 						<Link
 							href={section.href}
-							aria-label={`Go to ${section.label} section`}
+							aria-label={section.leavesPage ? `Go to ${section.label} page` : `Go to ${section.label} section`}
 							onClick={() =>
 								trackButtonClick({
-									name: "resume_section_jump",
+									name: section.leavesPage ? "resume_portfolio_link" : "resume_section_jump",
 									location: "resume",
 									text: section.label,
 									value: section.href,
