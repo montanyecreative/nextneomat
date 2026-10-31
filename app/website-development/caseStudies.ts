@@ -300,7 +300,7 @@ export const caseStudies: CaseStudy[] = [
 				reverse: true,
 				body: [
 					[
-						"The prints listing puts the art first. A chromium, content-aware layout lets each image's own colors bleed through the interface, so the browsing experience takes on the palette of the work itself. Nothing competes with the photography. The grid becomes the gallery wall.",
+						"The prints listing puts the art first. A chromatic, content-aware layout lets each image's own colors bleed through the interface, so the browsing experience takes on the palette of the work itself. Nothing competes with the photography. The grid becomes the gallery wall.",
 					],
 				],
 				tags: ["content-aware UI", "color bleed", "art-first grid"],
@@ -527,8 +527,7 @@ export const caseStudies: CaseStudy[] = [
 				},
 				{
 					title: "A product in itself",
-					description:
-						"Proof I can build and hand a client an entire e-commerce store and the order system that runs it.",
+					description: "Proof I can build and hand a client an entire e-commerce store and the order system that runs it.",
 				},
 			],
 		},
@@ -655,8 +654,7 @@ export const caseStudies: CaseStudy[] = [
 				},
 				{
 					title: "Relational content design",
-					description:
-						"A content model deep enough to be useful and simple enough for non-technical editors to run.",
+					description: "A content model deep enough to be useful and simple enough for non-technical editors to run.",
 				},
 				{
 					title: "Internationalization",
@@ -885,8 +883,7 @@ export const caseStudies: CaseStudy[] = [
 				},
 				{
 					title: "Real production concerns",
-					description:
-						"Passwordless auth, server-gated sessions, input sanitization, bot protection, and automated backups.",
+					description: "Passwordless auth, server-gated sessions, input sanitization, bot protection, and automated backups.",
 				},
 				{
 					title: "Third-party integration",
