@@ -64,7 +64,7 @@ export default function PortfolioPage() {
 						<span className="block">Portfolio</span>
 					</h1>
 					<p className={`mb-0 mt-8 max-w-[34em] text-[clamp(18px,1.6vw,22px)] leading-[1.55] ${BODY_TEXT}`}>
-						Stores, platforms and products built end to end &mdash; designed, engineered and operated by the person accountable
+						Stores, platforms and products built end to end: designed, engineered and operated by the person accountable
 						for the result. Every screen below is the real thing in production.
 					</p>
 					<div className="mt-10 flex flex-wrap items-center justify-between gap-x-6 gap-y-5">

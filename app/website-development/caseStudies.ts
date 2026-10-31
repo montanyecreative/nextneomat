@@ -264,7 +264,7 @@ export const caseStudies: CaseStudy[] = [
 		summary:
 			"A complete e-commerce store and a custom order-management system, designed, built, and operated end to end. Infrared aluminum art prints, made on demand, tracked from checkout to doorstep.",
 		cardSummary:
-			"A complete e-commerce store plus the custom order-management system behind it — infrared aluminum art prints, made on demand and tracked from checkout to doorstep.",
+			"A complete e-commerce store plus the custom order-management system behind it: infrared aluminum art prints, made on demand and tracked from checkout to doorstep.",
 		liveUrl: "https://montanyecreative.shop/",
 		metaDescription:
 			"How Montanye Creative designed, built, and operates Montanye Creative Prints: a Next.js storefront on Contentful and Stripe, with a custom order-management system tracking every print from checkout to doorstep.",
@@ -279,7 +279,7 @@ export const caseStudies: CaseStudy[] = [
 			alt: "Montanye Creative Prints homepage with a full-bleed infrared peony photograph",
 			width: 1400,
 			height: 763,
-			caption: "The storefront leads with the work — a dark gallery treatment so the art carries the page.",
+			caption: "The storefront leads with the work: a dark gallery treatment so the art carries the page.",
 		},
 		brief: {
 			kick: "The brief",
@@ -288,7 +288,7 @@ export const caseStudies: CaseStudy[] = [
 			lead: "Montanye Creative Prints is a live store selling infrared aluminum art prints. But the store is only the front half. Behind it runs a custom order-management system I built and operate myself, tracking every order from checkout through production to shipment.",
 			body: [
 				[
-					"That's the point of this one: it's proof I can deliver an entire e-commerce operation — storefront, checkout, fulfillment, and the back-office that runs it — and hand it off to a client as a working product, not just a website.",
+					"That's the point of this one: it's proof I can deliver an entire e-commerce operation (storefront, checkout, fulfillment, and the back-office that runs it) and hand it off to a client as a working product, not just a website.",
 				],
 			],
 		},
@@ -300,7 +300,7 @@ export const caseStudies: CaseStudy[] = [
 				reverse: true,
 				body: [
 					[
-						"The prints listing puts the art first. A chromium, content-aware layout lets each image's own colors bleed through the interface, so the browsing experience takes on the palette of the work itself. Nothing competes with the photography — the grid becomes the gallery wall.",
+						"The prints listing puts the art first. A chromium, content-aware layout lets each image's own colors bleed through the interface, so the browsing experience takes on the palette of the work itself. Nothing competes with the photography. The grid becomes the gallery wall.",
 					],
 				],
 				tags: ["content-aware UI", "color bleed", "art-first grid"],
@@ -309,7 +309,7 @@ export const caseStudies: CaseStudy[] = [
 					alt: "Prints listing page with a full-bleed grid where each image's colors bleed through the interface",
 					width: 1200,
 					height: 657,
-					caption: "The prints grid — a content-aware layout that takes on the palette of the work.",
+					caption: "The prints grid: a content-aware layout that takes on the palette of the work.",
 				},
 			},
 			{
@@ -340,7 +340,7 @@ export const caseStudies: CaseStudy[] = [
 							height: 1781,
 						},
 					],
-					caption: "One product template, two infrared themes — the page reshapes around the art.",
+					caption: "One product template, two infrared themes. The page reshapes around the art.",
 				},
 			},
 			{
@@ -377,7 +377,7 @@ export const caseStudies: CaseStudy[] = [
 					alt: "Single-page Stripe checkout for Montanye Creative LLC with multiple payment methods",
 					width: 1400,
 					height: 779,
-					caption: "A single-page Stripe checkout — every payment method, one screen.",
+					caption: "A single-page Stripe checkout: every payment method, one screen.",
 				},
 			},
 			{
@@ -440,7 +440,7 @@ export const caseStudies: CaseStudy[] = [
 					width: 1400,
 					height: 1128,
 					caption:
-						"The OMS order view — fulfillment status, carrier and tracking, customer and ship-to, and the Stripe payment record, all in one place.",
+						"The OMS order view: fulfillment status, carrier and tracking, customer and ship-to, and the Stripe payment record, all in one place.",
 				},
 			},
 			{
@@ -448,7 +448,7 @@ export const caseStudies: CaseStudy[] = [
 				heading: "Managed content that stays up",
 				theme: "mist",
 				layout: "full",
-				lead: "All of the site's content — products, copy, and imagery — lives in Contentful, so the catalog and messaging can be managed without touching code.",
+				lead: "All of the site's content (products, copy, and imagery) lives in Contentful, so the catalog and messaging can be managed without touching code.",
 				body: [
 					[
 						"And because a store can't go dark when a third party does, every piece of copy has a ",
@@ -505,7 +505,7 @@ export const caseStudies: CaseStudy[] = [
 			items: [
 				{
 					title: "End-to-end e-commerce",
-					description: "Storefront, cart, checkout, fulfillment, and back-office — the whole operation, built solo.",
+					description: "Storefront, cart, checkout, fulfillment, and back-office: the whole operation, built solo.",
 				},
 				{
 					title: "A custom OMS, not just a store",
@@ -534,13 +534,13 @@ export const caseStudies: CaseStudy[] = [
 		},
 		cta: {
 			kick: "Montanye Creative",
-			heading: "Need a store — or a store plus the operation behind it?",
+			heading: "Need a store, or a store plus the operation behind it?",
 			body: "I build complete e-commerce systems, storefront to back office, and hand them off as working products.",
 			links: [
 				{ label: "Visit the store", href: "https://montanyecreative.shop/", external: true },
 				{ label: "Work with me", href: "/start-a-project" },
 			],
-			footNote: "Montanye Creative — montanyecreative@outlook.com",
+			footNote: "Montanye Creative · montanyecreative@outlook.com",
 		},
 	},
 	{
@@ -549,7 +549,7 @@ export const caseStudies: CaseStudy[] = [
 		eyebrow: "Case Study",
 		titleLines: ["Compounds", "Coffee"],
 		summary:
-			"A headless, bilingual coffee-discovery platform — brews, brew methods, and a searchable roaster locator — designed and built end to end on a modern composable stack.",
+			"A headless, bilingual coffee-discovery platform (brews, brew methods, and a searchable roaster locator) designed and built end to end on a modern composable stack.",
 		liveUrl: "https://www.compoundscoffee.com",
 		metaDescription:
 			"How Montanye Creative designed and built Compounds Coffee: a headless, bilingual coffee-discovery platform on Next.js and Contentful with a Google Places powered roaster locator.",
@@ -564,12 +564,12 @@ export const caseStudies: CaseStudy[] = [
 			alt: "Compounds Coffee homepage with a roasting hero image and 'For the love of coffee' headline",
 			width: 1400,
 			height: 1214,
-			caption: "compoundscoffee.com — home. Warm editorial identity, bilingual (EN/FR), authenticated login.",
+			caption: "compoundscoffee.com home page. Warm editorial identity, bilingual (EN/FR), authenticated login.",
 		},
 		brief: {
 			kick: "The brief",
 			heading: "A content-rich coffee library that stays fast and easy to run",
-			lead: "Build a bilingual site where coffee lovers can explore brews, brew methods, and roasters, and where non-technical editors manage everything without touching code — all on an architecture that stays fast, accessible, and maintainable.",
+			lead: "Build a bilingual site where coffee lovers can explore brews, brew methods, and roasters, and where non-technical editors manage everything without touching code, all on an architecture that stays fast, accessible, and maintainable.",
 			body: [
 				[
 					"The catch is that the content is deep and relational: a single brew carries a full pour-over recipe and tasting notes, links to the roaster that made it, and that roaster links to its physical shops on a map. That richness is exactly where a monolithic CMS gets brittle, so the whole thing is built composable from the ground up.",
@@ -602,7 +602,7 @@ export const caseStudies: CaseStudy[] = [
 						{ bold: "curated roaster and shop data from Contentful" },
 						" with ",
 						{ bold: "live business data from the Google Places API" },
-						" — so visitors get searchable, real-time results with accurate mapping that neither source delivers alone.",
+						", so visitors get searchable, real-time results with accurate mapping that neither source delivers alone.",
 					],
 					[
 						"Search by zip or city, filter by distance, and switch between map and grid views. The real work was reconciling two differently-shaped datasets into one clean, fast, user-facing feature.",
@@ -614,7 +614,7 @@ export const caseStudies: CaseStudy[] = [
 					alt: "Roasters and Shops locator showing a results list and an interactive map centered on St. Louis",
 					width: 1500,
 					height: 657,
-					caption: "Roasters & Shops — Contentful locations reconciled with live Google Places details.",
+					caption: "Roasters & Shops: Contentful locations reconciled with live Google Places details.",
 				},
 			},
 			{
@@ -624,10 +624,10 @@ export const caseStudies: CaseStudy[] = [
 				reverse: true,
 				body: [
 					[
-						"Every brew is a rich, structured record: region, roast, and process alongside a complete pour-over recipe — method, grinder, grind setting, water temp, dose, bloom, yield, and times — plus free-form tasting notes. Each brew links to the roaster that produced it, and each roaster links to its shops in the locator.",
+						"Every brew is a rich, structured record: region, roast, and process alongside a complete pour-over recipe (method, grinder, grind setting, water temp, dose, bloom, yield, and times) plus free-form tasting notes. Each brew links to the roaster that produced it, and each roaster links to its shops in the locator.",
 					],
 					[
-						"Modeling that in Contentful means editors add a new coffee, roaster, or shop through simple forms, and it flows automatically into the brew pages, the roaster links, and the map — in both English and French, with no developer in the loop.",
+						"Modeling that in Contentful means editors add a new coffee, roaster, or shop through simple forms, and it flows automatically into the brew pages, the roaster links, and the map, in both English and French, with no developer in the loop.",
 					],
 				],
 				tags: ["Relational modeling", "Structured content", "i18n (EN/FR)"],
@@ -636,7 +636,7 @@ export const caseStudies: CaseStudy[] = [
 					alt: "A brew detail page for Lift-Off Bochica with coffee details, full brew parameters, and tasting notes",
 					width: 1300,
 					height: 1171,
-					caption: "A single brew: structured recipe data, linked roaster, and tasting notes — all localized.",
+					caption: "A single brew: structured recipe data, linked roaster, and tasting notes, all localized.",
 				},
 			},
 		],
@@ -647,7 +647,7 @@ export const caseStudies: CaseStudy[] = [
 				{
 					title: "Composable architecture",
 					description:
-						"A cleanly decoupled front end over an API-first content layer — the direction modern content and commerce sites are moving.",
+						"A cleanly decoupled front end over an API-first content layer: the direction modern content and commerce sites are moving.",
 				},
 				{
 					title: "Multi-source integration",
@@ -668,19 +668,19 @@ export const caseStudies: CaseStudy[] = [
 				},
 				{
 					title: "End-to-end ownership",
-					description: "Architecture, design, and implementation through to production — one person, whole stack.",
+					description: "Architecture, design, and implementation through to production. One person, whole stack.",
 				},
 			],
 		},
 		cta: {
 			kick: "Montanye Creative",
 			heading: "Building something headless, or need a fast, data-driven front end?",
-			body: "This is the same composable approach I bring to client work — from architecture to a shipped, maintainable product.",
+			body: "This is the same composable approach I bring to client work, from architecture to a shipped, maintainable product.",
 			links: [
 				{ label: "View the live site", href: "https://www.compoundscoffee.com", external: true },
 				{ label: "Work with me", href: "/start-a-project" },
 			],
-			footNote: "Montanye Creative — montanyecreative@outlook.com",
+			footNote: "Montanye Creative · montanyecreative@outlook.com",
 		},
 	},
 	{
@@ -689,9 +689,9 @@ export const caseStudies: CaseStudy[] = [
 		eyebrow: "Case Study · Studio Product",
 		titleLines: ["The Client", "Portal"],
 		summary:
-			"A production client portal Montanye Creative builds and operates for engagements — project tracking, invoicing, live delivery feeds, and analytics, on a real modern stack. Part product tour, part proof of craft.",
+			"A production client portal Montanye Creative builds and operates for engagements: project tracking, invoicing, live delivery feeds, and analytics, on a real modern stack. Part product tour, part proof of craft.",
 		cardSummary:
-			"A production client portal built and operated for engagements — project tracking, invoicing, live delivery feeds, and analytics on a real modern stack.",
+			"A production client portal built and operated for engagements: project tracking, invoicing, live delivery feeds, and analytics on a real modern stack.",
 		liveUrl: "https://www.montanyecreative.support",
 		metaDescription:
 			"How Montanye Creative designed, built, and operates its client portal: a passwordless, role-aware Next.js application with project tracking, invoicing, GitHub commit feeds, and GA4 analytics.",
@@ -703,18 +703,18 @@ export const caseStudies: CaseStudy[] = [
 		],
 		showcase: {
 			src: "/case-studies/client-portal/client-portal-status-board.webp",
-			alt: "The portal's Project Status screen: a sidebar of portal sections beside four delivery columns — Backlog, In Progress, Review, and Done — with one ticket card in Backlog showing its feature label, assignee, and priority.",
+			alt: "The portal's Project Status screen: a sidebar of portal sections beside four delivery columns (Backlog, In Progress, Review, and Done), with one ticket card in Backlog showing its feature label, assignee, and priority.",
 			width: 1500,
 			height: 817,
-			caption: "Project Status — a drag-and-drop delivery board inside the portal. Demo data shown.",
+			caption: "Project Status: a drag-and-drop delivery board inside the portal. Demo data shown.",
 		},
 		brief: {
 			kick: "The brief",
-			heading: "Not a bolted-on SaaS template — a product the studio owns",
+			heading: "A product the studio owns, not a bolted-on SaaS template",
 			lead: "The portal is a custom application built and operated for client engagements: a calm place for clients to track work, ideas, invoices, and outcomes, and a real production app that shows how the studio ships software.",
 			body: [
 				[
-					"Access is invite-only and passwordless. The goal was a polished client experience backed by production-grade engineering — the same class of concerns (auth, sessions, sanitization, backups, integrations) you would bring to any serious app, not a template with the logo swapped.",
+					"Access is invite-only and passwordless. The goal was a polished client experience backed by production-grade engineering: the same class of concerns (auth, sessions, sanitization, backups, integrations) you would bring to any serious app, not a template with the logo swapped.",
 				],
 			],
 		},
@@ -778,7 +778,7 @@ export const caseStudies: CaseStudy[] = [
 						"Delivery runs on a drag-and-drop board across Backlog, In Progress, Review, and Done, with features grouping related tickets. Every ticket carries status, assignee, priority, a rich-text description, threaded comments, and file attachments.",
 					],
 					[
-						"An All Tickets view keeps a searchable, filterable inventory — by status, priority, assignee, or feature — including archived work that has left the board, so nothing is ever lost.",
+						"An All Tickets view keeps a searchable, filterable inventory (by status, priority, assignee, or feature), including archived work that has left the board, so nothing is ever lost.",
 					],
 				],
 				tags: ["Drag & drop", "Comments", "Attachments (Blob)", "Searchable archive"],
@@ -797,7 +797,7 @@ export const caseStudies: CaseStudy[] = [
 				reverse: true,
 				body: [
 					[
-						"Each project keeps its environment links, brand context, documentation, and an e-commerce toggle in one place. A GitHub App syncs recent commits straight into the portal, so clients can see shipping activity and exactly when the last code push went live — without ever opening a repository.",
+						"Each project keeps its environment links, brand context, documentation, and an e-commerce toggle in one place. A GitHub App syncs recent commits straight into the portal, so clients can see shipping activity and exactly when the last code push went live, without ever opening a repository.",
 					],
 					["Multi-project accounts switch context from the header without losing the rest of the portal."],
 				],
@@ -841,16 +841,16 @@ export const caseStudies: CaseStudy[] = [
 						"When a project links its Google Analytics 4 property, the portal pulls traffic through the official Data API: a last-7-days snapshot with week-over-week comparison across active users, sessions, page views, engagement, and session duration.",
 					],
 					[
-						"Each engagement links its own GA4 property, so the numbers always stay scoped to the right site — enough to orient a weekly conversation without dumping a client into the full console.",
+						"Each engagement links its own GA4 property, so the numbers always stay scoped to the right site. It's enough to orient a weekly conversation without dumping a client into the full console.",
 					],
 				],
 				tags: ["GA4 Data API", "Week-over-week", "Per-project scope"],
 				image: {
 					src: "/case-studies/client-portal/client-portal-analytics.webp",
-					alt: "The Analytics screen showing a linked Google Analytics 4 property above five metric cards — active users, sessions, page views, engagement rate, and average session duration — each with its change against the prior seven days.",
+					alt: "The Analytics screen showing a linked Google Analytics 4 property above five metric cards (active users, sessions, page views, engagement rate, and average session duration), each with its change against the prior seven days.",
 					width: 1500,
 					height: 821,
-					caption: "GA4 traffic, pulled through the official Data API — enough to ground a weekly check-in.",
+					caption: "GA4 traffic, pulled through the official Data API: enough to ground a weekly check-in.",
 				},
 			},
 			{
@@ -859,10 +859,10 @@ export const caseStudies: CaseStudy[] = [
 				theme: "light",
 				body: [
 					[
-						"Sign-in is passwordless: enter your email, receive a six-digit code through Postmark, and you are in — no passwords to reuse or leak. Sessions are server-gated and access is allowlisted, so the product is built for approved collaborators, not open registration.",
+						"Sign-in is passwordless: enter your email, receive a six-digit code through Postmark, and you are in. No passwords to reuse or leak. Sessions are server-gated and access is allowlisted, so the product is built for approved collaborators, not open registration.",
 					],
 					[
-						"The portal is role-aware — clients see their engagement while the studio operates across active projects from the same shell. Data lives in Neon Postgres with automatic weekly backups to S3.",
+						"The portal is role-aware: clients see their engagement while the studio operates across active projects from the same shell. Data lives in Neon Postgres with automatic weekly backups to S3.",
 					],
 				],
 				tags: ["Better Auth · OTP", "Server-gated sessions", "Role-aware", "Weekly S3 backups"],
@@ -871,7 +871,7 @@ export const caseStudies: CaseStudy[] = [
 					alt: "The portal sign-in card, with a single email field and an Email sign-in code button, and no password field.",
 					width: 1500,
 					height: 770,
-					caption: "Passwordless sign-in — a six-digit code by email, no password to manage.",
+					caption: "Passwordless sign-in: a six-digit code by email, no password to manage.",
 				},
 			},
 		],
@@ -881,7 +881,7 @@ export const caseStudies: CaseStudy[] = [
 			items: [
 				{
 					title: "Full-stack ownership",
-					description: "Architecture, data model, UI, and delivery — designed and shipped solo, in production.",
+					description: "Architecture, data model, UI, and delivery: designed and shipped solo, in production.",
 				},
 				{
 					title: "Real production concerns",
@@ -903,19 +903,19 @@ export const caseStudies: CaseStudy[] = [
 				{
 					title: "Considered content editing",
 					description:
-						"Sanitized TipTap rich text for descriptions, comments, and notes — not textareas pretending to be documents.",
+						"Sanitized TipTap rich text for descriptions, comments, and notes, not textareas pretending to be documents.",
 				},
 			],
 		},
 		cta: {
 			kick: "Montanye Creative",
-			heading: "Want a portal like this — or a custom app for your business?",
+			heading: "Want a portal like this, or a custom app for your business?",
 			body: "This is a real production application, not a template: the same engineering I bring to client work, from architecture to a shipped, maintainable product.",
 			links: [
 				{ label: "View the live product", href: "https://www.montanyecreative.support", external: true },
 				{ label: "Work with me", href: "/start-a-project" },
 			],
-			footNote: "Montanye Creative — montanyecreative@outlook.com",
+			footNote: "Montanye Creative · montanyecreative@outlook.com",
 		},
 	},
 ];
